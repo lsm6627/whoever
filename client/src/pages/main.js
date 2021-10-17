@@ -1,18 +1,47 @@
-import React from 'react';
-import { Listdiv, Maindiv } from '../pages/main.style';
+import { useState } from 'react';
+import {
+  Listdiv,
+  Maindiv,
+  Boardtitle,
+  BoardContent,
+  Title,
+  List,
+  Listtitle,
+  CreatedDate
+} from '../pages/main.style';
+import { initialState } from '../assets/state';
 
-const main = () => {
+const Main = () => {
+  const [posts, setPosts] = useState(initialState.posts);
+  const [categories, setCategories] = useState(initialState.categories);
+
+  // console.log(categories);
   return (
     <Maindiv>
-      <Listdiv>흠</Listdiv>
-      {/* <Listdiv>2</Listdiv>
-      <Listdiv>3</Listdiv>
-      <Listdiv>4</Listdiv> */}
+      {categories.map((els) => (
+        <Listdiv>
+          <Boardtitle>
+            <Title>{els.content}</Title>
+          </Boardtitle>
+          <BoardContent>
+            {posts
+              .filter((el) => el.categoryId === els.id)
+              .map((el) => (
+                <List>
+                  <Listtitle>{el.title}</Listtitle>
+                  <CreatedDate>
+                    {new Date(el.createdAt).toLocaleDateString('ko-kr')}
+                  </CreatedDate>
+                </List>
+              ))}
+          </BoardContent>
+        </Listdiv>
+      ))}
     </Maindiv>
   );
 };
 
-export default main;
+export default Main;
 
 // 초기에 보이는 페이지로 한다. //
 // componants 를 띄우는 용도로 한다.

@@ -1,14 +1,17 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useState } from 'react';
 import Header from './components/Header';
 import Main from './pages/main';
 import Footer from './components/Footer';
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+        <Header isLogin={isLogin} />
         <Switch>
           <Route exact path="/">
             <Main />
