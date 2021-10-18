@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Footerdiv = styled.div`
-  border: solid 1px black;
-  margin-top: 0.2rem;
-  height: 100px;
+  text-align: right;
+  margin: 20px;
+  font-size: 25px;
+  text-shadow: 2px 2px 2px gray;
 `;

@@ -13,9 +13,9 @@ const Header = ({ isLogin }) => {
       <Logo>Whoever</Logo>
       <Header_button_container>
         {isLogin ? (
-          <Loginbutton>로그아웃</Loginbutton>
+          <Loginbutton>Logout</Loginbutton>
         ) : (
-          <Loginbutton>로그인</Loginbutton>
+          <Loginbutton>Login</Loginbutton>
         )}
       </Header_button_container>
     </Headerdiv>

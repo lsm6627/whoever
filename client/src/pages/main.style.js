@@ -7,8 +7,9 @@ export const Maindiv = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
+  margin-bottom: 40px;
   width: 70vw;
-  height: 92vh;
+  height: 92%;
 `;
 
 export const Listdiv = styled.div`
@@ -32,6 +33,8 @@ export const BoardTitle = styled.div`
   margin-left: 10px;
   font-size: 25px;
   align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 export const BoardContentBox = styled.div`
@@ -51,6 +54,7 @@ export const ListBox = styled.div`
 
 export const Listtitle = styled.div`
   font-size: 15px;
+  cursor: pointer;
 `;
 
 export const CreatedDate = styled.div`
