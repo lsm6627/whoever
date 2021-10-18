@@ -14,7 +14,7 @@ export const Menu_icon = styled.i`
   margin-left: 10px;
   font-size: 50px;
   display: inline;
-  flex: 1;
+  flex: 0.5;
   text-align: center;
   text-shadow: 2px 2px 2px gray;
 `;
