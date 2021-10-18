@@ -3,11 +3,10 @@ const express = require('express');
 
 const cors = require('cors');
 const controllers = require('./controllers');
-const fs = require('fs');
 const cookieParser = require('cookie-parser');
 
-const app = express();
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: true,
@@ -16,7 +15,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.post('/posts', controllers.posts.post);
 
 module.exports = con;

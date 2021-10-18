@@ -1,1 +1,3 @@
-const models = require('../models');
+module.exports = {
+  posts: require('./posts')
+};

@@ -8,7 +8,14 @@ import {
   ListdivBox,
   Listdiv,
   PagenumBox,
-  Pagenum
+  Pagenum,
+  But_Container,
+  But_Suggestion_Up,
+  But_Suggestion_Down,
+  Title_Post,
+  CreatedBy_Post,
+  Created_Post,
+  Hit_Post
 } from '../pages/postList.style';
 
 const PostList = ({ categoryId }) => {
@@ -18,18 +25,23 @@ const PostList = ({ categoryId }) => {
     <Maindiv>
       <PostTitleBox>
         <PostTitle>여행 게시판!</PostTitle>
-        <SearchButton>검색</SearchButton>
+        <SearchButton>
+          <i className="fas fa-search"></i>
+        </SearchButton>
       </PostTitleBox>
+      <Title_Post>제목</Title_Post>
       <ListmenuBox>
-        <no>NO.</no>
-        <title>제목</title>
-        <created>작성시간</created>
-        <hit>조회수</hit>
-        <like>좋아요</like>
+        <CreatedBy_Post>작성자</CreatedBy_Post>
+        <Created_Post>작성시간</Created_Post>
+        <Hit_Post>조회수</Hit_Post>
       </ListmenuBox>
       <ListdivBox>
         <Listdiv>게시판!</Listdiv>
       </ListdivBox>
+      <But_Container>
+        <But_Suggestion_Up>인정 또 인정 : 0</But_Suggestion_Up>
+        <But_Suggestion_Down>비추머겅</But_Suggestion_Down>
+      </But_Container>
       <PagenumBox>
         <Pagenum>12345</Pagenum>
       </PagenumBox>

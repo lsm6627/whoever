@@ -1,4 +1,3 @@
-/*한가지 게시글을 보는 페이지*/
 import { useState } from 'react';
 import {} from '../pages/onePost.style';
 

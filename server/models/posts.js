@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      models.Posts.hasOne(models.Post_comment, {
-        foreignKey: 'post_Id',
-        SourceKey: 'id'
-      });
       models.Posts.hasOne(models.Users, {
         foreignKey: 'id',
         SourceKey: 'userId'
@@ -27,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.INTEGER,
       img: DataTypes.STRING,
       categoryId: DataTypes.INTEGER,
+      commentId: DataTypes.INTEGER,
       title: DataTypes.STRING,
       content: DataTypes.STRING,
       views: DataTypes.INTEGER,

@@ -17,6 +17,9 @@ module.exports = {
       categoryId: {
         type: Sequelize.INTEGER
       },
+      commentId: {
+        type: Sequelize.INTEGER
+      },
       title: {
         type: Sequelize.STRING
       },
