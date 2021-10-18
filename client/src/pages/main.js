@@ -2,39 +2,52 @@ import { useState } from 'react';
 import {
   Listdiv,
   Maindiv,
-  Boardtitle,
-  BoardContent,
-  Title,
-  List,
+  BoardtitleBox,
+  BoardContentBox,
+  BoardTitle,
+  ListBox,
   Listtitle,
   CreatedDate
 } from '../pages/main.style';
-import { initialState } from '../assets/state';
+import { initialState } from '../static/dummyData';
+import { useHistory } from 'react-router-dom';
+import PostList from './postList';
 
 const Main = () => {
+  const history = useHistory();
   const [posts, setPosts] = useState(initialState.posts);
   const [categories, setCategories] = useState(initialState.categories);
 
-  // console.log(categories);
   return (
     <Maindiv>
-      {categories.map((els) => (
+      {categories.map((category) => (
         <Listdiv>
-          <Boardtitle>
-            <Title>{els.content}</Title>
-          </Boardtitle>
-          <BoardContent>
+          <BoardtitleBox>
+            <BoardTitle
+              onClick={(e) => {
+                // 서버쪽으로 categoryId를보내주고,
+                // 서버에서는 받은 categoryId에 연관된 post를 가져온다?
+                history.push(`/postList/?c=${category.id}`);
+              }}
+            >
+              {category.content}
+            </BoardTitle>
+          </BoardtitleBox>
+
+          <BoardContentBox>
             {posts
-              .filter((el) => el.categoryId === els.id)
+              .filter((el) => el.categoryId === category.id)
+              .slice(-10)
+              .reverse() //여행인 게시물 10개씩 최신순
               .map((el) => (
-                <List>
+                <ListBox>
                   <Listtitle>{el.title}</Listtitle>
                   <CreatedDate>
                     {new Date(el.createdAt).toLocaleDateString('ko-kr')}
                   </CreatedDate>
-                </List>
+                </ListBox>
               ))}
-          </BoardContent>
+          </BoardContentBox>
         </Listdiv>
       ))}
     </Maindiv>

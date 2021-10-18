@@ -3,6 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 import Header from './components/Header';
 import Main from './pages/main';
+import NewPost from './pages/newPost';
+import OnePost from './pages/onePost';
+import PostList from './pages/postList';
 import Footer from './components/Footer';
 
 function App() {
@@ -15,6 +18,15 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Main />
+          </Route>
+          <Route exact path="/newPost">
+            <NewPost />
+          </Route>
+          <Route exact path="/onePost">
+            <OnePost />
+          </Route>
+          <Route exact path="/postList/">
+            <PostList />
           </Route>
         </Switch>
         <Footer />

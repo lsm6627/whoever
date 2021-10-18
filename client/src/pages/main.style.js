@@ -1,64 +1,59 @@
 import styled from 'styled-components';
 
 export const Maindiv = styled.div`
-  border: solid 3px blue;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  width: 80rem;
-  height: 92vh;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  width: 70vw;
+  height: 92vh;
 `;
 
 export const Listdiv = styled.div`
-  border: solid 1px red;
   width: 45%;
   height: 40%;
-  margin: 1rem;
+  margin: 30px;
+  min-width: 450px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px gray;
+  padding: 20px;
 `;
-export const Boardtitle = styled.div`
-  border: solid 1px blue;
+export const BoardtitleBox = styled.div`
+  border-bottom: solid 5px #ffad4f;
   width: 100%;
   height: 15%;
   display: flex;
 `;
 
-export const Title = styled.div`
+export const BoardTitle = styled.div`
   display: flex;
   margin-left: 10px;
   font-size: 25px;
   align-items: center;
 `;
 
-export const BoardContent = styled.div`
-  border: solid 1px green;
+export const BoardContentBox = styled.div`
   width: 100%;
   height: 85%;
 `;
 
-export const List = styled.div`
+export const ListBox = styled.div`
   display: flex;
   margin-left: 10px;
   margin-top: 10px;
   font-size: 20px;
   align-items: center;
   justify-content: space-between;
+  line-height: 20px;
 `;
 
 export const Listtitle = styled.div`
-  /* display: flex;
-  margin-left: 10px;
-  margin-top: 10px;
-  align-items: center; */
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 export const CreatedDate = styled.div`
-  /* display: flex;
-  margin-left: 10px;
-  margin-top: 10px;
-  align-items: center; */
-  font-size: 20px;
+  font-size: 15px;
   margin-right: 10px;
 `;

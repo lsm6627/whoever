@@ -14,7 +14,7 @@ export const Headerdiv = styled.div`
 export const Menu_icon = styled.i`
   margin-left: 10px;
   display: inline;
-  flex: 1;
+  flex: 0.5;
   text-align: center;
 `;
 
