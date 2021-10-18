@@ -1,7 +1,25 @@
+@font-face {
+  font-family: 'KoPubDotumMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/KoPubDotumMedium.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mikado';
+  src: url('./fonts/MikadoBold_DEMO.otf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
-  display: flexbox;
   box-sizing: border-box;
-  font-size: 20px;
   margin: 0;
   padding: 0;
+  font-family: 'KoPubDotumMedium';
+}
+
+.App {
+  height: 100%;
 }

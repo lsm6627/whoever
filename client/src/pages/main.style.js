@@ -1,24 +1,28 @@
 import styled from 'styled-components';
 
 export const Maindiv = styled.div`
-  border: solid 3px blue;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  width: 80rem;
-  height: 92vh;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 70vw;
+  height: 92%;
 `;
 
 export const Listdiv = styled.div`
-  border: solid 1px red;
   width: 45%;
   height: 40%;
-  margin: 1rem;
+  margin: 30px;
+  min-width: 450px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px gray;
+  padding: 20px;
 `;
 export const Boardtitle = styled.div`
-  border: solid 1px blue;
+  border-bottom: solid 5px #ffad4f;
   width: 100%;
   height: 15%;
   display: flex;
@@ -29,10 +33,10 @@ export const Title = styled.div`
   margin-left: 10px;
   font-size: 25px;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const BoardContent = styled.div`
-  border: solid 1px green;
   width: 100%;
   height: 85%;
 `;
