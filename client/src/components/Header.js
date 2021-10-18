@@ -3,18 +3,20 @@ import {
   Menu_icon,
   Logo,
   Loginbutton,
-  Logoutbutton,
   Header_button_container
 } from './Header.style';
 
-const Header = () => {
+const Header = ({ isLogin }) => {
   return (
     <Headerdiv>
       <Menu_icon className="fas fa-bars" />
       <Logo>Whoever</Logo>
       <Header_button_container>
-        <Loginbutton>로긴!</Loginbutton>
-        <Logoutbutton>아웃!!</Logoutbutton>
+        {isLogin ? (
+          <Loginbutton>로그아웃</Loginbutton>
+        ) : (
+          <Loginbutton>로그인</Loginbutton>
+        )}
       </Header_button_container>
     </Headerdiv>
   );
