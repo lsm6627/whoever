@@ -19,4 +19,4 @@ app.use(
 app.use(cookieParser());
 app.listen(PORT, () => console.log(`this server listening on ${PORT}`));
 
-app.post('/posts', controllers.posts.post);
+// app.post('/posts', controllers.posts.post);

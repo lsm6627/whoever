@@ -1,5 +1,5 @@
-const { Posts } = require('../../models/posts');
-const { Users } = require('../../models/users');
+const { Posts } = require('../../models');
+const { Users } = require('../../models');
 
 module.exports = {
   post: async (req, res) => {
@@ -7,8 +7,8 @@ module.exports = {
     if (!userId) {
       return res.status(404).json('로그인이 필요 합니다');
     }
-    const userInfo = await Users.findOne({ where: { id: id } }).catch((err) =>
-      res.json(err)
+    const userInfo = await Users.findOne({ where: { userId: userId } }).catch(
+      (err) => res.json(err)
     );
     const result = await Posts.create({
       userId: userInfo.id,
