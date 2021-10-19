@@ -12,6 +12,7 @@ export const Headerdiv = styled.div`
 
 export const Menu_icon = styled.i`
   margin-left: 10px;
+  margin-right: 10px;
   font-size: 50px;
   display: inline;
   flex: 0.5;
@@ -33,6 +34,7 @@ export const Logo = styled.div`
   font-size: 70px;
   flex: 7;
   text-shadow: 4px 4px 4px gray;
+  margin-right: 10px;
 `;
 
 export const Loginbutton = styled.span`

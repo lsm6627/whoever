@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const app = express();
+const PORT = 3000;
 
 const cors = require('cors');
 const controllers = require('./controllers');
@@ -15,10 +17,6 @@ app.use(
   })
 );
 app.use(cookieParser());
-// TODO: 아래 형식으로 클라이언트 요청 받는 것 처리 하면 됨
-// app.get('/auth', controllers.auth);
-// app.post('/signup', controllers.signup);
-// app.post('/signin', controllers.signin);
-// app.post('/signout', controllers.signout);
+app.listen(PORT, () => console.log(`this server listening on ${PORT}`));
 
-module.exports = con;
+// app.post('/posts', controllers.posts.post);
