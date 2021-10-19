@@ -1,25 +1,47 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router';
+import { initialState } from '../static/dummyData';
+import Lists from '../components/Lists';
+import PostTitle from '../components/PostTitle';
+import Pagination from '../components/Pagination';
 import {
   Maindiv,
-  PostTitleBox,
-  PostTitle,
-  SearchButton,
+  // PostTitleBox,
+  // PostTitle,
+  // PostCount,
+  // SearchBox,
+  // SearchText,
+  // SearchIcon,
   ListmenuBox,
   ListdivBox,
-  Listdiv,
+  // Listdiv,
   PagenumBox,
   Pagenum
 } from '../pages/postList.style';
 
-const PostList = ({ categoryId }) => {
-  // categoryId에 맞는 post만 서버에서 받는다?
-  // 모든 post정보를 여기서 가공한다?
+const PostList = ({}) => {
+  const location = useLocation();
+  const { categoryId, categorContent } = location.state;
+  const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
+  // categoryId에 맞는 post만 서버에서 받는다. useEffect,axios
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+  const categoryPost = posts
+    .filter((post) => post.categoryId === categoryId)
+    .reverse();
+  const categorLength = categoryPost.length;
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  const currentPosts = (tmp) => {
+    let currentPost = 0;
+    currentPost = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPost;
+  };
+
   return (
     <Maindiv>
-      <PostTitleBox>
-        <PostTitle>여행 게시판!</PostTitle>
-        <SearchButton>검색</SearchButton>
-      </PostTitleBox>
+      <PostTitle categorTitle={categorContent} categorLength={categorLength} />
       <ListmenuBox>
         <no>NO.</no>
         <title>제목</title>
@@ -28,15 +50,18 @@ const PostList = ({ categoryId }) => {
         <like>좋아요</like>
       </ListmenuBox>
       <ListdivBox>
-        <Listdiv>게시판!</Listdiv>
+        {currentPosts(categoryPost).map((post) => (
+          <Lists key={post.id} post={post} />
+        ))}
       </ListdivBox>
       <PagenumBox>
-        <Pagenum>12345</Pagenum>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={categorLength}
+          paginate={setCurrentPage}
+        />
       </PagenumBox>
     </Maindiv>
-    // <div>
-    //   <span>게시판{categoryId}</span>
-    // </div>
   );
 };
 

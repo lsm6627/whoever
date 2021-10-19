@@ -1,15 +1,29 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Main from './pages/main';
 import NewPost from './pages/newPost';
 import OnePost from './pages/onePost';
 import PostList from './pages/postList';
+import Login from './components/Login';
 import Footer from './components/Footer';
+// import { initialState } from './static/dummyData';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+  // const [userInfo, setUserInfo] = useState({});
+  // const [posts, setPosts] = useState(initialState.posts);
+  // const [categories, setCategories] = useState(initialState.categories);
+
+  // const handleChange = () => {
+  //   setPosts(initialState.posts);
+  //   setCategories(initialState.categories);
+  // };
+
+  // useEffect(() => {
+  //   handleChange();
+  // }, []);
 
   return (
     <BrowserRouter>
@@ -18,15 +32,19 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Main />
+            {/* <Main posts={posts} categories={categories} /> */}
           </Route>
-          <Route exact path="/newPost">
+          <Route path="/newPost">
             <NewPost />
           </Route>
-          <Route exact path="/onePost">
+          <Route path="/onePost/:no" component={OnePost}>
             <OnePost />
           </Route>
-          <Route exact path="/postList/">
+          <Route path="/postList/:no" component={PostList}>
             <PostList />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
         </Switch>
         <Footer />
