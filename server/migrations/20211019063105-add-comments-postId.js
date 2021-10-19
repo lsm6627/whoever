@@ -2,15 +2,15 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.addColumn('posts', 'commentId', {
+    await queryInterface.addColumn('comments', 'postId', {
       type: Sequelize.INTEGER
     });
-    await queryInterface.addConstraint('posts', {
-      fields: ['commentId'],
+    await queryInterface.addConstraint('comments', {
+      fields: ['postId'],
       type: 'foreign key',
-      name: 'commentId',
+      name: 'postId',
       references: {
-        table: 'comments',
+        table: 'posts',
         field: 'id'
       },
       onDelete: 'cascade',
@@ -19,6 +19,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn('posts', 'commentId');
+    await queryInterface.removeColumn('comments', 'postId');
   }
 };

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const app = express();
 const PORT = 3000;
-const db = require('./models');
 
 const cors = require('cors');
 const controllers = require('./controllers');
@@ -20,5 +20,3 @@ app.use(cookieParser());
 app.listen(PORT, () => console.log(`this server listening on ${PORT}`));
 
 app.post('/posts', controllers.posts.post);
-
-module.exports = con;

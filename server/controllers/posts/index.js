@@ -1,19 +1,19 @@
-const { Posts } = require('../../models');
-const { Users } = require('../../models');
+const { Posts } = require('../../models/posts');
+const { Users } = require('../../models/users');
 
 module.exports = {
   post: async (req, res) => {
-    const { name, img, categoryId, title, content } = req.body;
-    if (!name) {
+    const { userId, categoryId, img, title, content } = req.body;
+    if (!userId) {
       return res.status(404).json('로그인이 필요 합니다');
     }
-    const userInfo = await Users.findOne({ where: { name: name } }).catch(
-      (err) => res.json(err)
+    const userInfo = await Users.findOne({ where: { id: id } }).catch((err) =>
+      res.json(err)
     );
     const result = await Posts.create({
-      name: userInfo.id,
-      img: img,
+      userId: userInfo.id,
       categoryId: categoryId,
+      img: img,
       title: title,
       content: content
     }).catch((err) => res.json(err));
