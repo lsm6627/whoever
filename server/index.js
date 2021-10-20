@@ -1,14 +1,14 @@
 require('dotenv').config();
 const express = require('express');
-const app = express();
-const PORT = 3000;
 
 const cors = require('cors');
 const controllers = require('./controllers');
+const fs = require('fs');
 const cookieParser = require('cookie-parser');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const app = express();
+const PORT = 3000;
+
 app.use(
   cors({
     origin: true,
@@ -17,6 +17,9 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.listen(PORT, () => console.log(`this server listening on ${PORT}`));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-// app.post('/posts', controllers.posts.post);
+app.get('/', controllers.posts);
+
+app.listen(PORT, () => console.log(`this server listening on ${PORT}`));
