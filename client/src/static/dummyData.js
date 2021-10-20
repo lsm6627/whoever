@@ -1140,7 +1140,7 @@ export const initialState = {
       suggestions: 1,
       createdAt: '2021-10-12T16:17:27.000Z',
       updatedAt: '2021-10-12T16:17:27.000Z'
-    },
+    }
   ],
   categories: [
     {

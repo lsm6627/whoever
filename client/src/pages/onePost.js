@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router';
+
 import {
   Maindiv,
   PostTitleBox,
@@ -19,6 +21,8 @@ import {
 } from './onePost.style';
 
 const onePost = ({ categoryId }) => {
+  // const location = useLocation();
+  // const { post } = location.state;
   return (
     <Maindiv>
       <PostTitleBox>

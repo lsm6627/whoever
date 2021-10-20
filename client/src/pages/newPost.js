@@ -1,8 +1,7 @@
 /* 게시글 작성하는 페이지로 한다.*/
 import { useState } from 'react';
 import {Maindiv, TitleWriteContainer, TitleBox, Title, WriterWriteContainer, 
-        WriterBox, Writer, ContentContainer, ContentBox, Content, UploadBox, UploadContainer, UploadFile, 
-        UploadButton, ButtonContainer, ButtonBox, SubmitButton, BacktoButton} from '../pages/newPost.style';
+        WriterBox, Writer, ContentContainer, ContentBox, Content, ButtonContainer, ButtonBox, SubmitButton, BacktoButton} from '../pages/newPost.style';
 
 const NewPost = () => {
   return (
