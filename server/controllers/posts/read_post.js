@@ -21,7 +21,10 @@ module.exports = {
       })
       .catch((err) => res.json(err));
     if (!result) return res.status(404).json('없는 요청입니다');
-    res.status(200).json({ title: result.title, createdAt: result.createdAt });
+    res.status(200).json({
+      title: result.title,
+      createdAt: result.createdAt
+    });
   },
 
   // 2번째 : listPage 카테고리 들어가면 나올 목록 10개 나옴
@@ -33,12 +36,19 @@ module.exports = {
       offset = 10 * (pageNum - 1);
     }
 
+    const allPostCount = await posts
+      .findAll({
+        where: { categoryId: req.body.categoryId }
+      })
+      .catch((err) => res.json(err));
+
     const result = await posts
       .findAll({
         where: { categoryId: req.body.categoryId },
         offset: offset,
         limit: 10,
-        order: 'createdAt desc'
+        order: 'createdAt desc',
+        allPostCount: allPostCount.length
       })
       .catch((err) => res.json(err));
     if (!result) return res.status(404).json('없는 요청입니다');
