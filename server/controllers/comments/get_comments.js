@@ -11,18 +11,25 @@ module.exports = {
       offset = 30 * (pageNum - 1);
     }
 
+    const allCommentsCount = await comments
+      .findAll({
+        where: { postId: req.body.postId }
+      })
+      .catch((err) => res.json(err));
+
     const commentId = await posts
       .findAll({
-        where: { commentId: req.body.commentId },
+        where: { id: req.body.id },
         offset: offset,
         limit: 30,
-        order: 'createdAt desc'
+        order: 'createdAt desc',
+        allCommentsCount: allCommentsCount.length
       })
       .catch((err) => res.json(err));
 
     const result = await comments
       .findAll({
-        where: { id: id },
+        where: { postId: postId },
         offset: offset,
         limit: 30,
         order: 'createdAt desc'
