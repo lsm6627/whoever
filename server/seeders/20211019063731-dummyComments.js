@@ -7,6 +7,7 @@ module.exports = {
         id: 1,
         postId: 1,
         content: '너무 재미있어요!',
+        password: 1234,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -14,6 +15,7 @@ module.exports = {
         id: 2,
         postId: 2,
         content: '안녕 디지몬!',
+        password: 1234,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -21,6 +23,7 @@ module.exports = {
         id: 3,
         postId: 2,
         content: '안녕 포켓몬!',
+        password: 1234,
         createdAt: new Date(),
         updatedAt: new Date()
       }

@@ -36,9 +36,22 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// users 요청
 app.post('/login', controllers.login);
 app.post('/logout', controllers.logout);
 app.post('/signup', controllers.signup);
 app.get('/userinfo', controllers.userinfo);
+
+// posts 요청
+app.update('/changepost', controllers.changepost);
+app.delete('/deletepost', controllers.deletepost);
+app.get('/readpost', controllers.readpost);
+app.post('/uploadpost', controllers.uploadpost);
+
+// comments 요청
+app.update('/changecomment', controllers.changecomment);
+app.delete('/deletecomment', controllers.deletecomment);
+app.get('/getcomments', controllers.getcomments);
+app.post('/uploadcomment', controllers.uploadcomment);
 
 app.listen(PORT, () => console.log(`this server listening on ${PORT}`));
