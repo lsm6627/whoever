@@ -34,9 +34,6 @@ function App() {
           <Route path="/postList/:no/newPost" component={NewPost} />
           <Route path="/onePost/:no" component={OnePost} />
           <Route path="/postList/:no" component={PostList} />
-          <Route path="/login">
-            <Login />
-          </Route>
         </Switch>
         <Footer />
       </div>

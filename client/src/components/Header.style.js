@@ -11,13 +11,13 @@ export const Headerdiv = styled.div`
 `;
 
 export const Menu_icon = styled.i`
+  cursor: pointer;
   margin-left: 10px;
   margin-right: 10px;
   font-size: 50px;
   display: inline;
   flex: 0.5;
   text-align: center;
-  text-shadow: 2px 2px 2px gray;
 `;
 
 export const Header_button_container = styled.div`
