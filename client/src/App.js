@@ -6,6 +6,7 @@ import Main from './pages/main';
 import NewPost from './pages/newPost';
 import OnePost from './pages/onePost';
 import PostList from './pages/postList';
+import Login from './components/Login';
 import Footer from './components/Footer';
 // import { initialState } from './static/dummyData';
 
@@ -30,9 +31,7 @@ function App() {
         <Header isLogin={isLogin} />
         <Switch>
           <Route exact path="/" component={Main} />
-        {/* <Main posts={posts} categories={categories} /> */}
-       
-          <Route path="/newPost" component={NewPost} />
+          <Route path="/postList/:no/newPost" component={NewPost} />
           <Route path="/onePost/:no" component={OnePost} />
           <Route path="/postList/:no" component={PostList} />
         </Switch>
