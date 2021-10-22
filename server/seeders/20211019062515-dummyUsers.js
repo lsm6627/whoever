@@ -7,6 +7,7 @@ module.exports = {
         id: 1,
         userId: 'HyesnSi',
         password: '1234',
+        salt: 'hello world',
         createdAt: new Date(),
         updatedAt: new Date()
       }
