@@ -10,9 +10,7 @@ import {
 const PostTitle = ({ categorTitle, categorLength }) => {
   return (
     <PostTitleBox>
-      <PTitle>
-        {categorTitle} 게시판 <PostCount>{categorLength}</PostCount>
-      </PTitle>
+      <PTitle>{categorTitle} 게시판</PTitle>
       <SearchBox>
         <SearchText type="text" />
         <SearchIcon className="fas fa-search"></SearchIcon>

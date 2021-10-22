@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router';
-
+import { initialState } from '../static/dummyData';
 import {
   Maindiv,
   PostTitleBox,
@@ -11,8 +10,7 @@ import {
   But_Suggestion_Up,
   But_Suggestion_Down,
   Title_Post,
-  CreatedBy_Post,
-  Created_Post,
+  CreatedAt_Post,
   Hit_Post,
   CommentBox,
   Comment_createdBy,
@@ -20,26 +18,35 @@ import {
   Comment_createAt
 } from './onePost.style';
 
-const onePost = ({ categoryId }) => {
-  // const location = useLocation();
-  // const { post } = location.state;
+const OnePost = ({ match, location }) => {
+  console.log(match);
+  console.log(location.search);
+  const postId = Number(match.params.no);
+  const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
+
+  const post = posts.filter((el) => el.id === postId);
+  const getCategorTitle = (no) => {
+    if (no === 1) return '여행';
+    if (no === 2) return '술';
+    if (no === 3) return '맛집';
+    if (no === 4) return '낚시';
+    if (no === 5) return '노래';
+    if (no === 6) return '코딩';
+  };
+
   return (
     <Maindiv>
       <PostTitleBox>
-        <PostTitle>여행</PostTitle>
+        <PostTitle>{getCategorTitle(post[0].categoryId)}</PostTitle>
       </PostTitleBox>
-      <Title_Post>여행여행여행혀앻</Title_Post>
+      <Title_Post>{post[0].title}</Title_Post>
       <PostInfo>
-        <CreatedBy_Post>여행을 떠나요</CreatedBy_Post>
-        <Created_Post>2021-10-19 07:34:50</Created_Post>
-        <Hit_Post>9</Hit_Post>
+        <CreatedAt_Post>
+          {new Date(post[0].createdAt).toLocaleDateString('ko-kr')}
+        </CreatedAt_Post>
+        <Hit_Post>{post[0].views}</Hit_Post>
       </PostInfo>
-      <Post_Content>
-        게시판!의 내용을 여기 적을건데 뭔가 나도 길게 적고는 싶지만 나는 그다지
-        창의력이 없는지 길게 적기는 너무 힘든 것이에요. 하지만 테스트를 위해
-        일단 적어 봅니다. 이거 깨지나요? 아닐걸요 내가 만든거거든요 훗.
-        재송합니다. 개소리는 여기까지 적도록 하겠읍니다.
-      </Post_Content>
+      <Post_Content>{post[0].content}</Post_Content>
       <But_Container>
         <But_Suggestion_Up>인정 또 인정 : 0</But_Suggestion_Up>
         <But_Suggestion_Down>비추머겅</But_Suggestion_Down>
@@ -49,8 +56,9 @@ const onePost = ({ categoryId }) => {
         <Comment_createAt>2021-10-19 07:34:55</Comment_createAt>
       </CommentBox>
       <Comment_content>와 완전 좋은 정보 개이덕!</Comment_content>
+      {/* 여기 게시글의 댓글정보 */}
     </Maindiv>
   );
 };
 
-export default onePost;
+export default OnePost;

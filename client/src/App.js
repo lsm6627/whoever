@@ -30,19 +30,10 @@ function App() {
       <div className="App">
         <Header isLogin={isLogin} />
         <Switch>
-          <Route exact path="/">
-            <Main />
-            {/* <Main posts={posts} categories={categories} /> */}
-          </Route>
-          <Route path="/newPost">
-            <NewPost />
-          </Route>
-          <Route path="/onePost/:no" component={OnePost}>
-            <OnePost />
-          </Route>
-          <Route path="/postList/:no" component={PostList}>
-            <PostList />
-          </Route>
+          <Route exact path="/" component={Main} />
+          <Route path="/newPost" component={NewPost} />
+          <Route path="/onePost/:no" component={OnePost} />
+          <Route path="/postList/:no" component={PostList} />
           <Route path="/login">
             <Login />
           </Route>
@@ -54,7 +45,3 @@ function App() {
 }
 
 export default App;
-
-// 처음에 main를 띄운다.
-
-// 띄울때 위에 header를 박아버리고 아래를 footer를 박아버린다.
