@@ -37,7 +37,7 @@ export const Title = styled.input`
 export const WriterWriteContainer = styled.div`
   /* border: solid 2px green; */
   width: 100%;
-  height: 300px;
+  height: 500px;
 `;
 
 export const WriterBox = styled.div`

@@ -31,7 +31,7 @@ function App() {
         <Header isLogin={isLogin} />
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route path="/newPost" component={NewPost} />
+          <Route path="/postList/:no/newPost" component={NewPost} />
           <Route path="/onePost/:no" component={OnePost} />
           <Route path="/postList/:no" component={PostList} />
           <Route path="/login">
