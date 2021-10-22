@@ -63,7 +63,7 @@ const PostList = ({ match }) => {
         ))}
       </ListdivBox>
       <WritiBox>
-        <Stylelink to={`/newPost`}>
+        <Stylelink to={`/postList/${categoryId}/newPost`}>
           <WritiBtn>글쓰기</WritiBtn>
         </Stylelink>
       </WritiBox>
