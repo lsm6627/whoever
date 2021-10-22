@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Maindiv = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ export const BoardTitle = styled.div`
   font-size: 25px;
   align-items: center;
   margin-bottom: 10px;
-  cursor: pointer;
+  /* cursor: pointer; */
 `;
 
 export const BoardContentBox = styled.div`
@@ -51,10 +52,13 @@ export const ListBox = styled.div`
   justify-content: space-between;
   line-height: 20px;
 `;
-
+export const Stylelink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
 export const Listtitle = styled.div`
   font-size: 15px;
-  cursor: pointer;
+  /* cursor: pointer; */
 `;
 
 export const CreatedDate = styled.div`

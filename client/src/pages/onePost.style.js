@@ -38,14 +38,8 @@ export const Title_Post = styled.div`
   padding-bottom: 15px;
 `;
 
-export const CreatedBy_Post = styled.div`
-  flex: 0 0 auto;
-  font-family: 'twayair';
-`;
-
-export const Created_Post = styled.div`
+export const CreatedAt_Post = styled.div`
   flex: 1 1 auto;
-  margin-left: 40px;
   font-family: 'twayair';
 `;
 
