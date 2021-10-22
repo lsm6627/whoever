@@ -1,11 +1,48 @@
-/*
+import { useHistory } from 'react-router-dom';
+import {
+    ModalSideBarBackdrop,
+    MenuContainer,
+    userProfileContainer,
+    userUpContainer,
+    userPhoto,
+    userName,
+    userDownContainer,
+    userInfo,
+    userPost,
+    Logout,
+    postListContainer,
+} from './Sidebar.style';
 
-    회원정보가 있어야 한다. 
-    회원정보 - 가입일, 아이디
+const Sidebar = ({  }) => {
+    // const history = useHistory();
+    // const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
+    // const [categories, setCategories] = useState(initialState.categories);
 
-    작성글을 페이지로 - 
 
-    
+    return (
+        <ModalSideBarBackdrop>
+            <MenuContainer>
+                <userProfileContainer>
+                    <userUpContainer>
+                        <userPhoto className="fas fa-user"></userPhoto>
+                        <userName>HyeonSi님</userName>
+                    </userUpContainer>
+                    <userDownContainer>
+                        <userInfo>회원 정보</userInfo>
+                        <userPost>작성한 글</userPost>
+                        <Logout>로그아웃</Logout>
+                    </userDownContainer>
+                </userProfileContainer>
 
-    
-*/
+            <postListContainer>
+            
+            </postListContainer>
+
+            </MenuContainer>
+        </ModalSideBarBackdrop>
+
+        
+    )
+}
+
+export default Sidebar;

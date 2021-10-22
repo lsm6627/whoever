@@ -1,3 +1,6 @@
+import React from 'react';
+import { useState } from "react";
+import Sidebar from "./Sidebar"
 import {
   Headerdiv,
   Menu_icon,
@@ -6,10 +9,18 @@ import {
   Header_button_container
 } from './Header.style';
 
+
+
 const Header = ({ isLogin }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const sideBarOpenHandler = (e) => {
+    setIsOpen(!isOpen);
+  };
+  
   return (
     <Headerdiv>
-      <Menu_icon className="fas fa-bars" />
+      <Menu_icon className="fas fa-bars" onClick={() => sideBarOpenHandler()}/>
+      {isOpen ? <Sidebar /> : null}
       <Logo>Whoever</Logo>
       <Header_button_container>
         {isLogin ? (

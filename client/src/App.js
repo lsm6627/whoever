@@ -6,7 +6,7 @@ import Main from './pages/main';
 import NewPost from './pages/newPost';
 import OnePost from './pages/onePost';
 import PostList from './pages/postList';
-import Login from './components/Login';
+import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 // import { initialState } from './static/dummyData';
 
@@ -43,9 +43,7 @@ function App() {
           <Route path="/postList/:no" component={PostList}>
             <PostList />
           </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
+        
         </Switch>
         <Footer />
       </div>
