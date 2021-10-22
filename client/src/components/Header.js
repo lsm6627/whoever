@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from "react";
-import Sidebar from "./Sidebar"
+import { Link } from 'react-router-dom';
+import Sidebar from "./Sidebar";
 import {
   Headerdiv,
   Menu_icon,
@@ -8,6 +9,7 @@ import {
   Loginbutton,
   Header_button_container
 } from './Header.style';
+import { Stylelink } from './Sidebar.style';
 
 
 
@@ -20,8 +22,10 @@ const Header = ({ isLogin }) => {
   return (
     <Headerdiv>
       <Menu_icon className="fas fa-bars" onClick={() => sideBarOpenHandler()}/>
-      {isOpen ? <Sidebar /> : null}
-      <Logo>Whoever</Logo>
+      {isOpen ? <Sidebar isOpen={isOpen} sideBarOpenHandler={sideBarOpenHandler} isLogin={isLogin}/> : null}
+      <Stylelink to={'/'}>
+        <Logo>Whoever</Logo>
+      </Stylelink>
       <Header_button_container>
         {isLogin ? (
           <Loginbutton>Logout</Loginbutton>
