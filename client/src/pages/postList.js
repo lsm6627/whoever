@@ -7,12 +7,15 @@ import { Stylelink } from '../pages/main.style';
 import {
   Maindiv,
   ListmenuBox,
+  ListTitle,
+  ListCreatedAt,
+  ListView,
+  ListLike,
   ListdivBox,
   PagenumBox,
   WritiBox,
   WritiBtn
 } from '../pages/postList.style';
-
 const PostList = ({ match }) => {
   const categoryId = Number(match.params.no);
   const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
@@ -23,10 +26,8 @@ const PostList = ({ match }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   const categorLength = categoryPost.length;
-
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
-
   const getCategorTitle = (no) => {
     if (no === 1) return '여행';
     if (no === 2) return '술';
@@ -40,7 +41,6 @@ const PostList = ({ match }) => {
     currentPost = tmp.slice(indexOfFirst, indexOfLast);
     return currentPost;
   };
-
   return (
     <Maindiv>
       <PostTitle
@@ -48,13 +48,14 @@ const PostList = ({ match }) => {
         // categorLength={categorLength}
       />
       <ListmenuBox>
-        <div>제목</div>
-        <div>작성시간</div>
-        <div>조회수</div>
-        <div>좋아요</div>
+        <ListTitle>제목</ListTitle>
+        <ListCreatedAt>작성시간</ListCreatedAt>
+        <ListView>조회수</ListView>
+        <ListLike>좋아요</ListLike>
       </ListmenuBox>
       <ListdivBox>
         {currentPosts(categoryPost).map((post) => (
+          // ! 이부분 각각 요소들 다른 컴포넌트로 받아 올 수 있게 만들어 주세요!
           <Lists
             key={post.id}
             post={post}
@@ -77,5 +78,4 @@ const PostList = ({ match }) => {
     </Maindiv>
   );
 };
-
 export default PostList;
