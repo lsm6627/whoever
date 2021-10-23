@@ -13,9 +13,10 @@ import {
   Stylelink
 } from '../pages/main.style';
 
-const Main = () => {
+const Main = ({ isLogin }) => {
   const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
   const [categories, setCategories] = useState(initialState.categories); //dummyData = axios
+  console.log(isLogin);
 
   return (
     <Maindiv>

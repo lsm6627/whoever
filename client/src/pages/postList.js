@@ -15,18 +15,23 @@ import {
 
 const PostList = ({ match }) => {
   const categoryId = Number(match.params.no);
-  const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
-  // categoryId에 맞는 post만 서버에서 받는다. useEffect,axios
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+  // ---categoryId에 맞고,페이지에 맞는 게시물들 받기 서버에서 받는다. useEffect,axios---
+  const [posts, setPosts] = useState(initialState.posts);
   const categoryPost = posts
     .filter((post) => post.categoryId === categoryId)
     .reverse();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
   const categorLength = categoryPost.length;
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
-
+  const currentPosts = (tmp) => {
+    let currentPost = 0;
+    currentPost = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPost;
+  };
+  // -----------------------------------------------
   const getCategorTitle = (no) => {
     if (no === 1) return '여행';
     if (no === 2) return '술';
@@ -35,12 +40,6 @@ const PostList = ({ match }) => {
     if (no === 5) return '노래';
     if (no === 6) return '코딩';
   };
-  const currentPosts = (tmp) => {
-    let currentPost = 0;
-    currentPost = tmp.slice(indexOfFirst, indexOfLast);
-    return currentPost;
-  };
-
   return (
     <Maindiv>
       <PostTitle

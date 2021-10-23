@@ -3,7 +3,7 @@ import { Stylelink } from '../pages/main.style';
 import { useHistory } from 'react-router-dom';
 import OnePost from '../pages/onePost';
 
-const Lists = ({ post, categorTitle }) => {
+const Lists = ({ post }) => {
   const history = useHistory();
   return (
     <Listdiv>
