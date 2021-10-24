@@ -4,8 +4,8 @@ export const Listdiv = styled.div`
   border-bottom: solid 1px gray;
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
   cursor: pointer;
+  padding: 15px;
 
   @media only screen and (max-width: 950px) {
     justify-content: space-between;
@@ -38,7 +38,7 @@ export const ListDataCreatedAt = styled.span`
 
 export const ListViewsContainer = styled.span`
   width: 10%;
-  text-align: left;
+  text-align: center;
   @media only screen and (max-width: 950px) {
     display: none;
   }

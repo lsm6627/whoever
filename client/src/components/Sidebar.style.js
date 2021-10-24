@@ -1,5 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+
+const slideIn = keyframes`
+    from {
+      left: -300px;
+    }
+    to {
+      left: 0;
+    }
+  `;
 
 export const SidebarContainer = styled.div`
   height: 15rem;
@@ -16,19 +25,12 @@ export const ModalSideBarBackdrop = styled.div`
   display: grid;
   place-items: left;
 
-  animation-name: slideIn;
-  animation-duration: 0.8s;
-  animation-delay: -0.5s;
+  animation-name: ${slideIn};
+  animation-duration: 1s;
+  animation-delay: -0.3s;
   animation-timing-function: ease all;
-  @-webkit-keyframes slideIn {
-    from {
-      left: -300px;
-    }
-    to {
-      left: 0;
-    }
-  }
 `;
+
 export const MenuContainer = styled.div`
   background-color: #ffffff;
   border: solid 8px #ffad4f;

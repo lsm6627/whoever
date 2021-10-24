@@ -11,6 +11,8 @@ export const PostTitleBox = styled.div`
 export const PTitle = styled.div`
   font-size: 35px;
   border-bottom: solid 5px #ffad4f;
+  font-family: 'twayair';
+  padding-bottom: 3px;
 `;
 
 export const SearchBox = styled.div`
@@ -20,7 +22,7 @@ export const SearchBox = styled.div`
 `;
 
 export const SearchText = styled.input`
-  width: 130px;
+  width: 170px;
   margin-right: 10px;
   height: 35px;
   border: solid 3px #ffad4f;
