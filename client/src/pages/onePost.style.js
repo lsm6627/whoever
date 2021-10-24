@@ -16,8 +16,10 @@ export const PostTitleBox = styled.div`
 
 export const PostTitle = styled.div`
   border-bottom: solid 5px #ffad4f;
+  padding-bottom: 3px;
   margin-bottom: 20px;
   margin-top: 40px;
+  font-family: 'twayair';
 `;
 
 export const PostInfo = styled.div`
@@ -28,14 +30,15 @@ export const PostInfo = styled.div`
   font-size: 25px;
   padding: 25px;
   background-color: #fdcb6e;
+  border-top: 3px solid black;
 `;
 
 export const Title_Post = styled.div`
-  margin-top: 40px;
-  font-size: 45px;
-  border-bottom: 3px solid black;
-  font-family: 'twayair';
-  padding-bottom: 15px;
+  margin-top: 25px;
+  margin-left: 20px;
+  font-size: 30px;
+  font-family: 'MaplestoryOTFBold';
+  padding-bottom: 10px;
 `;
 
 export const CreatedAt_Post = styled.div`

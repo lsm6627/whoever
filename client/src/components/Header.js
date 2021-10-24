@@ -1,7 +1,7 @@
 import React from 'react';
-import { useState } from "react";
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from "./Sidebar";
+import Sidebar from './Sidebar';
 import {
   Headerdiv,
   Menu_icon,
@@ -11,18 +11,23 @@ import {
 } from './Header.style';
 import { Stylelink } from './Sidebar.style';
 
-
-
-const Header = ({ isLogin }) => {
+const Header = ({ isLogin, categories }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const sideBarOpenHandler = (e) => {
+  const sideBarOpenHandler = () => {
     setIsOpen(!isOpen);
   };
-  
+
   return (
     <Headerdiv>
-      <Menu_icon className="fas fa-bars" onClick={() => sideBarOpenHandler()}/>
-      {isOpen ? <Sidebar isOpen={isOpen} sideBarOpenHandler={sideBarOpenHandler} isLogin={isLogin}/> : null}
+      <Menu_icon className="fas fa-bars" onClick={() => sideBarOpenHandler()} />
+      {isOpen ? (
+        <Sidebar
+          isOpen={isOpen}
+          sideBarOpenHandler={sideBarOpenHandler}
+          isLogin={isLogin}
+          categories={categories}
+        />
+      ) : null}
       <Stylelink to={'/'}>
         <Logo>Whoever</Logo>
       </Stylelink>

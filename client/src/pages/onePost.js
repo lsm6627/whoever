@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { initialState } from '../static/dummyData';
+import { Stylelink } from '../pages/main.style';
 import {
   Maindiv,
   PostTitleBox,
@@ -17,12 +17,10 @@ import {
   Comment_content,
   Comment_createAt
 } from './onePost.style';
+import View from '../components/View';
 
-const OnePost = ({ match, location }) => {
-  console.log(match);
-  console.log(location.search);
+const OnePost = ({ match, posts }) => {
   const postId = Number(match.params.no);
-  const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
 
   const post = posts.filter((el) => el.id === postId);
   const getCategorTitle = (no) => {
@@ -37,7 +35,9 @@ const OnePost = ({ match, location }) => {
   return (
     <Maindiv>
       <PostTitleBox>
-        <PostTitle>{getCategorTitle(post[0].categoryId)}</PostTitle>
+        <Stylelink to={`/postList=${post[0].categoryId}`}>
+          <PostTitle>{getCategorTitle(post[0].categoryId)}</PostTitle>
+        </Stylelink>
       </PostTitleBox>
       <Title_Post>{post[0].title}</Title_Post>
       <PostInfo>
@@ -46,7 +46,9 @@ const OnePost = ({ match, location }) => {
         </CreatedAt_Post>
         <Hit_Post>{post[0].views}</Hit_Post>
       </PostInfo>
-      <Post_Content>{post[0].content}</Post_Content>
+      <Post_Content>
+        <View editorHTML={post[0].content} />
+      </Post_Content>
       <But_Container>
         <But_Suggestion_Up>인정 또 인정 : 0</But_Suggestion_Up>
         <But_Suggestion_Down>비추머겅</But_Suggestion_Down>

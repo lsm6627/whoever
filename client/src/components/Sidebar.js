@@ -20,10 +20,7 @@ import {
   BoardTitle
 } from './Sidebar.style';
 
-const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler }) => {
-  const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
-  const [categories, setCategories] = useState(initialState.categories);
-
+const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler, categories }) => {
   return (
     <SidebarContainer>
       {isOpen ? (
@@ -57,11 +54,9 @@ const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler }) => {
                 <Listdiv key={category.id}>
                   <BoardtitleBox>
                     <Stylelink
-                      to={`/postList/${category.id}`}
+                      to={`/postList=${category.id}`}
                       onClick={sideBarOpenHandler}
                     >
-                      {/* 서버쪽으로 categoryId를보내주고, 
-                                             서버에서는 받은 categoryId에 연관된 post를 가져온다? */}
                       <BoardTitle>{category.content}</BoardTitle>
                     </Stylelink>
                   </BoardtitleBox>

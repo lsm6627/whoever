@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { initialState } from '../static/dummyData';
 import Lists from '../components/Lists';
 import PostTitle from '../components/PostTitle';
 import Pagination from '../components/Pagination';
@@ -7,23 +6,24 @@ import { Stylelink } from '../pages/main.style';
 import {
   Maindiv,
   ListmenuBox,
+  ListTitle,
+  ListCreatedAt,
+  ListView,
+  ListLike,
   ListdivBox,
   PagenumBox,
   WritiBox,
   WritiBtn
 } from '../pages/postList.style';
-
-const PostList = ({ match }) => {
+const PostList = ({ match, posts }) => {
   const categoryId = Number(match.params.no);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   // ---categoryId에 맞고,페이지에 맞는 게시물들 받기 서버에서 받는다. useEffect,axios---
-  const [posts, setPosts] = useState(initialState.posts);
   const categoryPost = posts
     .filter((post) => post.categoryId === categoryId)
     .reverse();
   const categorLength = categoryPost.length;
-
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
   const currentPosts = (tmp) => {
@@ -47,13 +47,14 @@ const PostList = ({ match }) => {
         // categorLength={categorLength}
       />
       <ListmenuBox>
-        <div>제목</div>
-        <div>작성시간</div>
-        <div>조회수</div>
-        <div>좋아요</div>
+        <ListTitle>제목</ListTitle>
+        <ListCreatedAt>작성시간</ListCreatedAt>
+        <ListView>조회수</ListView>
+        <ListLike>좋아요</ListLike>
       </ListmenuBox>
       <ListdivBox>
         {currentPosts(categoryPost).map((post) => (
+          // ! 이부분 각각 요소들 다른 컴포넌트로 받아 올 수 있게 만들어 주세요!
           <Lists
             key={post.id}
             post={post}
@@ -62,7 +63,7 @@ const PostList = ({ match }) => {
         ))}
       </ListdivBox>
       <WritiBox>
-        <Stylelink to={`/postList/${categoryId}/newPost`}>
+        <Stylelink to={`/newPost/postList=${categoryId}`}>
           <WritiBtn>글쓰기</WritiBtn>
         </Stylelink>
       </WritiBox>
@@ -76,5 +77,4 @@ const PostList = ({ match }) => {
     </Maindiv>
   );
 };
-
 export default PostList;
