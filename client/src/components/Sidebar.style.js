@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
 export const SidebarContainer = styled.div`
   height: 15rem;
   margin: 120px auto;
@@ -14,16 +15,31 @@ export const ModalSideBarBackdrop = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   display: grid;
   place-items: left;
+
+  animation-name: slideIn;
+  animation-duration: 0.8s;
+  animation-delay: -0.5s;
+  animation-timing-function: ease all;
+  @-webkit-keyframes slideIn {
+    from {
+      left: -300px;
+    }
+    to {
+      left: 0;
+    }
+  }
 `;
 export const MenuContainer = styled.div`
   background-color: #ffffff;
-  border: solid 5px #ffad4f;
-  border-radius: 25px;
+  border: solid 8px #ffad4f;
+  border-left: none;
+  border-radius: 0 25px 25px 0;
   padding: 15px;
   font-size: 25px;
   height: 100%;
   width: 300px;
 `;
+
 export const UserProfileContainer = styled.div`
   margin-top: 30px;
 `;
@@ -68,6 +84,7 @@ export const UserPost = styled.i`
 export const UserPostText = styled.div`
   margin-top: 5px;
 `;
+
 export const Logout = styled.i`
   display: block;
   text-align: center;

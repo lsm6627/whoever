@@ -60,8 +60,6 @@ const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler }) => {
                       to={`/postList/${category.id}`}
                       onClick={sideBarOpenHandler}
                     >
-                      {/* 서버쪽으로 categoryId를보내주고, 
-                                             서버에서는 받은 categoryId에 연관된 post를 가져온다? */}
                       <BoardTitle>{category.content}</BoardTitle>
                     </Stylelink>
                   </BoardtitleBox>
