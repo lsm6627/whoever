@@ -32,7 +32,7 @@ export const BoardtitleBox = styled.div`
 export const BoardTitle = styled.div`
   display: flex;
   margin-left: 10px;
-  font-size: 25px;
+  font-size: 1.5em;
   align-items: center;
   margin-bottom: 10px;
   /* cursor: pointer; */
@@ -47,7 +47,6 @@ export const ListBox = styled.div`
   display: flex;
   margin-left: 10px;
   margin-top: 10px;
-  font-size: 20px;
   align-items: center;
   justify-content: space-between;
   line-height: 20px;
@@ -57,11 +56,11 @@ export const Stylelink = styled(Link)`
   color: black;
 `;
 export const Listtitle = styled.div`
-  font-size: 15px;
+  font-size: 1em;
   /* cursor: pointer; */
 `;
 
 export const CreatedDate = styled.div`
-  font-size: 15px;
+  font-size: 0.9em;
   margin-right: 10px;
 `;
