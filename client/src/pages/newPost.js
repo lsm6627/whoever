@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Writer from '../components/Writer';
 import {
   Maindiv,
@@ -15,21 +15,44 @@ import {
   SubmitButton,
   BacktoButton
 } from '../pages/newPost.style';
+import { useHistory } from 'react-router-dom';
 
-const NewPost = ({ match }) => {
+const NewPost = ({ match, posts, setPosts }) => {
   const categoryId = Number(match.params.no);
+  const history = useHistory();
+  const editorRef = useRef();
   const [title, setTitle] = useState('');
-  const handlepostTest = (getPost) => {
-    // userId: 1,
-    //   img: '../images/jyp.png',
-    //   categoryId: 1,
-    //   title: '여행을 떠나요~~!',
-    //   content:
 
-    console.log(
-      `userId: 1, title:${title}, 카테고리번호:${categoryId}, content:${getPost}`
-    );
+  const handleClick = () => {
+    if (!title) {
+      alert('제목을 작성해주세요');
+      return;
+    }
+    const editorInstance = editorRef.current.getInstance();
+    // const getContent = editorInstance.getMarkdown();
+    const gethtml = editorInstance.getHTML();
+    if (!gethtml) {
+      alert('게시물을 작성해주세요');
+      return;
+    }
+
+    const addPost = {
+      id: posts.length + 1,
+      userId: 1,
+      img: '',
+      categoryId: categoryId,
+      title: title,
+      content: gethtml,
+      views: 2,
+      suggestions: 3,
+      createdAt: '2021-10-12T16:17:27.000Z',
+      updatedAt: '2021-10-12T16:17:27.000Z'
+    };
+
+    setPosts([...posts, addPost]);
+    history.push(`/postList=${categoryId}`);
   };
+
   return (
     <Maindiv>
       <TitleWriteContainer>
@@ -43,7 +66,7 @@ const NewPost = ({ match }) => {
         />
       </TitleWriteContainer>
       <WriterWriteContainer>
-        <Writer handlepostTest={handlepostTest} />
+        <Writer editorRef={editorRef} />
         {/* <WriterBox>작성자</WriterBox> */}
         {/* <Writer> 작성칸</Writer> */}
       </WriterWriteContainer>
@@ -59,7 +82,7 @@ const NewPost = ({ match }) => {
       </UploadContainer> */}
       <ButtonContainer>
         <ButtonBox>
-          <SubmitButton>등록하기</SubmitButton>
+          <SubmitButton onClick={handleClick}>등록하기</SubmitButton>
           <BacktoButton>목록으로</BacktoButton>
         </ButtonBox>
       </ButtonContainer>

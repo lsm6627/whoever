@@ -89,6 +89,6 @@ export const ButtonContainer = styled.div`
 
 export const ButtonBox = styled.div``;
 
-export const SubmitButton = styled.div``;
+export const SubmitButton = styled.button``;
 
-export const BacktoButton = styled.div``;
+export const BacktoButton = styled.button``;

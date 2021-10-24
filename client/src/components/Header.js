@@ -11,9 +11,9 @@ import {
 } from './Header.style';
 import { Stylelink } from './Sidebar.style';
 
-const Header = ({ isLogin }) => {
+const Header = ({ isLogin, categories }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const sideBarOpenHandler = (e) => {
+  const sideBarOpenHandler = () => {
     setIsOpen(!isOpen);
   };
 
@@ -25,6 +25,7 @@ const Header = ({ isLogin }) => {
           isOpen={isOpen}
           sideBarOpenHandler={sideBarOpenHandler}
           isLogin={isLogin}
+          categories={categories}
         />
       ) : null}
       <Stylelink to={'/'}>

@@ -10,15 +10,13 @@ import {
   ListDataSugg
 } from './Lists.style';
 import { Stylelink } from '../pages/main.style';
-import { useHistory } from 'react-router-dom';
 import OnePost from '../pages/onePost';
 
-const Lists = ({ post, categorTitle }) => {
-  const history = useHistory();
+const Lists = ({ post }) => {
   return (
     <Listdiv>
       <ListTitleContainer>
-        <Stylelink to={`/onePost/${post.id}`}>
+        <Stylelink to={`/onePost=${post.id}`}>
           <Title
           // onClick={() => {
           //   history.push({

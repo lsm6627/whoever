@@ -20,10 +20,7 @@ import {
   BoardTitle
 } from './Sidebar.style';
 
-const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler }) => {
-  const [posts, setPosts] = useState(initialState.posts); //dummyData = axios
-  const [categories, setCategories] = useState(initialState.categories);
-
+const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler, categories }) => {
   return (
     <SidebarContainer>
       {isOpen ? (
@@ -57,7 +54,7 @@ const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler }) => {
                 <Listdiv key={category.id}>
                   <BoardtitleBox>
                     <Stylelink
-                      to={`/postList/${category.id}`}
+                      to={`/postList=${category.id}`}
                       onClick={sideBarOpenHandler}
                     >
                       <BoardTitle>{category.content}</BoardTitle>
