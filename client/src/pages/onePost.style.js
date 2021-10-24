@@ -5,7 +5,7 @@ export const Maindiv = styled.div`
   margin-right: auto;
   margin-top: 40px;
   margin-bottom: 40px;
-  width: 70vw;
+  width: 75%;
   height: 92%;
 `;
 
@@ -35,7 +35,7 @@ export const PostInfo = styled.div`
 
 export const Title_Post = styled.div`
   margin-top: 25px;
-  margin-left: 20px;
+  margin-left: 18px;
   font-size: 30px;
   font-family: 'MaplestoryOTFBold';
   padding-bottom: 10px;

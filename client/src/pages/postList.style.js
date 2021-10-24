@@ -14,7 +14,7 @@ export const ListmenuBox = styled.div`
   width: 100%;
   height: 100%;
   border-bottom: solid 3px black;
-  font-size: 30px;
+  font-size: 28px;
   padding: 5px;
 `;
 

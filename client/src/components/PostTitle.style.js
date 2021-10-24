@@ -9,7 +9,7 @@ export const PostTitleBox = styled.div`
 `;
 
 export const PTitle = styled.div`
-  font-size: 35px;
+  font-size: 28px;
   border-bottom: solid 5px #ffad4f;
   font-family: 'twayair';
   padding-bottom: 3px;

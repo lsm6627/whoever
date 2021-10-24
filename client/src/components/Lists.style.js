@@ -10,8 +10,10 @@ export const Listdiv = styled.div`
   @media only screen and (max-width: 950px) {
     justify-content: space-between;
   }
+
   &:hover {
-    background-color: #ffad4f;
+    background-color: #fbf8cc;
+    transition: ease all 300ms;
   }
 `;
 
