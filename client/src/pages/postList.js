@@ -23,7 +23,7 @@ const PostList = ({ match, posts }) => {
   const categoryPost = posts
     .filter((post) => post.categoryId === categoryId)
     .reverse();
-  const categorLength = categoryPost.length;
+  const categoryLength = categoryPost.length;
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
   const currentPosts = (tmp) => {
@@ -32,7 +32,7 @@ const PostList = ({ match, posts }) => {
     return currentPost;
   };
   // -----------------------------------------------
-  const getCategorTitle = (no) => {
+  const getCategoryTitle = (no) => {
     if (no === 1) return '여행';
     if (no === 2) return '술';
     if (no === 3) return '맛집';
@@ -43,8 +43,8 @@ const PostList = ({ match, posts }) => {
   return (
     <Maindiv>
       <PostTitle
-        categorTitle={getCategorTitle(categoryId)}
-        // categorLength={categorLength}
+        categoryTitle={getCategoryTitle(categoryId)}
+        // categoryLength={categoryLength}
       />
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
@@ -58,7 +58,7 @@ const PostList = ({ match, posts }) => {
           <Lists
             key={post.id}
             post={post}
-            categorTitle={getCategorTitle(categoryId)}
+            categoryTitle={getCategoryTitle(categoryId)}
           />
         ))}
       </ListdivBox>
@@ -70,7 +70,7 @@ const PostList = ({ match, posts }) => {
       <PagenumBox>
         <Pagination
           postsPerPage={postsPerPage}
-          totalPosts={categorLength}
+          totalPosts={categoryLength}
           paginate={setCurrentPage}
         />
       </PagenumBox>

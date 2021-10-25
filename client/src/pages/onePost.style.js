@@ -79,7 +79,7 @@ export const But_Suggestion_Up = styled.button`
   cursor: pointer;
   display: inline-block;
   font-family: 'twayair';
-  font-size: 16px;
+  font-size: 25px;
   font-weight: 600;
   line-height: 20px;
   margin: 0;
@@ -123,7 +123,7 @@ export const But_Suggestion_Down = styled.button`
   cursor: pointer;
   display: inline-block;
   font-family: 'twayair';
-  font-size: 16px;
+  font-size: 25px;
   font-weight: 600;
   line-height: 20px;
   margin: 0;

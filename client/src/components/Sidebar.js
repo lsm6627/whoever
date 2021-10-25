@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { initialState } from '../static/dummyData';
 import {
   SidebarContainer,
   ModalSideBarBackdrop,
@@ -35,14 +33,19 @@ const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler, categories }) => {
               <UserInfoDownBtnContainer>
                 {isLogin ? (
                   <UserPost className="fas fa-user-edit">
-                    <UserPostText>작성글</UserPostText>
+                    <Stylelink to={`/mypost`} onClick={sideBarOpenHandler}>
+                      <UserPostText>작성글</UserPostText>
+                    </Stylelink>
                   </UserPost>
                 ) : (
                   <div style={{ display: 'none' }} />
                 )}
                 {/* 당신... 작성한 글 페이지 만들어야돼.. */}
                 {isLogin ? (
-                  <Logout className="fas fa-sign-out-alt">
+                  <Logout
+                    className="fas fa-sign-out-alt"
+                    onClick={sideBarOpenHandler}
+                  >
                     <LogoutText>로그아웃</LogoutText>
                   </Logout>
                 ) : (

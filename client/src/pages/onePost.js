@@ -29,7 +29,7 @@ const OnePost = ({ match, posts }) => {
   const postId = Number(match.params.no);
 
   const post = posts.filter((el) => el.id === postId);
-  const getCategorTitle = (no) => {
+  const getCategoryTitle = (no) => {
     if (no === 1) return '여행';
     if (no === 2) return '술';
     if (no === 3) return '맛집';
@@ -42,7 +42,7 @@ const OnePost = ({ match, posts }) => {
     <Maindiv>
       <PostTitleBox>
         <Stylelink to={`/postList=${post[0].categoryId}`}>
-          <PostTitle>{getCategorTitle(post[0].categoryId)}</PostTitle>
+          <PostTitle>{getCategoryTitle(post[0].categoryId)}</PostTitle>
         </Stylelink>
       </PostTitleBox>
       <Title_Post>{post[0].title}</Title_Post>
@@ -56,8 +56,12 @@ const OnePost = ({ match, posts }) => {
         <View editorHTML={post[0].content} />
       </Post_Content>
       <But_Container>
-        <But_Suggestion_Up>인정 또 인정 : 0</But_Suggestion_Up>
-        <But_Suggestion_Down>비추머겅</But_Suggestion_Down>
+        <But_Suggestion_Up>
+          <i className="fas fa-thumbs-up" /> : 0
+        </But_Suggestion_Up>
+        <But_Suggestion_Down>
+          <i className="fas fa-thumbs-down" />
+        </But_Suggestion_Down>
       </But_Container>
       <Comment_input_Container>
         <Comment_Input_Password placeholder="댓글 비밀번호" />
