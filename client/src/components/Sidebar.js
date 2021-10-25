@@ -33,9 +33,13 @@ const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler, categories }) => {
                 <UserName>HyeonSi</UserName>
               </UserInfoUpContainer>
               <UserInfoDownBtnContainer>
-                <UserPost className="fas fa-user-edit">
-                  <UserPostText>작성글</UserPostText>
-                </UserPost>
+                {isLogin ? (
+                  <UserPost className="fas fa-user-edit">
+                    <UserPostText>작성글</UserPostText>
+                  </UserPost>
+                ) : (
+                  <div style={{ display: 'none' }} />
+                )}
                 {/* 당신... 작성한 글 페이지 만들어야돼.. */}
                 {isLogin ? (
                   <Logout className="fas fa-sign-out-alt">

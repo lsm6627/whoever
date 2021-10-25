@@ -19,6 +19,11 @@ export const Listdiv = styled.div`
 
 export const Title = styled.span`
   cursor: pointer;
+
+  @media only screen and (max-width: 520px) {
+    width: 50%;
+    font-size: 20px;
+  }
 `;
 
 export const ListTitleContainer = styled.span`
@@ -29,6 +34,7 @@ export const ListCreatedAtContainer = styled.span`
   width: 30%;
   @media only screen and (max-width: 950px) {
     text-align: right;
+    font-size: 20px;
   }
 `;
 

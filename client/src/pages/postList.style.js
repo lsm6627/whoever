@@ -30,6 +30,7 @@ export const ListCreatedAt = styled.div`
 
   @media only screen and (max-width: 950px) {
     text-align: right;
+    width: 40%;
   }
 `;
 

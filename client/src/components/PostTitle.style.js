@@ -13,6 +13,10 @@ export const PTitle = styled.div`
   border-bottom: solid 5px #ffad4f;
   font-family: 'twayair';
   padding-bottom: 3px;
+
+  @media only screen and (max-width: 520px) {
+    font-size: 23px;
+  }
 `;
 
 export const SearchBox = styled.div`
