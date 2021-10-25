@@ -87,6 +87,17 @@ export const UserPostText = styled.div`
   margin-top: 5px;
 `;
 
+export const LogIn = styled.i`
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    transition: ease all 200ms;
+    font-size: 26px;
+    text-shadow: 1px 1px 1px gray;
+  }
+`;
+
 export const Logout = styled.i`
   display: block;
   text-align: center;

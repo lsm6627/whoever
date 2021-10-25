@@ -18,6 +18,10 @@ export const Menu_icon = styled.i`
   display: inline;
   flex: 0.5;
   text-align: center;
+
+  @media only screen and (max-width: 520px) {
+    font-size: 35px;
+  }
 `;
 
 export const Header_button_container = styled.div`
@@ -35,6 +39,10 @@ export const Logo = styled.div`
   flex: 7;
   text-shadow: 4px 4px 4px gray;
   margin-right: 10px;
+
+  @media only screen and (max-width: 520px) {
+    font-size: 50px;
+  }
 `;
 
 export const Loginbutton = styled.span`
@@ -51,6 +59,10 @@ export const Loginbutton = styled.span`
   margin-top: 38px;
   font-family: 'Mikado';
   margin-right: 40px;
+
+  @media only screen and (max-width: 520px) {
+    display: none;
+  }
 
   &:hover {
     box-shadow: gray 6px 6px 6px;

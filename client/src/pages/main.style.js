@@ -9,7 +9,7 @@ export const Maindiv = styled.div`
   margin-right: auto;
   margin-top: 40px;
   margin-bottom: 40px;
-  width: 70vw;
+  width: 70%;
   height: 92%;
 `;
 
@@ -21,6 +21,10 @@ export const Listdiv = styled.div`
   border-radius: 10px;
   box-shadow: 0px 2px 6px gray;
   padding: 20px;
+
+  @media only screen and (max-width: 1000px) {
+    width: 55%;
+  }
 `;
 export const BoardtitleBox = styled.div`
   border-bottom: solid 5px #ffad4f;
@@ -32,7 +36,7 @@ export const BoardtitleBox = styled.div`
 export const BoardTitle = styled.div`
   display: flex;
   margin-left: 10px;
-  font-size: 25px;
+  font-size: 1.5em;
   align-items: center;
   margin-bottom: 10px;
   /* cursor: pointer; */
@@ -47,21 +51,26 @@ export const ListBox = styled.div`
   display: flex;
   margin-left: 10px;
   margin-top: 10px;
-  font-size: 20px;
   align-items: center;
   justify-content: space-between;
   line-height: 20px;
+  padding: 3px;
+
+  &:hover {
+    opacity: 50%;
+    transition: ease all 300ms;
+  }
 `;
 export const Stylelink = styled(Link)`
   text-decoration: none;
   color: black;
 `;
 export const Listtitle = styled.div`
-  font-size: 15px;
+  font-size: 1em;
   /* cursor: pointer; */
 `;
 
 export const CreatedDate = styled.div`
-  font-size: 15px;
+  font-size: 0.9em;
   margin-right: 10px;
 `;

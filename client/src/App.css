@@ -38,4 +38,5 @@
 
 .App {
   height: 100%;
+  min-width: 490px;
 }
