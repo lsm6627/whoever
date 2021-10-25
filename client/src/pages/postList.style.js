@@ -46,8 +46,8 @@ export const ListView = styled.div`
 export const ListLike = styled.div`
   width: 10%;
   font-family: 'MaplestoryOTFBold';
-
   text-align: right;
+
   @media only screen and (max-width: 950px) {
     display: none;
   }

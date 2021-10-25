@@ -54,6 +54,12 @@ export const ListBox = styled.div`
   align-items: center;
   justify-content: space-between;
   line-height: 20px;
+  padding: 3px;
+
+  &:hover {
+    opacity: 50%;
+    transition: ease all 300ms;
+  }
 `;
 export const Stylelink = styled(Link)`
   text-decoration: none;
