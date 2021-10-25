@@ -27,7 +27,6 @@ export const PostInfo = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  font-size: 25px;
   padding: 25px;
   background-color: #fdcb6e;
   border-top: 3px solid black;
@@ -43,11 +42,13 @@ export const Title_Post = styled.div`
 
 export const CreatedAt_Post = styled.div`
   flex: 1 1 auto;
+  font-size: 25px;
   font-family: 'twayair';
 `;
 
 export const Hit_Post = styled.div`
   flex: 0 0 auto;
+  font-size: 20px;
   font-family: 'twayair';
 `;
 
@@ -184,7 +185,10 @@ export const Comment_Input_Password = styled.input`
 export const Comment_Input_But_Container = styled.div`
   flex: -1 0 0;
   min-width: 260px;
-  margin-left: 15px;
+
+  @media only screen and (max-width: 520px) {
+    margin-left: 3px;
+  }
 `;
 
 export const Comment_Input_RegisterBut = styled.button`
@@ -201,6 +205,10 @@ export const Comment_Input_RegisterBut = styled.button`
   margin-top: 38px;
   font-family: 'MaplestoryOTFBold';
   margin-right: 40px;
+
+  @media only screen and (max-width: 520px) {
+    margin-right: 3px;
+  }
 
   &:hover {
     box-shadow: gray 6px 6px 6px;

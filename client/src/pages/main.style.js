@@ -9,7 +9,7 @@ export const Maindiv = styled.div`
   margin-right: auto;
   margin-top: 40px;
   margin-bottom: 40px;
-  width: 70vw;
+  width: 70%;
   height: 92%;
 `;
 
@@ -21,6 +21,10 @@ export const Listdiv = styled.div`
   border-radius: 10px;
   box-shadow: 0px 2px 6px gray;
   padding: 20px;
+
+  @media only screen and (max-width: 1000px) {
+    width: 55%;
+  }
 `;
 export const BoardtitleBox = styled.div`
   border-bottom: solid 5px #ffad4f;

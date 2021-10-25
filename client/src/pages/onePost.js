@@ -50,7 +50,7 @@ const OnePost = ({ match, posts }) => {
         <CreatedAt_Post>
           {new Date(post[0].createdAt).toLocaleDateString('ko-kr')}
         </CreatedAt_Post>
-        <Hit_Post>{post[0].views}</Hit_Post>
+        <Hit_Post>조회수: {post[0].views}</Hit_Post>
       </PostInfo>
       <Post_Content>
         <View editorHTML={post[0].content} />

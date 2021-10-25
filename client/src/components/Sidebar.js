@@ -11,6 +11,7 @@ import {
   UserInfoDownBtnContainer,
   UserPost,
   UserPostText,
+  LogIn,
   Logout,
   LogoutText,
   PostListContainer,
@@ -41,9 +42,9 @@ const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler, categories }) => {
                     <LogoutText>로그아웃</LogoutText>
                   </Logout>
                 ) : (
-                  <Logout className="fas fa-sign-out-alt">
-                    <LogoutText>로그아웃</LogoutText>
-                  </Logout>
+                  <LogIn className="fas fa-sign-in-alt">
+                    <LogoutText>로그인</LogoutText>
+                  </LogIn>
                 )}
                 {/* 여기 로그인 로그아웃 버튼으로 연결하기 */}
               </UserInfoDownBtnContainer>
