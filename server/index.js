@@ -43,10 +43,16 @@ app.post('/signup', controllers.signup);
 app.get('/userinfo', controllers.userinfo);
 
 // posts 요청
+app.get('/main', controllers.readpost);
+app.get('/listpage', controllers.readpost);
+app.get('/onepost', controllers.readpost);
+app.get('/mypost', controllers.readpost);
+app.get('/search', controllers.readpost);
 app.update('/changepost', controllers.changepost);
 app.delete('/deletepost', controllers.deletepost);
-app.get('/readpost', controllers.readpost);
 app.post('/uploadpost', controllers.uploadpost);
+app.post('/suggestionsup', controllers.suggestions);
+app.post('/suggestionsdown', controllers.suggestions);
 
 // comments 요청
 app.update('/changecomment', controllers.changecomment);

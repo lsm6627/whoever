@@ -10,6 +10,14 @@ module.exports = {
         salt: 'hello world',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        id: 2,
+        userId: 'LSM',
+        password: '1234',
+        salt: 'hello world',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   },

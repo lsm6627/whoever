@@ -5,10 +5,10 @@ import {
   SearchText,
   SearchIcon
 } from './PostTitle.style';
-const PostTitle = ({ categorTitle, categorLength }) => {
+const PostTitle = ({ categoryTitle, categoryLength }) => {
   return (
     <PostTitleBox>
-      <PTitle>{categorTitle} 게시판</PTitle>
+      <PTitle>{categoryTitle} 게시판</PTitle>
       <SearchBox>
         <SearchText type="text" />
         <SearchIcon className="fas fa-search" />

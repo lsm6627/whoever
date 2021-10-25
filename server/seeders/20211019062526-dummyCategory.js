@@ -20,6 +20,24 @@ module.exports = {
         content: '맛집',
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        id: 4,
+        content: '낚시',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 5,
+        content: '노래',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 6,
+        content: '코딩',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   },

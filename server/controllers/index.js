@@ -10,6 +10,7 @@ module.exports = {
   deletepost: require('./posts/delete_post'),
   readpost: require('./posts/read_post'),
   uploadpost: require('./posts/upload_post'),
+  suggestions: require('./posts/post_suggestions'),
 
   // comments
   changecomment: require('./comments/change_comment'),
