@@ -11,7 +11,6 @@ import {
   ContentBox,
   Content,
   ButtonContainer,
-  ButtonBox,
   SubmitButton,
   BacktoButton
 } from '../pages/newPost.style';
@@ -81,10 +80,10 @@ const NewPost = ({ match, posts, setPosts }) => {
         </UploadBox>
       </UploadContainer> */}
       <ButtonContainer>
-        <ButtonBox>
-          <SubmitButton onClick={handleClick}>등록하기</SubmitButton>
-          <BacktoButton>목록으로</BacktoButton>
-        </ButtonBox>
+        <BacktoButton onClick={() => history.push(`/postList=${categoryId}`)}>
+          목록으로
+        </BacktoButton>
+        <SubmitButton onClick={handleClick}>등록하기</SubmitButton>
       </ButtonContainer>
     </Maindiv>
   );

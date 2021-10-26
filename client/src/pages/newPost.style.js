@@ -5,7 +5,7 @@ export const Maindiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 70vw;
-  // height: 92%;
+  /* height: 92%; */
   margin-top: 40px;
   margin: 50px auto;
   /* padding: 15px; */
@@ -37,7 +37,6 @@ export const Title = styled.input`
 export const WriterWriteContainer = styled.div`
   /* border: solid 2px green; */
   width: 100%;
-  height: 500px;
 `;
 
 export const WriterBox = styled.div`
@@ -53,7 +52,6 @@ export const Writer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  border: solid 2px purple;
   width: 100%;
   height: 600px;
 `;
@@ -82,13 +80,85 @@ export const Content = styled.div`
 // export const UploadButton = styled.div``;
 
 export const ButtonContainer = styled.div`
-  border: solid 2px orange;
+  display: flex;
+  justify-content: right;
   width: 100%;
-  height: 100px;
+`;
+
+export const BacktoButton = styled.button`
+  background: #fffffc;
+  border: solid 5px #ffad4999;
+  border-radius: 15px;
+  height: 55px;
+  cursor: pointer;
+  transition: 300ms ease all;
+  box-shadow: gray 2px 2px 2px;
+  padding: 10px;
+  min-width: 100px;
+  text-align-last: center;
+  margin-top: 38px;
+  font-family: 'MaplestoryOTFBold';
+  margin-right: 40px;
+
+  &:hover {
+    box-shadow: gray 6px 6px 6px;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    transition: ease all;
+  }
+
+  &:hover:before,
+  &:hover:after {
+    width: 100%;
+    transition: ease all;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+`;
+
+export const SubmitButton = styled.button`
+  background: #fffffc;
+  border: solid 5px #ffad4999;
+  border-radius: 15px;
+  height: 55px;
+  cursor: pointer;
+  transition: 300ms ease all;
+  box-shadow: gray 2px 2px 2px;
+  padding: 10px;
+  min-width: 100px;
+  text-align-last: center;
+  margin-top: 38px;
+  font-family: 'MaplestoryOTFBold';
+  margin-right: 40px;
+
+  &:hover {
+    box-shadow: gray 6px 6px 6px;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    transition: ease all;
+  }
+
+  &:hover:before,
+  &:hover:after {
+    width: 100%;
+    transition: ease all;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
 `;
 
 export const ButtonBox = styled.div``;
-
-export const SubmitButton = styled.button``;
-
-export const BacktoButton = styled.button``;
