@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { initialState } from '../static/dummyData';
+import axios from 'axios';
 import PostList from './postList';
 import {
   Listdiv,
@@ -13,8 +14,17 @@ import {
   Stylelink
 } from '../pages/main.style';
 
-const Main = ({ posts, categories }) => {
-  //
+const Main = () => {
+  const [categories, setCategories] = useState([]);
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/main', { withCredentials: true })
+      .then((res) => {
+        setCategories(res.data.categoryList);
+        setPosts(res.data.result);
+      });
+  }, []);
   return (
     <Maindiv>
       {categories.map((category) => (

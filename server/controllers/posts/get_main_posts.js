@@ -7,7 +7,6 @@ module.exports = {
     const categoryList = await category.findAll({
       attributes: ['id', 'content']
     });
-
     const result = [];
 
     for (let i = 1; i <= categoryList.length; i++) {
