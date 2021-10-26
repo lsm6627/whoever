@@ -42,7 +42,7 @@ const NewPost = ({ match, posts, setPosts }) => {
       categoryId: categoryId,
       title: title,
       content: gethtml,
-      views: 2,
+      views: 1,
       suggestions: 3,
       createdAt: '2021-10-12T16:17:27.000Z',
       updatedAt: '2021-10-12T16:17:27.000Z'

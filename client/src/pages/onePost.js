@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Stylelink } from '../pages/main.style';
 import {
   Maindiv,
@@ -25,7 +25,7 @@ import {
 } from './onePost.style';
 import View from '../components/View';
 
-const OnePost = ({ match, posts }) => {
+const OnePost = ({ match, posts, setPosts }) => {
   const postId = Number(match.params.no);
 
   const post = posts.filter((el) => el.id === postId);
