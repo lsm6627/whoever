@@ -79,6 +79,7 @@ const OnePost = ({ match, posts, setPosts }) => {
       </CommentBox>
       <Comment_content>와 완전 좋은 정보 개이덕!</Comment_content>
       {/* 여기 게시글의 댓글정보 */}
+      {/* TODO: 글 목록이 게시글 안에서도 보이면 다른 게시물로 옮겨 다니기 편하겠다! */}
     </Maindiv>
   );
 };
