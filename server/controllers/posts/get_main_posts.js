@@ -7,18 +7,9 @@ module.exports = {
 
   get: async (req, res) => {
     const result = await posts
-      .findAll({
-        limit: 10,
-        order: [['createdAt', 'DESC']],
-        include: [
-          {
-            model: posts,
-            attributes: ['title', 'createdAt']
-          }
-        ]
-      })
+      .findAll({ where: { categoryId: 1 } })
       .catch((err) => res.json(err));
-
+    console.log(result);
     if (!result) {
       return res.status(404).json('없는 요청입니다');
     } else {
