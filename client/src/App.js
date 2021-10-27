@@ -13,7 +13,7 @@ import { initialState } from './static/dummyData';
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
-  // const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState(initialState.posts);
   const [categories, setCategories] = useState(initialState.categories);
 
@@ -28,7 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header isLogin={isLogin} categories={categories} />
+        <Header isLogin={isLogin} setIsLogin={setIsLogin} userInfo={userInfo} setUserInfo={setUserInfo} categories={categories} />
         <Switch>
           <Route
             exact

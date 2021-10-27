@@ -6,16 +6,30 @@ import {
   Headerdiv,
   Menu_icon,
   Logo,
-  Loginbutton,
+  Logoutbutton,
   Header_button_container
 } from './Header.style';
 import { Stylelink } from './Sidebar.style';
+import axios from 'axios';
 
-const Header = ({ isLogin, categories }) => {
+import Login from './Login'
+const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
   const [isOpen, setIsOpen] = useState(false);
+  
+
   const sideBarOpenHandler = () => {
     setIsOpen(!isOpen);
   };
+
+  const logoutHandler = () => {
+    axios
+    .post(`${process.env.REACT_APP_API_URL}/logout`, 
+          {withCredentials: true})
+    .then((res) => {
+      setUserInfo({message: '로그아웃 되었습니다'});
+      setIsOpen(false);
+    })
+  }
 
   return (
     <Headerdiv>
@@ -33,11 +47,11 @@ const Header = ({ isLogin, categories }) => {
       </Stylelink>
       <Header_button_container>
         {isLogin ? (
-          <Loginbutton>Logout</Loginbutton>
+           <Login isLogin={isLogin} setIsLogin={setIsLogin} userInfo={userInfo} setUserInfo={setUserInfo}/>
         ) : (
-          <Loginbutton>Login</Loginbutton>
+          <Login/>
         )}
-      </Header_button_container>
+        </Header_button_container>
     </Headerdiv>
   );
 };
