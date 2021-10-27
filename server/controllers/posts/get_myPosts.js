@@ -3,7 +3,7 @@ const { users } = require('../../models');
 
 module.exports = {
   // 4번째 : sideBar 작성글 누르면 내가 썼던글 다 나옴ㅋㅋ
-  get: async (req, res) => {
+  post: async (req, res) => {
     const userInfo = await users
       .findOne({
         where: { id: req.body.id }

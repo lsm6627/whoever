@@ -12,9 +12,9 @@ module.exports = {
       .update(inputPassword + salt)
       .digest('hex');
     const checkUser = await users.findOne({ where: { userId } });
-    if (checkUser)
+    if (checkUser) {
       res.status(403).send({ data: null, message: '중복된 아이디 입니다' });
-    else {
+    } else {
       const createUser = await users
         .create({
           userId: userId,
