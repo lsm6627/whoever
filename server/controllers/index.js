@@ -1,9 +1,9 @@
 module.exports = {
   // users
-  // login: require('./users/login'),
-  // logout: require('./users/logout'),
-  // signup: require('./users/signup'),
-  // userinfo: require('./users/userInfo'),
+  login: require('./users/login'),
+  logout: require('./users/logout'),
+  signup: require('./users/signup'),
+  userInfo: require('./users/userInfo'),
 
   // posts
   getMainPosts: require('./posts/get_main_posts'),
@@ -15,11 +15,8 @@ module.exports = {
   deletepost: require('./posts/delete_post'),
   uploadpost: require('./posts/upload_post'),
   suggestionUp: require('./posts/post_suggestion_Up'),
-  suggestionDown: require('./posts/post_suggestion_Down')
+  suggestionDown: require('./posts/post_suggestion_Down'),
 
   // comments
-  // changecomment: require('./comments/change_comment'),
-  // deletecomment: require('./comments/delete_comment'),
-  // getcomments: require('./comments/get_comments'),
-  // uploadcomment: require('./comments/upload_comment')
+  getComments: require('./comments/get_comments')
 };

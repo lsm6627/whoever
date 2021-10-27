@@ -37,15 +37,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // users 요청
-// app.post('/login', controllers.login);
-// app.post('/logout', controllers.logout);
-// app.post('/signup', controllers.signup);
-// app.get('/userinfo', controllers.userinfo);
+app.post('/login', controllers.login.post);
+app.post('/logout', controllers.logout.post);
+app.post('/signup', controllers.signup.post);
+app.get('/userinfo', controllers.userInfo.get);
 
 // posts 요청
 app.get('/main', controllers.getMainPosts.get);
 app.post('/listpage', controllers.getListPagePosts.post);
-app.get('/myposts', controllers.getMyPosts.get);
+app.post('/myposts', controllers.getMyPosts.post);
 app.post('/onepost', controllers.getOnePost.post);
 app.get('/searchpage', controllers.getSearchPosts.get);
 app.put('/changepost', controllers.changepost.update);
@@ -55,9 +55,9 @@ app.put('/suggestionsup', controllers.suggestionUp.update);
 app.put('/suggestionsdown', controllers.suggestionDown.update);
 
 // comments 요청
+app.post('/getcomments', controllers.getComments.post);
 // app.update('/changecomment', controllers.changecomment);
 // app.delete('/deletecomment', controllers.deletecomment);
-// app.get('/getcomments', controllers.getcomments);
 // app.post('/uploadcomment', controllers.uploadcomment);
 
 app.listen(PORT, () => console.log(`this server listening on ${PORT}`));

@@ -2,6 +2,7 @@ const { users } = require('../../models');
 
 module.exports = {
   get: async (req, res) => {
+    console.log(req.session.userId);
     if (!req.session.userId) {
       res.status(400).json({ data: null, message: '없는 요청 입니다' });
     } else {
