@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Stylelink } from '../pages/main.style';
+import axios from 'axios';
 import {
   Maindiv,
   PostTitleBox,
@@ -25,10 +26,16 @@ import {
 } from './onePost.style';
 import View from '../components/View';
 
-const OnePost = ({ match, posts, setPosts }) => {
+const OnePost = ({ match }) => {
   const postId = Number(match.params.no);
+  const [onePost, setOnePost] = useState([]);
 
-  const post = posts.filter((el) => el.id === postId);
+  useEffect(() => {
+    axios.post('http://localhost:4000/onepost', { id: postId }).then((res) => {
+      setOnePost(res.data);
+    });
+  }, []);
+
   const getCategoryTitle = (no) => {
     if (no === 1) return '여행';
     if (no === 2) return '술';
@@ -41,25 +48,48 @@ const OnePost = ({ match, posts, setPosts }) => {
   return (
     <Maindiv>
       <PostTitleBox>
-        <Stylelink to={`/postList=${post[0].categoryId}`}>
-          <PostTitle>{getCategoryTitle(post[0].categoryId)}</PostTitle>
+        <Stylelink to={`/postList=${onePost.categoryId}`}>
+          <PostTitle>{getCategoryTitle(onePost.categoryId)}</PostTitle>
         </Stylelink>
       </PostTitleBox>
-      <Title_Post>{post[0].title}</Title_Post>
+      <Title_Post>{onePost.title}</Title_Post>
       <PostInfo>
         <CreatedAt_Post>
-          {new Date(post[0].createdAt).toLocaleDateString('ko-kr')}
+          {new Date(onePost.createdAt).toLocaleDateString('ko-kr')}
         </CreatedAt_Post>
-        <Hit_Post>조회수: {post[0].views}</Hit_Post>
+        <Hit_Post>조회수: {onePost.length === 0 ? '' : onePost.views}</Hit_Post>
       </PostInfo>
       <Post_Content>
-        <View editorHTML={post[0].content} />
+        {onePost.length === 0 ? '' : <View editorHTML={onePost.content} />}
+        {/* <View editorHTML={oneContent} /> */}
       </Post_Content>
       <But_Container>
-        <But_Suggestion_Up>
-          <i className="fas fa-thumbs-up" /> : 0
+        <But_Suggestion_Up
+          onClick={() => {
+            axios
+              .put('http://localhost:4000/suggestionsup', {
+                id: onePost.id,
+                suggestions: onePost.suggestions
+              })
+              .then((res) => {
+                setOnePost(res.data);
+              });
+          }}
+        >
+          <i className="fas fa-thumbs-up" /> : {onePost.suggestions}
         </But_Suggestion_Up>
-        <But_Suggestion_Down>
+        <But_Suggestion_Down
+          onClick={() => {
+            axios
+              .put('http://localhost:4000/suggestionsdown', {
+                id: onePost.id,
+                suggestions: onePost.suggestions
+              })
+              .then((res) => {
+                setOnePost(res.data);
+              });
+          }}
+        >
           <i className="fas fa-thumbs-down" />
         </But_Suggestion_Down>
       </But_Container>

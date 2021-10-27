@@ -19,6 +19,13 @@ const Writer = ({ editorRef }) => {
     <Editor
       previewStyle="vertical"
       plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
+      height="500px"
+      // hooks={{
+      //   addImageBlobHook: (blob, callback) => {
+      //     console.log(blob);
+      //     console.log(callback);
+      //   }
+      // }}
       ref={editorRef}
     />
   );

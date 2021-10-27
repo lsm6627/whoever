@@ -30,20 +30,10 @@ function App() {
       <div className="App">
         <Header isLogin={isLogin} categories={categories} />
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => <Main posts={posts} categories={categories} />}
-          />
+          <Route exact path="/" render={() => <Main />} />
           <Route
             path="/postList=:no"
-            render={(match) => (
-              <PostList
-                posts={posts}
-                categories={categories}
-                match={match.match}
-              />
-            )}
+            render={(match) => <PostList match={match.match} />}
           />
           <Route
             path="/newPost/postList=:no"

@@ -44,9 +44,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // posts 요청
 app.get('/main', controllers.getMainPosts.get);
-app.get('/listpage', controllers.getListPagePosts.get);
+app.post('/listpage', controllers.getListPagePosts.post);
 app.get('/myposts', controllers.getMyPosts.get);
-app.get('/onepost', controllers.getOnePost.get);
+app.post('/onepost', controllers.getOnePost.post);
 app.get('/searchpage', controllers.getSearchPosts.get);
 app.put('/changepost', controllers.changepost.update);
 app.delete('/deletepost', controllers.deletepost.delete);
