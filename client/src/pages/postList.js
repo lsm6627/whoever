@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Lists from '../components/Lists';
+import axios from 'axios';
 import PostTitle from '../components/PostTitle';
 import Pagination from '../components/Pagination';
 import { Stylelink } from '../pages/main.style';
@@ -15,22 +16,37 @@ import {
   WritiBox,
   WritiBtn
 } from '../pages/postList.style';
-const PostList = ({ match, posts }) => {
+const PostList = ({ match }) => {
   const categoryId = Number(match.params.no);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
+  const [posts, setPosts] = useState([]);
+  const [allPostCount, setAllPostCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .post(`http://localhost:4000/listpage?page=${currentPage}`, {
+        categoryId: categoryId
+      })
+      .then((res) => {
+        setPosts(res.data.result);
+        setAllPostCount(res.data.allPostCount);
+      });
+  }, [currentPage]);
   // ---categoryId에 맞고,페이지에 맞는 게시물들 받기 서버에서 받는다. useEffect,axios---
-  const categoryPost = posts
-    .filter((post) => post.categoryId === categoryId)
-    .reverse();
-  const categoryLength = categoryPost.length;
-  const indexOfLast = currentPage * postsPerPage;
-  const indexOfFirst = indexOfLast - postsPerPage;
-  const currentPosts = (tmp) => {
-    let currentPost = 0;
-    currentPost = tmp.slice(indexOfFirst, indexOfLast);
-    return currentPost;
-  };
+  // const categoryPost = posts
+  //   .filter((post) => post.categoryId === categoryId)
+  //   .reverse();
+  const categoryLength = allPostCount;
+  // const indexOfLast = currentPage * postsPerPage;
+  // const indexOfFirst = indexOfLast - postsPerPage;
+
+  // const currentPosts = (tmp) => {
+  //   let currentPost = 0;
+  //   currentPost = tmp.slice(indexOfFirst, indexOfLast);
+  //   return currentPost;
+  // };
+
   // -----------------------------------------------
   const getCategoryTitle = (no) => {
     if (no === 1) return '여행';
@@ -53,7 +69,7 @@ const PostList = ({ match, posts }) => {
         <ListLike>좋아요</ListLike>
       </ListmenuBox>
       <ListdivBox>
-        {currentPosts(categoryPost).map((post) => (
+        {posts.map((post) => (
           // ! 이부분 각각 요소들 다른 컴포넌트로 받아 올 수 있게 만들어 주세요!
           <Lists
             key={post.id}

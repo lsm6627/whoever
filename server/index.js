@@ -5,6 +5,10 @@ const session = require('express-session');
 const cors = require('cors');
 const controllers = require('./controllers');
 const cookieParser = require('cookie-parser'); // TODO: 언젠가 이걸 지울지 몰라.
+const multer = require('multer');
+const upload = multer({
+  dest: 'uploads/'
+});
 
 const app = express();
 const PORT = 4000;
@@ -44,15 +48,16 @@ app.get('/userinfo', controllers.userInfo.get);
 
 // posts 요청
 app.get('/main', controllers.getMainPosts.get);
-app.get('/listpage', controllers.getListPagePosts.get);
+app.post('/listpage', controllers.getListPagePosts.post);
 app.post('/myposts', controllers.getMyPosts.post);
-app.get('/onepost', controllers.getOnePost.get);
+app.post('/onepost', controllers.getOnePost.post);
 app.get('/searchpage', controllers.getSearchPosts.get);
 app.put('/changepost', controllers.changepost.update);
 app.delete('/deletepost', controllers.deletepost.delete);
 app.post('/uploadpost', controllers.uploadpost.post);
 app.put('/suggestionsup', controllers.suggestionUp.update);
 app.put('/suggestionsdown', controllers.suggestionDown.update);
+app.post('/profile', upload.single('image'), controllers.uploadProfile.post);
 
 // comments 요청
 app.post('/getcomments', controllers.getComments.post);

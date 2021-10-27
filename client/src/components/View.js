@@ -10,11 +10,11 @@ import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
-import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 
 const View = ({ editorHTML }) => {
   return (
     <Viewer
+      height="500px"
       plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
       initialValue={editorHTML}
     />

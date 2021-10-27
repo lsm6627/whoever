@@ -16,6 +16,7 @@ module.exports = {
   uploadpost: require('./posts/upload_post'),
   suggestionUp: require('./posts/post_suggestion_Up'),
   suggestionDown: require('./posts/post_suggestion_Down'),
+  uploadProfile: require('./posts/post_uploadProfile'),
 
   // comments
   getComments: require('./comments/get_comments')
