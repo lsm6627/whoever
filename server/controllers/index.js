@@ -19,6 +19,9 @@ module.exports = {
 
   // comments
   getComments: require('./comments/get_comments'),
+  uploadcomment: require('./comments/upload_comment'),
+  changecomment: require('./comments/change_comment'),
+  deletecomment: require('./comments/delete_comment'),
 
   // token
   accessTokenRequest: require('./users/accessTokenRequest'),

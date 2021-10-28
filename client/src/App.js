@@ -34,6 +34,10 @@ function App() {
     issueTokens();
   }, []);
 
+  const loginHandler = (token) => {
+    issueTokens(token.data);
+  };
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -43,6 +47,7 @@ function App() {
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           categories={categories}
+          loginHandler={loginHandler}
         />
         <Switch>
           <Route exact path="/" render={() => <Main />} />

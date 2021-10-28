@@ -12,11 +12,42 @@ import { Stylelink } from './Sidebar.style';
 import axios from 'axios';
 import Login from './Login';
 
-const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
+const Header = ({
+  isLogin,
+  setIsLogin,
+  userInfo,
+  setUserInfo,
+  categories,
+  loginHandler
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const openModalHandler = () => {
+    setIsOpen(!isOpen);
+  };
 
   const sideBarOpenHandler = () => {
-    setIsOpen(!isOpen);
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const loginBtnHandler = () => {
+    // axios로 사용 요청을 보낼때  db에 있는 정보에 맞춰서 버튼 실행하는 이벤트 핸들러
+    axios
+      .post(
+        'http://localhost:4000/login',
+        { userId: userId, password: password },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        loginHandler(res.data);
+        openModalHandler();
+      })
+      .catch((err) => {
+        alert('ID와 Password를 확인해 주세요!');
+      });
   };
 
   const logoutHandler = () => {
@@ -27,19 +58,22 @@ const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
       .then((res) => {
         setUserInfo({});
         setIsLogin(false);
-        res.status(200).json({ data: null, message: '로그아웃 되었습니다' });
+        alert('로그아웃 완료');
       });
   };
 
   return (
     <Headerdiv>
       <Menu_icon className="fas fa-bars" onClick={() => sideBarOpenHandler()} />
-      {isOpen ? (
+      {sidebarOpen ? (
         <Sidebar
-          isOpen={isOpen}
+          sidebarOpen={sidebarOpen}
           sideBarOpenHandler={sideBarOpenHandler}
           isLogin={isLogin}
           categories={categories}
+          userInfo={userInfo}
+          loginBtnHandler={loginBtnHandler}
+          logoutHandler={logoutHandler}
         />
       ) : null}
       <Stylelink to={'/'}>
@@ -48,11 +82,16 @@ const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
 
       <Header_button_container>
         <Login
+          isOpen={isOpen}
+          openModalHandler={openModalHandler}
+          setUserId={setUserId}
+          setPassword={setPassword}
           isLogin={isLogin}
           setIsLogin={setIsLogin}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           logoutHandler={logoutHandler}
+          loginHandler={loginHandler}
         />
       </Header_button_container>
     </Headerdiv>
