@@ -21,7 +21,7 @@ const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
 
   const logoutHandler = () => {
     axios
-      .post(`http://localhost:4000/logout`, {
+      .get('http://localhost:4000/logout', {
         withCredentials: true
       })
       .then((res) => {

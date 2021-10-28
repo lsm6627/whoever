@@ -45,15 +45,17 @@ const Login = ({
     // axios로 사용 요청을 보낼때  db에 있는 정보에 맞춰서 버튼 실행하는 이벤트 핸들러
     axios
       .post(
-        'http://localhost:4000//login',
+        'http://localhost:4000/login',
         { userId: userId, password: password },
         { withCredentials: true }
       )
-      .then((res) => loginBtnHandler(res.data))
+      .then((res) => {setUserInfo(res.data)
+                      setIsLogin(true)
+                      openModalHandler()
+      })
       .catch((err) => {
-        if (err.response.status === 401) {
           alert('ID와 Password를 확인해 주세요!');
-        }
+        
       });
   };
 
@@ -77,7 +79,7 @@ const Login = ({
               <Id_Input onChange={handleChange} />
               <Pw_text>Password</Pw_text>
               <Pw_Input onChange={handleChange} />
-              <LoginBtn onClick={loginBtnHandler}>Login</LoginBtn>
+              <LoginBtn onClick={() =>loginBtnHandler()}>Login</LoginBtn>
               <SignUp />
             </ModalInsideContainer>
           </LoginModalView>

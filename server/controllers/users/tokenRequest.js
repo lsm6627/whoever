@@ -8,7 +8,7 @@ module.exports = (req, res) => {
     if (!refreshToken) {
       return res
         .status(403)
-        .json("refresh token does not exist, you've never logged in before");
+        .json({message: "refresh token does not exist, you've never logged in before"});
     }
 
     const refreshTokenData = checkRefeshToken(refreshToken);
