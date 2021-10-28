@@ -5,6 +5,8 @@ const { users } = require('../../models');
 module.exports = {
   post: async (req, res) => {
     const { userId, img, categoryId, title, content } = req.body;
+    console.log('등록;;;', userId);
+    console.log('등록;;;', categoryId);
     if (!userId) {
       return res.status(400).json({ message: '로그인이 필요합니다' });
     }
@@ -19,14 +21,15 @@ module.exports = {
 
     const result = await posts
       .create({
-        userId: userInfo.id,
+        userId: userId,
         img: img,
-        categoryId: categoryInfo.id,
+        categoryId: categoryId,
         title: title,
         content: content
       })
       .catch((err) => res.json(err));
 
+    console.log('create;;;;;;', result);
     if (!result) return res.status(404).json('없는 요청입니다');
     res
       .status(200)

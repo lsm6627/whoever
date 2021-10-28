@@ -6,9 +6,15 @@ const cors = require('cors');
 const controllers = require('./controllers');
 const cookieParser = require('cookie-parser'); // TODO: 언젠가 이걸 지울지 몰라.
 const multer = require('multer');
-const upload = multer({
-  dest: 'uploads/'
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  }
 });
+const upload = multer({ storage: storage });
 
 const app = express();
 const PORT = 4000;
@@ -58,6 +64,7 @@ app.post('/uploadpost', controllers.uploadpost.post);
 app.put('/suggestionsup', controllers.suggestionUp.update);
 app.put('/suggestionsdown', controllers.suggestionDown.update);
 app.post('/profile', upload.single('image'), controllers.uploadProfile.post);
+// app.use('/', express.static('uploads'));
 
 // comments 요청
 app.post('/getcomments', controllers.getComments.post);

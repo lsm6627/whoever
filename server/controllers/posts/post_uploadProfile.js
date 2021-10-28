@@ -1,6 +1,4 @@
 const { posts } = require('../../models');
-const { category } = require('../../models');
-const { users } = require('../../models');
 
 module.exports = {
   post: async (req, res) => {
@@ -21,8 +19,8 @@ module.exports = {
         };
       }
     };
+    console.log('uploadProfile;;;;;;;', req.file);
     const image = req.file.path;
-    console.log(image);
     if (image === undefined) {
       return res.status(400).send(util.fail(400, '이미지가 없습니다'));
     }

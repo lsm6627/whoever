@@ -18,7 +18,7 @@ module.exports = {
           limit: 10
         })
         .catch((err) => res.json(err));
-      result.push(...listContents);
+      result.push(...listContents.reverse());
     }
 
     if (!result) {
