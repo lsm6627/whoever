@@ -33,13 +33,22 @@ module.exports = {
         .status(401)
         .json({ data: null, message: '아이디, 패스워드를 확인해 주세요' });
     } else {
-      req.session.userId = userInfo.userId;
-      req.session.save((err) => {
-        if (err) {
-          res.status(500).json({ message: '세션 만료' });
-        }
-        res.status(200).json({ message: '로그인 되었습니다' });
+      const { id, userId, createdAt, updatedAt } = userInfo;
+      const accessToken = generateAccessToken({
+        id,
+        userId,
+        createdAt,
+        updatedAt
       });
+      const refreshToken = generateRefreshToken({
+        id,
+        userId,
+        createdAt,
+        updatedAt
+      });
+      console.log(accessToken);
+      sendRefreshToken(res, refreshToken);
+      sendAccessToken(res, accessToken);
     }
   }
 };

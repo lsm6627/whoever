@@ -10,7 +10,6 @@ import {
   Pw_Input,
   Id_text,
   Pw_text,
-  Validation_Check,
   ModalInsideContainer,
   CloseBtn
 } from './Login.style';
@@ -18,7 +17,13 @@ import {
 import SignUp from './SignUp';
 import axios from 'axios';
 
-const Login = ({ isLogin, setIsLogin, userInfo, setUserInfo }) => {
+const Login = ({
+  isLogin,
+  setIsLogin,
+  userInfo,
+  setUserInfo,
+  logoutHandler
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
@@ -39,23 +44,23 @@ const Login = ({ isLogin, setIsLogin, userInfo, setUserInfo }) => {
   const loginBtnHandler = () => {
     // axios로 사용 요청을 보낼때  db에 있는 정보에 맞춰서 버튼 실행하는 이벤트 핸들러
     axios
-      .post('http://localhost:4000/login', {
-        userId: userId,
-        password: password
-      })
-      .then((res) => {
-        setUserInfo(res.data.data);
-        setIsLogin(true);
-        alert(res.data.message);
-        openModalHandler();
-      })
-      .catch((err) => alert('ID와 Password를 확인해 주세요!'));
+      .post(
+        'http://localhost:4000//login',
+        { userId: userId, password: password },
+        { withCredentials: true }
+      )
+      .then((res) => loginBtnHandler(res.data))
+      .catch((err) => {
+        if (err.response.status === 401) {
+          alert('ID와 Password를 확인해 주세요!');
+        }
+      });
   };
 
   return (
     <LoginModalContainer>
       {isLogin ? (
-        <LoginModalBtn onClick={openModalHandler}>Logout</LoginModalBtn>
+        <LoginModalBtn onClick={logoutHandler}>Logout</LoginModalBtn>
       ) : (
         <LoginModalBtn onClick={openModalHandler}>Login</LoginModalBtn>
       )}

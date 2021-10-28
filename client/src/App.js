@@ -17,22 +17,6 @@ function App() {
   const [posts, setPosts] = useState(initialState.posts);
   const [categories, setCategories] = useState(initialState.categories);
 
-  const handleIsLogin = () => {
-    axios
-      .get(`http://localhost:4000/userinfo`, {
-        withCredentials: true
-      })
-      .then((res) => {
-        setUserInfo(res.data.data);
-        setIsLogin(true);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    handleIsLogin();
-  }, []);
-
   return (
     <BrowserRouter>
       <div className="App">
