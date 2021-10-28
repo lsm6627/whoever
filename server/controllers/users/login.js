@@ -33,9 +33,12 @@ module.exports = {
         .status(401)
         .json({ data: null, message: '아이디, 패스워드를 확인해 주세요' });
     } else {
-      req.session.save(() => {
-        req.session.userId = userInfo.userId;
-        res.json({ data: userInfo, message: '로그인 되었습니다' });
+      req.session.userId = userInfo.userId;
+      req.session.save((err) => {
+        if (err) {
+          res.status(500).json({ message: '세션 만료' });
+        }
+        res.status(200).json({ message: '로그인 되었습니다' });
       });
     }
   }

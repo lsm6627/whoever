@@ -11,11 +11,10 @@ import {
 } from './Header.style';
 import { Stylelink } from './Sidebar.style';
 import axios from 'axios';
+import Login from './Login';
 
-import Login from './Login'
 const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
   const [isOpen, setIsOpen] = useState(false);
-  
 
   const sideBarOpenHandler = () => {
     setIsOpen(!isOpen);
@@ -23,13 +22,14 @@ const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
 
   const logoutHandler = () => {
     axios
-    .post(`${process.env.REACT_APP_API_URL}/logout`, 
-          {withCredentials: true})
-    .then((res) => {
-      setUserInfo({message: '로그아웃 되었습니다'});
-      setIsOpen(false);
-    })
-  }
+      .post(`${process.env.REACT_APP_API_URL}/logout`, {
+        withCredentials: true
+      })
+      .then((res) => {
+        setUserInfo({ message: '로그아웃 되었습니다' });
+        setIsOpen(false);
+      });
+  };
 
   return (
     <Headerdiv>
@@ -45,13 +45,15 @@ const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
       <Stylelink to={'/'}>
         <Logo>Whoever</Logo>
       </Stylelink>
+
       <Header_button_container>
-        {isLogin ? (
-           <Login isLogin={isLogin} setIsLogin={setIsLogin} userInfo={userInfo} setUserInfo={setUserInfo}/>
-        ) : (
-          <Login/>
-        )}
-        </Header_button_container>
+        <Login
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+        />
+      </Header_button_container>
     </Headerdiv>
   );
 };

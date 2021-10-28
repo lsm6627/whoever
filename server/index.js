@@ -19,10 +19,9 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      domain: 'localhost', // TODO: 이거 배포용으로 바꿔야 하지 않나?
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
-      sameSite: 'none',
+      sameSite: 'None',
       httpOnly: true,
       secure: true
     }
