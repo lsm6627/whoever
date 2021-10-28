@@ -3,7 +3,6 @@ module.exports = {
   login: require('./users/login'),
   logout: require('./users/logout'),
   signup: require('./users/signup'),
-  userInfo: require('./users/userInfo'),
 
   // posts
   getMainPosts: require('./posts/get_main_posts'),
@@ -19,5 +18,10 @@ module.exports = {
   uploadProfile: require('./posts/post_uploadProfile'),
 
   // comments
-  getComments: require('./comments/get_comments')
+  getComments: require('./comments/get_comments'),
+
+  // token
+  accessTokenRequest: require('./users/accessTokenRequest'),
+  refreshTokenRequest: require('./users/refreshTokenRequest'),
+  tokenRequest: require('./users/tokenRequest')
 };

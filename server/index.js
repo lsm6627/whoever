@@ -1,10 +1,9 @@
 require('dotenv').config();
 const express = require('express');
-const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const cors = require('cors');
 const controllers = require('./controllers');
-const cookieParser = require('cookie-parser'); // TODO: 언젠가 이걸 지울지 몰라.
 const multer = require('multer');
 const upload = multer({
   dest: 'uploads/'
@@ -12,21 +11,6 @@ const upload = multer({
 
 const app = express();
 const PORT = 4000;
-
-app.use(
-  session({
-    secret: 'codegangster@',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      path: '/',
-      maxAge: 24 * 6 * 60 * 10000,
-      sameSite: 'None',
-      httpOnly: true,
-      secure: true
-    }
-  })
-);
 
 app.use(
   cors({
@@ -39,11 +23,13 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//token
+app.get('/tokenrequest', controllers.tokenRequest);
+
 // users 요청
 app.post('/login', controllers.login.post);
-app.post('/logout', controllers.logout.post);
+app.get('/logout', controllers.logout);
 app.post('/signup', controllers.signup.post);
-app.get('/userinfo', controllers.userInfo.get);
 
 // posts 요청
 app.get('/main', controllers.getMainPosts.get);
