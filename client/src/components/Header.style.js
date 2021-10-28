@@ -86,3 +86,19 @@ export const Loginbutton = styled.span`
     box-shadow: none;
   }
 `;
+
+export const Logout = styled.button.attrs({ type: 'submit' })`
+  margin-top: 7.5em;
+  background: #fffffc;
+  border: solid 5px #ffad4999;
+  border-radius: 15px;
+  height: 55px;
+  cursor: pointer;
+  transition: 300ms ease all;
+  box-shadow: gray 2px 2px 2px;
+  padding: 10px;
+  min-width: 100px;
+  text-align-last: center;
+  font-family: 'Mikado';
+  margin-right: 40px;
+  `

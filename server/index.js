@@ -1,10 +1,9 @@
 require('dotenv').config();
 const express = require('express');
-const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const cors = require('cors');
 const controllers = require('./controllers');
-const cookieParser = require('cookie-parser'); // TODO: 언젠가 이걸 지울지 몰라.
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -20,22 +19,6 @@ const app = express();
 const PORT = 4000;
 
 app.use(
-  session({
-    secret: 'codegangster@',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      domain: 'localhost', // TODO: 이거 배포용으로 바꿔야 하지 않나?
-      path: '/',
-      maxAge: 24 * 6 * 60 * 10000,
-      sameSite: 'none',
-      httpOnly: true,
-      secure: true
-    }
-  })
-);
-
-app.use(
   cors({
     origin: true,
     credentials: true,
@@ -46,11 +29,13 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//token
+app.get('/tokenrequest', controllers.tokenRequest);
+
 // users 요청
 app.post('/login', controllers.login.post);
-app.post('/logout', controllers.logout.post);
+app.get('/logout', controllers.logout.get);
 app.post('/signup', controllers.signup.post);
-app.get('/userinfo', controllers.userInfo.get);
 
 // posts 요청
 app.get('/main', controllers.getMainPosts.get);

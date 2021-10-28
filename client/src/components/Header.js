@@ -6,15 +6,29 @@ import {
   Headerdiv,
   Menu_icon,
   Logo,
-  Loginbutton,
   Header_button_container
 } from './Header.style';
 import { Stylelink } from './Sidebar.style';
+import axios from 'axios';
+import Login from './Login';
 
-const Header = ({ isLogin, categories }) => {
+const Header = ({ isLogin, setIsLogin, userInfo, setUserInfo, categories }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const sideBarOpenHandler = () => {
     setIsOpen(!isOpen);
+  };
+
+  const logoutHandler = () => {
+    axios
+      .get('http://localhost:4000/logout', {
+        withCredentials: true
+      })
+      .then((res) => {
+        setUserInfo({});
+        setIsLogin(false);
+        res.status(200).json({ data: null, message: '로그아웃 되었습니다' });
+      });
   };
 
   return (
@@ -31,12 +45,15 @@ const Header = ({ isLogin, categories }) => {
       <Stylelink to={'/'}>
         <Logo>Whoever</Logo>
       </Stylelink>
+
       <Header_button_container>
-        {isLogin ? (
-          <Loginbutton>Logout</Loginbutton>
-        ) : (
-          <Loginbutton>Login</Loginbutton>
-        )}
+        <Login
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          logoutHandler={logoutHandler}
+        />
       </Header_button_container>
     </Headerdiv>
   );
