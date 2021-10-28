@@ -17,6 +17,23 @@ function App() {
   const [posts, setPosts] = useState(initialState.posts);
   const [categories, setCategories] = useState(initialState.categories);
 
+  const issueTokens = (token) => {
+    axios
+      .get('http://localhost:4000/tokenRequest', {
+        headers: { authorization: `Bearer ${token}` },
+        withCredentials: true
+      })
+      .then((res) => {
+        setUserInfo(res.data.data.userInfo);
+        setIsLogin(true);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    issueTokens();
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="App">

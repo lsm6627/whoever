@@ -28,7 +28,7 @@ app.get('/tokenrequest', controllers.tokenRequest);
 
 // users 요청
 app.post('/login', controllers.login.post);
-app.get('/logout', controllers.logout);
+app.get('/logout', controllers.logout.get);
 app.post('/signup', controllers.signup.post);
 
 // posts 요청
