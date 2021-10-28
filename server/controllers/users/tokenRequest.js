@@ -2,13 +2,16 @@ const { checkRefeshToken, isAuthorized } = require('../tokenFunctions');
 
 module.exports = (req, res) => {
   const accessTokenData = isAuthorized(req);
+  console.log(accessTokenData);
   if (!accessTokenData) {
     console.log("!!!no token in req.headers['authorization']");
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
       return res
         .status(403)
-        .json({message: "refresh token does not exist, you've never logged in before"});
+        .json({
+          message: "refresh token does not exist, you've never logged in before"
+        });
     }
 
     const refreshTokenData = checkRefeshToken(refreshToken);

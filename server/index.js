@@ -49,12 +49,12 @@ app.post('/uploadpost', controllers.uploadpost.post);
 app.put('/suggestionsup', controllers.suggestionUp.update);
 app.put('/suggestionsdown', controllers.suggestionDown.update);
 app.post('/profile', upload.single('image'), controllers.uploadProfile.post);
-// app.use('/', express.static('uploads'));
+app.use('/', express.static('uploads'));
 
 // comments 요청
 app.post('/getcomments', controllers.getComments.post);
-// app.update('/changecomment', controllers.changecomment);
-// app.delete('/deletecomment', controllers.deletecomment);
-// app.post('/uploadcomment', controllers.uploadcomment);
+app.put('/changecomment', controllers.changecomment.update);
+app.delete('/deletecomment', controllers.deletecomment.delete);
+app.post('/uploadcomment', controllers.uploadcomment.post);
 
 app.listen(PORT, () => console.log(`this server listening on ${PORT}`));
