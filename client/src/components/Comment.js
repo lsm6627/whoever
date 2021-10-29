@@ -12,15 +12,25 @@ import {
   Comment_createdBy,
   Comment_MakeInfo,
   Comment_createAt,
-  Comment_content
+  Comment_content,
+  Comment_delete_Button_Conainer,
+  Comment_delete_Button,
+  // 패스워드 모달
+  CommentPasswordModal,
+  CommentModalBackdrop,
+  CommentModalContainer,
+  CommentModalTitle,
+  CommentModalInput,
+  CommentModalInputButton
 } from './Comment.style';
 
 const Comment = ({ postId }) => {
-  const history = useHistory();
-  const pwInput = useRef();
   const [comments, setComments] = useState([]);
   const [commentPw, setCommentPw] = useState('');
   const [contentCm, setContentCm] = useState('');
+  const [openCommentModal, setOpenCommentModal] = useState(false);
+  const [commentsPasswordInputValue, setCommentsPasswordInputValue] =
+    useState();
 
   const commentHandler = (e) => {
     if (e.target.type === 'text') {
@@ -29,6 +39,10 @@ const Comment = ({ postId }) => {
     if (e.target.type === 'password') {
       setCommentPw(e.target.value);
     }
+  };
+
+  const commentPasswordHandler = (e) => {
+    setCommentsPasswordInputValue(e.target.value);
   };
 
   const uploadCommentHandler = () => {
@@ -44,6 +58,25 @@ const Comment = ({ postId }) => {
         setContentCm('');
         setCommentPw('');
       });
+  };
+
+  const openCommentModalHandler = () => {
+    setOpenCommentModal(!openCommentModal);
+  };
+
+  const deleteCommentHandler = (commentId) => {
+    axios
+      .post('http://localhost:4000/deletecomment', {
+        commentId: commentId,
+        commentPassword: commentsPasswordInputValue
+      })
+      .then((res) => {
+        const filteredComments = comments.filter((el) => el.id !== commentId);
+        setComments(filteredComments);
+        alert('댓글이 삭제 되었습니다.');
+        openCommentModalHandler();
+      })
+      .catch((err) => alert('패스워드가 다릅니다.'));
   };
 
   useEffect(() => {
@@ -89,6 +122,28 @@ const Comment = ({ postId }) => {
               </Comment_createAt>
             </Comment_MakeInfo>
             <Comment_content>{comment.content}</Comment_content>
+            <Comment_delete_Button_Conainer>
+              <Comment_delete_Button onClick={openCommentModalHandler}>
+                댓글 삭제
+              </Comment_delete_Button>
+              {openCommentModal ? (
+                <CommentPasswordModal>
+                  <CommentModalBackdrop onClick={openCommentModalHandler}>
+                    <CommentModalContainer onClick={(e) => e.stopPropagation()}>
+                      <CommentModalTitle>패스워드</CommentModalTitle>
+                      <CommentModalInput
+                        onChange={(e) => commentPasswordHandler(e)}
+                      />
+                      <CommentModalInputButton
+                        onClick={() => deleteCommentHandler(comment.id)}
+                      >
+                        입력
+                      </CommentModalInputButton>
+                    </CommentModalContainer>
+                  </CommentModalBackdrop>
+                </CommentPasswordModal>
+              ) : null}
+            </Comment_delete_Button_Conainer>
           </CommentBox>
         ))
         .reverse()}
