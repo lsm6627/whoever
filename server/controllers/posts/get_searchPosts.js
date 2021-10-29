@@ -3,9 +3,8 @@ const { posts } = require('../../models');
 module.exports = {
   // 5번째 : 검색하면 검색어가 재목에 들어 있으면 다 나옴!
   get: async (req, res) => {
-    const keyword = req.body.keyword;
-    const categoryId = req.body.categoryId;
-
+    const {keyword, categoryId} = req.body
+ 
     keyword = keyword.trim();
     if (!categoryId) {
       return res.status(404).json('없는 요청 입니다');
