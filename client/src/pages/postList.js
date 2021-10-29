@@ -33,21 +33,9 @@ const PostList = ({ match }) => {
         setAllPostCount(res.data.allPostCount);
       });
   }, [currentPage]);
-  // ---categoryId에 맞고,페이지에 맞는 게시물들 받기 서버에서 받는다. useEffect,axios---
-  // const categoryPost = posts
-  //   .filter((post) => post.categoryId === categoryId)
-  //   .reverse();
+
   const categoryLength = allPostCount;
-  // const indexOfLast = currentPage * postsPerPage;
-  // const indexOfFirst = indexOfLast - postsPerPage;
 
-  // const currentPosts = (tmp) => {
-  //   let currentPost = 0;
-  //   currentPost = tmp.slice(indexOfFirst, indexOfLast);
-  //   return currentPost;
-  // };
-
-  // -----------------------------------------------
   const getCategoryTitle = (no) => {
     if (no === 1) return '여행';
     if (no === 2) return '술';
@@ -60,6 +48,8 @@ const PostList = ({ match }) => {
     <Maindiv>
       <PostTitle
         categoryTitle={getCategoryTitle(categoryId)}
+        categoryId={categoryId}
+        setPosts={setPosts}
         // categoryLength={categoryLength}
       />
       <ListmenuBox>

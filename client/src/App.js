@@ -8,6 +8,7 @@ import NewPost from './pages/newPost';
 import OnePost from './pages/onePost';
 import PostList from './pages/postList';
 import Mypost from './pages/mypost';
+import Searchpost from './pages/searchPost';
 import Footer from './components/Footer';
 import { initialState } from './static/dummyData';
 
@@ -70,6 +71,10 @@ function App() {
           <Route
             path="/mypost"
             render={(match) => <Mypost posts={posts} match={match.match} />}
+          />
+          <Route
+            path="/searchpost=:no"
+            render={(match) => <Searchpost posts={posts} match={match.match} />}
           />
         </Switch>
         <Footer />
