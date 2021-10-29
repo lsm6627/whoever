@@ -58,13 +58,23 @@ function App() {
           <Route
             path="/newPost/postList=:no"
             render={(match) => (
-              <NewPost posts={posts} setPosts={setPosts} match={match.match} />
+              <NewPost
+                posts={posts}
+                setPosts={setPosts}
+                match={match.match}
+                userInfo={userInfo}
+              />
             )}
           />
           <Route
             path="/onePost=:no"
             render={(match) => (
-              <OnePost posts={posts} setPosts={setPosts} match={match.match} />
+              <OnePost
+                posts={posts}
+                setPosts={setPosts}
+                match={match.match}
+                userInfo={userInfo}
+              />
             )}
           />
           <Route

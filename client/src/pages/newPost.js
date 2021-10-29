@@ -17,7 +17,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-const NewPost = ({ match, posts, setPosts }) => {
+const NewPost = ({ match, posts, setPosts, userInfo }) => {
   const categoryId = Number(match.params.no);
   const history = useHistory();
   const editorRef = useRef();
@@ -35,17 +35,15 @@ const NewPost = ({ match, posts, setPosts }) => {
       alert('게시물을 작성해주세요');
       return;
     }
-    console.log(';;;;', gethtml);
     axios
       .post('http://localhost:4000/uploadpost', {
-        userId: 1,
+        userId: userInfo.id,
         img: '',
         categoryId: categoryId,
         title: title,
         content: gethtml
       })
       .then((res) => {
-        console.log(res.data);
         history.push(`/postList=${categoryId}`);
       })
       .catch((err) => console.log(err));

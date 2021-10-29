@@ -17,14 +17,11 @@ import axios from 'axios';
 
 const Writer = ({ editorRef }) => {
   const uploadImage = async (blob) => {
-    console.log('blob ;;;;;', blob);
     const formData = new FormData();
     formData.append('image', blob);
-    console.log('formData;;;;', formData);
     const url = await axios.post('http://localhost:4000/profile', {
       image: formData
     });
-    console.log('url ;;;;;', url);
     return url;
   };
   return (

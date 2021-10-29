@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Stylelink } from '../pages/main.style';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {
   Maindiv,
   PostTitleBox,
+  OnePostTitleContainer,
   PostTitle,
+  DeletePostButton,
   PostInfo,
   Post_Content,
   But_Container,
@@ -17,7 +20,8 @@ import {
 import View from '../components/View';
 import Comment from '../components/Comment';
 
-const OnePost = ({ match }) => {
+const OnePost = ({ match, userInfo }) => {
+  const history = useHistory();
   const postId = Number(match.params.no);
   const [onePost, setOnePost] = useState([]);
   const [isButUpChecked, setIsButUpChecked] = useState(false);
@@ -28,6 +32,19 @@ const OnePost = ({ match }) => {
       setOnePost(res.data);
     });
   }, []);
+
+  const deletePostHandler = () => {
+    axios.post('http://localhost:4000/deletepost', {
+      userId: userInfo.id,
+      postCreatedById: onePost.userId
+    });
+    if (userInfo.id === onePost.userId) {
+      alert('게시물이 삭제 되었습니다.');
+      history.goBack();
+      return;
+    }
+    alert('작성자만 글을 삭제 할 수 있습니다');
+  };
 
   const getCategoryTitle = (no) => {
     if (no === 1) return '여행';
@@ -45,7 +62,10 @@ const OnePost = ({ match }) => {
           <PostTitle>{getCategoryTitle(onePost.categoryId)}</PostTitle>
         </Stylelink>
       </PostTitleBox>
-      <Title_Post>{onePost.title}</Title_Post>
+      <OnePostTitleContainer>
+        <Title_Post>{onePost.title}</Title_Post>
+        <DeletePostButton onClick={deletePostHandler}>글삭제</DeletePostButton>
+      </OnePostTitleContainer>
       <PostInfo>
         <CreatedAt_Post>
           {new Date(onePost.createdAt).toLocaleDateString('ko-kr')}

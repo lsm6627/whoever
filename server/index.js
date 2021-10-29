@@ -44,7 +44,7 @@ app.post('/myposts', controllers.getMyPosts.post);
 app.post('/onepost', controllers.getOnePost.post);
 app.post('/searchpage', controllers.getSearchPosts.post);
 app.put('/changepost', controllers.changepost.update);
-app.delete('/deletepost', controllers.deletepost.delete);
+app.post('/deletepost', controllers.deletepost.post);
 app.post('/uploadpost', controllers.uploadpost.post);
 app.put('/suggestionsup', controllers.suggestionUp.update);
 app.put('/suggestionsdown', controllers.suggestionDown.update);
