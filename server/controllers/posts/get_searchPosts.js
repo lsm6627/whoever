@@ -2,11 +2,11 @@ const { posts } = require('../../models');
 
 module.exports = {
   // 5번째 : 검색하면 검색어가 재목에 들어 있으면 다 나옴!
-  get: async (req, res) => {
-    const keyword = req.body.keyword;
-    const categoryId = req.body.categoryId;
-
+  post: async (req, res) => {
+    let keyword = req.body.keyword
+    let categoryId = req.body.categoryId
     keyword = keyword.trim();
+    
     if (!categoryId) {
       return res.status(404).json('없는 요청 입니다');
     } else {
@@ -19,10 +19,10 @@ module.exports = {
             attributes: ['title', 'categoryId'],
             where: {
               categoryId: categoryId,
-              title: { [like]: `%${keyword}%` }
+              title: { like: `%${keyword}%` }
             }
           })
-          .catch((err) => json(err));
+          .catch((err) => console.log(err));
         if (!result) {
           return res.status(404).json('작성한 글이 없습니다');
         }
