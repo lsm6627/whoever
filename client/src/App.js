@@ -17,7 +17,6 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState(initialState.posts);
   const [categories, setCategories] = useState(initialState.categories);
-
   const issueTokens = (token) => {
     axios
       .get('http://localhost:4000/tokenRequest', {
@@ -80,7 +79,7 @@ function App() {
           />
           <Route
             path="/mypost"
-            render={(match) => <Mypost posts={posts} match={match.match} />}
+            render={(match) => <Mypost match={match.match} userInfo={userInfo}/>}
           />
           {/* //mypost=:no */}
            <Route

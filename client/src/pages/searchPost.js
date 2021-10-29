@@ -18,7 +18,6 @@ import {
 } from './searchPost.style';
 
 const Searchpost = ({ match }) => {
-//   const categoryPost = posts.filter((post) => post.userId === 1).reverse();
   const location = useLocation();
   const queryData = QueryString.parse(location.search, {
     ignoreQueryPrefix: true

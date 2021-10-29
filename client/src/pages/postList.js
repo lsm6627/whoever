@@ -47,9 +47,7 @@ const PostList = ({ match }) => {
   return (
     <Maindiv>
       <PostTitle
-        categoryId={categoryId} categoryTitle={getCategoryTitle(categoryId)} setPosts={setPosts}
-        // categoryLength={categoryLength}
-      />
+        categoryId={categoryId} categoryTitle={getCategoryTitle(categoryId)} setPosts={setPosts}/>
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
         <ListCreatedAt>작성시간</ListCreatedAt>
