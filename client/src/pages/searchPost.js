@@ -1,39 +1,34 @@
-import { useState, useEffect } from 'react';
-import Lists from '../components/Lists';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+import QueryString from 'qs';
+import { useLocation } from 'react-router-dom';
+import Lists from '../components/Lists';
 import PostTitle from '../components/PostTitle';
 import Pagination from '../components/Pagination';
 import { Stylelink } from '../pages/main.style';
 import {
-  Maindiv,
+  SearchPostContainer,
   ListmenuBox,
   ListTitle,
   ListCreatedAt,
   ListView,
   ListLike,
   ListdivBox,
-  PagenumBox,
-  WritiBox,
-  WritiBtn
-} from '../pages/postList.style';
-const PostList = ({ match }) => {
+  PagenumBox
+} from './searchPost.style';
+
+const Searchpost = ({ match }) => {
+//   const categoryPost = posts.filter((post) => post.userId === 1).reverse();
+  const location = useLocation();
+  const queryData = QueryString.parse(location.search, {
+    ignoreQueryPrefix: true
+  });
+  const keyword = queryData.keyword;
   const categoryId = Number(match.params.no);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
   const [posts, setPosts] = useState([]);
   const [allPostCount, setAllPostCount] = useState(0);
-
-  useEffect(() => {
-    axios
-      .post(`http://localhost:4000/listpage?page=${currentPage}`, {
-        categoryId: categoryId
-      })
-      .then((res) => {
-        setPosts(res.data.result);
-        setAllPostCount(res.data.allPostCount);
-      });
-  }, [currentPage]);
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
   const categoryLength = allPostCount;
 
   const getCategoryTitle = (no) => {
@@ -44,12 +39,25 @@ const PostList = ({ match }) => {
     if (no === 5) return '노래';
     if (no === 6) return '코딩';
   };
+
+
+    useEffect(() => {
+        axios
+          .post(`http://localhost:4000/searchpage?page=${currentPage}`, {
+            keyword: keyword,  
+            categoryId: categoryId
+          })
+          .then((res) => {
+            setPosts(res.data.result);
+            setAllPostCount(res.data.allPostCount);
+          });
+      }, [currentPage]);
+    
+  
   return (
-    <Maindiv>
-      <PostTitle
-        categoryId={categoryId} categoryTitle={getCategoryTitle(categoryId)} setPosts={setPosts}
-        // categoryLength={categoryLength}
-      />
+    <SearchPostContainer>
+     <PostTitle categoryTitle={getCategoryTitle(categoryId)} />
+      
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
         <ListCreatedAt>작성시간</ListCreatedAt>
@@ -58,18 +66,10 @@ const PostList = ({ match }) => {
       </ListmenuBox>
       <ListdivBox>
         {posts.map((post) => (
-          <Lists
-            key={post.id}
-            post={post}
-            categoryTitle={getCategoryTitle(categoryId)}
-          />
+          <Lists key={post.id} post={post} />
         ))}
       </ListdivBox>
-      <WritiBox>
-        <Stylelink to={`/newPost/postList=${categoryId}`}>
-          <WritiBtn>글쓰기</WritiBtn>
-        </Stylelink>
-      </WritiBox>
+
       <PagenumBox>
         <Pagination
           postsPerPage={postsPerPage}
@@ -77,7 +77,8 @@ const PostList = ({ match }) => {
           paginate={setCurrentPage}
         />
       </PagenumBox>
-    </Maindiv>
+    </SearchPostContainer>
   );
 };
-export default PostList;
+
+export default Searchpost;
