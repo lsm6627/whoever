@@ -32,7 +32,6 @@ module.exports = {
 
         const result = await posts
           .findAll({
-            attributes: ['title', 'categoryId'],
             where: {
               categoryId: categoryId,
               title: { [Op.like]: `%${keyword}%` }
