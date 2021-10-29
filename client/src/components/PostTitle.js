@@ -9,7 +9,7 @@ import {
   SearchIcon
 } from './PostTitle.style';
 
-const PostTitle = ({ categoryId, categoryTitle }) => {
+const PostTitle = ({ categoryId, categoryTitle, categoryLength, setPosts }) => {
   const history = useHistory();
   const [keyword, setKeyword] = useState('');
 

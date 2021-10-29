@@ -30,7 +30,7 @@ const Sidebar = ({
   openModalHandler,
   logoutHandler
 }) => {
-  console.log(userInfo);
+ 
   return (
     <SidebarContainer>
       {sidebarOpen ? (

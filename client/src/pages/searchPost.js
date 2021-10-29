@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import QueryString from 'qs';
+import { useLocation } from 'react-router-dom';
 import Lists from '../components/Lists';
 import PostTitle from '../components/PostTitle';
 import Pagination from '../components/Pagination';
@@ -16,36 +17,19 @@ import {
   PagenumBox
 } from './searchPost.style';
 
-const Searchpost = ({ match, posts }) => {
+const Searchpost = ({ match }) => {
+  //   const categoryPost = posts.filter((post) => post.userId === 1).reverse();
   const location = useLocation();
   const queryData = QueryString.parse(location.search, {
     ignoreQueryPrefix: true
   });
-  console.log('mmmmmmmmm', match.params.no);
-  console.log('llllllllllllllll', queryData.keyword);
+  const keyword = queryData.keyword;
   const categoryId = Number(match.params.no);
-  const categoryPost = posts.filter((post) => post.userId === 1).reverse();
-
+  const [posts, setPosts] = useState([]);
+  const [allPostCount, setAllPostCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
-  const categoryLength = categoryPost.length;
-
-  const indexOfLast = currentPage * postsPerPage;
-  const indexOfFirst = indexOfLast - postsPerPage;
-
-  //   axios
-  //   .post(
-  //     'http://localhost:4000/searchpage',
-  //     { keyword: keyword, categoryId: categoryId },
-  //     { withCredentials: true }
-  //   )
-  //   .then((res) => {
-  //     console.log(res.data);
-  //     setKeyword('');
-  //   })
-  //   .catch((err) => {
-  //     alert('잘못된 요청입니다');
-  //   });
+  const categoryLength = allPostCount;
 
   const getCategoryTitle = (no) => {
     if (no === 1) return '여행';
@@ -56,15 +40,22 @@ const Searchpost = ({ match, posts }) => {
     if (no === 6) return '코딩';
   };
 
-  //   const currentPosts = (tmp) => {
-  //     let currentPost = 0;
-  //     currentPost = tmp.slice(indexOfFirst, indexOfLast);
-  //     return currentPost;
-  //   };
+  useEffect(() => {
+    axios
+      .post(`http://localhost:4000/searchpage?page=${currentPage}`, {
+        keyword: keyword,
+        categoryId: categoryId
+      })
+      .then((res) => {
+        setPosts(res.data.result);
+        setAllPostCount(res.data.allPostCount);
+      });
+  }, [currentPage]);
+
   return (
     <SearchPostContainer>
-      <PostTitle categoryTitle="검색된" />
-      {/* // categorLength={categorLength} */}
+      <PostTitle categoryTitle={getCategoryTitle(categoryId)} />
+
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
         <ListCreatedAt>작성시간</ListCreatedAt>
@@ -72,8 +63,7 @@ const Searchpost = ({ match, posts }) => {
         <ListLike>좋아요</ListLike>
       </ListmenuBox>
       <ListdivBox>
-        {currentPosts(categoryPost).map((post) => (
-          //  console.log(post)
+        {posts.map((post) => (
           <Lists key={post.id} post={post} />
         ))}
       </ListdivBox>

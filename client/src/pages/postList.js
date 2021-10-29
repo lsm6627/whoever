@@ -60,7 +60,6 @@ const PostList = ({ match }) => {
       </ListmenuBox>
       <ListdivBox>
         {posts.map((post) => (
-          // ! 이부분 각각 요소들 다른 컴포넌트로 받아 올 수 있게 만들어 주세요!
           <Lists
             key={post.id}
             post={post}

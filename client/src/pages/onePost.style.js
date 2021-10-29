@@ -14,12 +14,62 @@ export const PostTitleBox = styled.div`
   font-size: 35px;
 `;
 
+export const OnePostTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const PostTitle = styled.div`
   border-bottom: solid 5px #ffad4f;
   padding-bottom: 3px;
   margin-bottom: 20px;
   margin-top: 40px;
   font-family: 'twayair';
+`;
+
+export const DeletePostButton = styled.button`
+  background-color: #fdcb6e;
+  border: 3px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'twayair';
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  height: fit-content;
+  outline: none;
+  padding: 10px 13px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
+    transform 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+
+  &:focus-visible {
+    box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+    transition: box-shadow 0.2s;
+  }
+
+  &:active {
+    background-color: #f7f7f7;
+    border-color: #000000;
+    transform: scale(0.96);
+  }
+
+  &:disabled {
+    border-color: #dddddd;
+    color: #dddddd;
+    cursor: not-allowed;
+    opacity: 1;
+  }
 `;
 
 export const PostInfo = styled.div`
