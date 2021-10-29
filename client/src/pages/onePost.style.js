@@ -286,10 +286,6 @@ export const Comment_Input_Content = styled.input`
 `;
 
 export const CommentBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  background-color: #fdcb6e;
   font-size: 23px;
   padding: 5px;
   padding-left: 10px;
@@ -297,13 +293,20 @@ export const CommentBox = styled.div`
   margin-top: 40px;
 `;
 
-export const Comment_createdBy = styled.div`
+export const Comment_MakeInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffad4f;
+  border-radius: 10px;
+  padding: 15px;
+`;
+
+export const Comment_createdBy = styled.span`
   font-family: 'twayair';
 `;
-export const Comment_createAt = styled.div`
+export const Comment_createAt = styled.span`
   font-family: 'twayair';
   font-size: 20px;
-  margin-right: 10px;
 `;
 
 export const Comment_content = styled.div`

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// // import axios from "axios";
 
 import { useForm } from 'react-hook-form';
-
-import { useHistory } from 'react-router-dom';
 
 import {
   SignUpModalContainer,
@@ -26,8 +23,6 @@ import {
 } from './SignUp.style';
 
 const SignUp = () => {
-  const history = useHistory();
-
   const [isOpen, setIsOpen] = useState(false);
   const [loginLen, setLoginLen] = useState(false);
   const [isVerified, setIsVerified] = useState(false);

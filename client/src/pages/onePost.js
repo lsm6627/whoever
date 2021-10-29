@@ -22,6 +22,7 @@ import {
   CommentBox,
   Comment_createdBy,
   Comment_content,
+  Comment_MakeInfo,
   Comment_createAt
 } from './onePost.style';
 import View from '../components/View';
@@ -104,10 +105,12 @@ const OnePost = ({ match }) => {
       </Comment_input_Container>
       <Comment_Input_Content placeholder="댓글을 적어주세요!" />
       <CommentBox>
-        <Comment_createdBy>여행 고수</Comment_createdBy>
-        <Comment_createAt>2021-10-19 07:34:55</Comment_createAt>
+        <Comment_MakeInfo>
+          <Comment_createdBy>여행 고수</Comment_createdBy>
+          <Comment_createAt>2021-10-19 07:34:55</Comment_createAt>
+        </Comment_MakeInfo>
+        <Comment_content>와 완전 좋은 정보 개이덕!</Comment_content>
       </CommentBox>
-      <Comment_content>와 완전 좋은 정보 개이덕!</Comment_content>
       {/* 여기 게시글의 댓글정보 */}
       {/* TODO: 글 목록이 게시글 안에서도 보이면 다른 게시물로 옮겨 다니기 편하겠다! */}
     </Maindiv>
