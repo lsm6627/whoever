@@ -18,7 +18,7 @@ import {
   Stylelink,
   BoardTitle
 } from './Sidebar.style';
-import Login from './Login';
+// import Login from './Login';
 
 const Sidebar = ({
   isLogin,
@@ -27,6 +27,7 @@ const Sidebar = ({
   categories,
   userInfo,
   loginBtnHandler,
+  openModalHandler,
   logoutHandler
 }) => {
   console.log(userInfo);
@@ -63,9 +64,7 @@ const Sidebar = ({
                 ) : (
                   <LogIn className="fas fa-sign-in-alt">
                     <LogoutText
-                      onClick={() => {
-                        <Login />;
-                      }}
+                      onClick={openModalHandler}
                     >
                       로그인
                     </LogoutText>
