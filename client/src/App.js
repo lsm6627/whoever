@@ -78,10 +78,15 @@ function App() {
               />
             )}
           />
-          <Route
-            path="/mypost"
-            render={(match) => <Mypost posts={posts} match={match.match} />}
-          />
+          {isLogin ? (
+            <Route
+              path="/mypost"
+              render={(match) => <Mypost userInfo={userInfo} />}
+            />
+          ) : (
+            ''
+          )}
+
           <Route
             path="/searchpost=:no"
             render={(match) => <Searchpost posts={posts} match={match.match} />}
