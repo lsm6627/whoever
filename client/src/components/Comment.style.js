@@ -154,3 +154,106 @@ export const Comment_createAt = styled.span`
 export const Comment_content = styled.div`
   padding: 15px;
 `;
+
+export const Comment_delete_Button_Conainer = styled.div`
+  display: flex;
+  justify-content: right;
+`;
+
+export const Comment_delete_Button = styled.span`
+  margin-right: 5px;
+  font-size: 16.5px;
+  opacity: 70%;
+
+  &:hover {
+    opacity: 100%;
+    cursor: pointer;
+  }
+`;
+
+// 패스워드 모달
+export const CommentPasswordModal = styled.div`
+  height: 15rem;
+  text-align: center;
+  margin: 120px auto;
+`;
+
+export const CommentModalBackdrop = styled.div`
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+`;
+export const CommentModalContainer = styled.div.attrs((props) => ({
+  role: 'dialog'
+}))`
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 330px;
+  height: 190px;
+
+  > div.close_btn {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  > div.desc {
+    margin-top: 25px;
+    color: #4000c7;
+  }
+`;
+
+export const CommentModalTitle = styled.div`
+  padding: 15px;
+  font-family: 'MaplestoryOTFBold';
+`;
+
+export const CommentModalInput = styled.input`
+  font-size: 20px;
+  width: 260px;
+  height: 45px;
+  outline: none;
+  border: solid 3px #ffad4f;
+  padding: 5px;
+`;
+
+export const CommentModalInputButton = styled.button`
+  display: block;
+  width: 260px;
+  margin: 10px auto 20px auto;
+  background: #fffffc;
+  border: solid 5px #ffad4999;
+  height: 40px;
+  cursor: pointer;
+  transition: 300ms ease all;
+  box-shadow: gray 2px 2px 2px;
+  text-align-last: center;
+  font-family: 'MaplestoryOTFBold';
+
+  &:hover {
+    box-shadow: gray 4px 4px 4px;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    transition: ease all;
+  }
+
+  &:hover:before,
+  &:hover:after {
+    width: 100%;
+    transition: ease all;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+`;

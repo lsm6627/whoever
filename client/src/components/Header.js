@@ -6,7 +6,6 @@ import {
   Menu_icon,
   Logo,
   Header_button_container,
-  //
   TitleDiv,
   LoginModalContainer,
   LoginModalBtn,
@@ -25,15 +24,13 @@ import axios from 'axios';
 import SignUp from './SignUp';
 import { useHistory } from 'react-router-dom';
 
-
-
 const Header = ({
   isLogin,
   setIsLogin,
   userInfo,
   setUserInfo,
   categories,
-  loginHandler,
+  loginHandler
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -73,7 +70,7 @@ const Header = ({
         alert('ID와 Password를 확인해 주세요!');
       });
   };
-  
+
   const logoutHandler = () => {
     axios
       .get('http://localhost:4000/logout', {
@@ -83,7 +80,7 @@ const Header = ({
         setUserInfo({});
         setIsLogin(false);
         alert('로그아웃 완료');
-        history.push({pathname:'/'})
+        history.push({ pathname: '/' });
       });
   };
 
@@ -107,32 +104,32 @@ const Header = ({
       </Stylelink>
 
       <Header_button_container>
-         <LoginModalContainer>
-      {isLogin ? (
-        <LoginModalBtn onClick={logoutHandler}>Logout</LoginModalBtn>
-      ) : (
-        <LoginModalBtn onClick={openModalHandler}>Login</LoginModalBtn>
-      )}
-      {isOpen === true ? (
-        <LoginModalBackdrop onClick={openModalHandler}>
-          <LoginModalView onClick={(e) => e.stopPropagation()}>
-            <CloseBtn
-              className="fas fa-times-circle"
-              onClick={openModalHandler}
-            ></CloseBtn>
-            <ModalInsideContainer>
-              <TitleDiv>WHOEVER login</TitleDiv>
-              <Id_text>Whoever ID</Id_text>
-              <Id_Input onChange={handleChange} />
-              <Pw_text>Password</Pw_text>
-              <Pw_Input onChange={handleChange} />
-              <LoginBtn onClick={() => loginBtnHandler()}>Login</LoginBtn>
-              <SignUp />
-            </ModalInsideContainer>
-          </LoginModalView>
-        </LoginModalBackdrop>
-      ) : null}
-    </LoginModalContainer>
+        <LoginModalContainer>
+          {isLogin ? (
+            <LoginModalBtn onClick={logoutHandler}>Logout</LoginModalBtn>
+          ) : (
+            <LoginModalBtn onClick={openModalHandler}>Login</LoginModalBtn>
+          )}
+          {isOpen === true ? (
+            <LoginModalBackdrop onClick={openModalHandler}>
+              <LoginModalView onClick={(e) => e.stopPropagation()}>
+                <CloseBtn
+                  className="fas fa-times-circle"
+                  onClick={openModalHandler}
+                ></CloseBtn>
+                <ModalInsideContainer>
+                  <TitleDiv>WHOEVER login</TitleDiv>
+                  <Id_text>Whoever ID</Id_text>
+                  <Id_Input onChange={handleChange} />
+                  <Pw_text>Password</Pw_text>
+                  <Pw_Input onChange={handleChange} />
+                  <LoginBtn onClick={() => loginBtnHandler()}>Login</LoginBtn>
+                  <SignUp />
+                </ModalInsideContainer>
+              </LoginModalView>
+            </LoginModalBackdrop>
+          ) : null}
+        </LoginModalContainer>
       </Header_button_container>
     </Headerdiv>
   );
