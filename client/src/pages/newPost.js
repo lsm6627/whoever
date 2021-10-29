@@ -15,6 +15,7 @@ import {
   BacktoButton
 } from '../pages/newPost.style';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const NewPost = ({ match, posts, setPosts }) => {
   const categoryId = Number(match.params.no);
@@ -34,22 +35,35 @@ const NewPost = ({ match, posts, setPosts }) => {
       alert('게시물을 작성해주세요');
       return;
     }
+    console.log(';;;;', gethtml);
+    axios
+      .post('http://localhost:4000/uploadpost', {
+        userId: 1,
+        img: '',
+        categoryId: categoryId,
+        title: title,
+        content: gethtml
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push(`/postList=${categoryId}`);
+      })
+      .catch((err) => console.log(err));
 
-    const addPost = {
-      id: posts.length + 1,
-      userId: 1,
-      img: '',
-      categoryId: categoryId,
-      title: title,
-      content: gethtml,
-      views: 1,
-      suggestions: 3,
-      createdAt: '2021-10-12T16:17:27.000Z',
-      updatedAt: '2021-10-12T16:17:27.000Z'
-    };
-
-    setPosts([...posts, addPost]);
-    history.push(`/postList=${categoryId}`);
+    // const addPost = {
+    //   id: posts.length + 1,
+    //   userId: 1,
+    //   img: '',
+    //   categoryId: categoryId,
+    //   title: title,
+    //   content: gethtml,
+    //   views: 1,
+    //   suggestions: 3,
+    //   createdAt: '2021-10-12T16:17:27.000Z',
+    //   updatedAt: '2021-10-12T16:17:27.000Z'
+    // };
+    // setPosts([...posts, addPost]);
+    // history.push(`/postList=${categoryId}`);
   };
 
   return (

@@ -5,9 +5,15 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const controllers = require('./controllers');
 const multer = require('multer');
-const upload = multer({
-  dest: 'uploads/'
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  }
 });
+const upload = multer({ storage: storage });
 
 const app = express();
 const PORT = 4000;
@@ -28,7 +34,7 @@ app.get('/tokenrequest', controllers.tokenRequest);
 
 // users 요청
 app.post('/login', controllers.login.post);
-app.get('/logout', controllers.logout);
+app.get('/logout', controllers.logout.get);
 app.post('/signup', controllers.signup.post);
 
 // posts 요청
@@ -43,11 +49,12 @@ app.post('/uploadpost', controllers.uploadpost.post);
 app.put('/suggestionsup', controllers.suggestionUp.update);
 app.put('/suggestionsdown', controllers.suggestionDown.update);
 app.post('/profile', upload.single('image'), controllers.uploadProfile.post);
+app.use('/', express.static('uploads'));
 
 // comments 요청
 app.post('/getcomments', controllers.getComments.post);
-// app.update('/changecomment', controllers.changecomment);
-// app.delete('/deletecomment', controllers.deletecomment);
-// app.post('/uploadcomment', controllers.uploadcomment);
+app.put('/changecomment', controllers.changecomment.update);
+app.delete('/deletecomment', controllers.deletecomment.delete);
+app.post('/uploadcomment', controllers.uploadcomment.post);
 
 app.listen(PORT, () => console.log(`this server listening on ${PORT}`));

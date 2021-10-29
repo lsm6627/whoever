@@ -26,6 +26,7 @@ import {
   Comment_createAt
 } from './onePost.style';
 import View from '../components/View';
+import Comment from '../components/Comment';
 
 const OnePost = ({ match }) => {
   const postId = Number(match.params.no);
@@ -58,7 +59,7 @@ const OnePost = ({ match }) => {
         <CreatedAt_Post>
           {new Date(onePost.createdAt).toLocaleDateString('ko-kr')}
         </CreatedAt_Post>
-        <Hit_Post>조회수:onePost.views</Hit_Post>
+        <Hit_Post>조회수:{onePost.views}</Hit_Post>
       </PostInfo>
       <Post_Content>
         {onePost.length === 0 ? '' : <View editorHTML={onePost.content} />}
@@ -94,23 +95,7 @@ const OnePost = ({ match }) => {
           <i className="fas fa-thumbs-down" />
         </But_Suggestion_Down>
       </But_Container>
-      <Comment_input_Container>
-        <Comment_Input_Password placeholder="댓글 비밀번호" />
-        <Comment_Input_But_Container>
-          <Comment_Input_RegisterBut>등록</Comment_Input_RegisterBut>
-          <Comment_Input_RegisterAndSuggestionBut>
-            등록 + 추천
-          </Comment_Input_RegisterAndSuggestionBut>
-        </Comment_Input_But_Container>
-      </Comment_input_Container>
-      <Comment_Input_Content placeholder="댓글을 적어주세요!" />
-      <CommentBox>
-        <Comment_MakeInfo>
-          <Comment_createdBy>여행 고수</Comment_createdBy>
-          <Comment_createAt>2021-10-19 07:34:55</Comment_createAt>
-        </Comment_MakeInfo>
-        <Comment_content>와 완전 좋은 정보 개이덕!</Comment_content>
-      </CommentBox>
+      <Comment postId={postId} />
       {/* 여기 게시글의 댓글정보 */}
       {/* TODO: 글 목록이 게시글 안에서도 보이면 다른 게시물로 옮겨 다니기 편하겠다! */}
     </Maindiv>

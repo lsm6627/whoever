@@ -1,4 +1,10 @@
 const { users } = require('../../models');
+const {
+  generateAccessToken,
+  generateRefreshToken,
+  sendAccessToken,
+  sendRefreshToken
+} = require('../tokenFunctions');
 const crypto = require('crypto');
 
 module.exports = {
@@ -46,7 +52,7 @@ module.exports = {
         createdAt,
         updatedAt
       });
-      console.log(accessToken);
+
       sendRefreshToken(res, refreshToken);
       sendAccessToken(res, accessToken);
     }

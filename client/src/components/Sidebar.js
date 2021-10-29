@@ -18,17 +18,28 @@ import {
   Stylelink,
   BoardTitle
 } from './Sidebar.style';
+// import Login from './Login';
 
-const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler, categories }) => {
+const Sidebar = ({
+  isLogin,
+  sidebarOpen,
+  sideBarOpenHandler,
+  categories,
+  userInfo,
+  loginBtnHandler,
+  openModalHandler,
+  logoutHandler
+}) => {
+  console.log(userInfo);
   return (
     <SidebarContainer>
-      {isOpen ? (
+      {sidebarOpen ? (
         <ModalSideBarBackdrop onClick={sideBarOpenHandler}>
           <MenuContainer onClick={(e) => e.stopPropagation()}>
             <UserProfileContainer>
               <UserInfoUpContainer>
                 <UserPhoto className="fas fa-user"></UserPhoto>
-                <UserName>HyeonSi</UserName>
+                <UserName>{userInfo.userId}</UserName>
               </UserInfoUpContainer>
               <UserInfoDownBtnContainer>
                 {isLogin ? (
@@ -46,11 +57,17 @@ const Sidebar = ({ isLogin, isOpen, sideBarOpenHandler, categories }) => {
                     className="fas fa-sign-out-alt"
                     onClick={sideBarOpenHandler}
                   >
-                    <LogoutText>로그아웃</LogoutText>
+                    <LogoutText onClick={() => logoutHandler()}>
+                      로그아웃
+                    </LogoutText>
                   </Logout>
                 ) : (
                   <LogIn className="fas fa-sign-in-alt">
-                    <LogoutText>로그인</LogoutText>
+                    <LogoutText
+                      onClick={openModalHandler}
+                    >
+                      로그인
+                    </LogoutText>
                   </LogIn>
                 )}
                 {/* 여기 로그인 로그아웃 버튼으로 연결하기 */}
