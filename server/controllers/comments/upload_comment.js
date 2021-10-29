@@ -21,7 +21,6 @@ module.exports = {
       })
       .catch((err) => res.json(err));
 
-    console.log('upload;;;;;;', result);
     if (!result) return res.status(404).json('없는 요청입니다');
     res.status(200).json({ data: result, message: '댓글이 업로드 되었습니다' });
   }

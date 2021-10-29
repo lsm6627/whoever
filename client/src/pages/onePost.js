@@ -12,7 +12,18 @@ import {
   But_Suggestion_Down,
   Title_Post,
   CreatedAt_Post,
-  Hit_Post
+  Hit_Post,
+  Comment_input_Container,
+  Comment_Input_Password,
+  Comment_Input_But_Container,
+  Comment_Input_RegisterBut,
+  Comment_Input_RegisterAndSuggestionBut,
+  Comment_Input_Content,
+  CommentBox,
+  Comment_createdBy,
+  Comment_content,
+  Comment_MakeInfo,
+  Comment_createAt
 } from './onePost.style';
 import View from '../components/View';
 import Comment from '../components/Comment';
