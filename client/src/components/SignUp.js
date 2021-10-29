@@ -42,6 +42,7 @@ const SignUp = () => {
       })
       .then((res) => {
         setIsOpen();
+        alert('회원가입이 완료 되었습니다.');
       })
       .catch((err) => alert('중복된 ID 입니다.'));
   };

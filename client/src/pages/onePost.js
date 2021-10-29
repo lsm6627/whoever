@@ -12,18 +12,7 @@ import {
   But_Suggestion_Down,
   Title_Post,
   CreatedAt_Post,
-  Hit_Post,
-  Comment_input_Container,
-  Comment_Input_Password,
-  Comment_Input_But_Container,
-  Comment_Input_RegisterBut,
-  Comment_Input_RegisterAndSuggestionBut,
-  Comment_Input_Content,
-  CommentBox,
-  Comment_createdBy,
-  Comment_content,
-  Comment_MakeInfo,
-  Comment_createAt
+  Hit_Post
 } from './onePost.style';
 import View from '../components/View';
 import Comment from '../components/Comment';
@@ -31,6 +20,8 @@ import Comment from '../components/Comment';
 const OnePost = ({ match }) => {
   const postId = Number(match.params.no);
   const [onePost, setOnePost] = useState([]);
+  const [isButUpChecked, setIsButUpChecked] = useState(false);
+  const [isButDownChecked, setIsButDownChecked] = useState(false);
 
   useEffect(() => {
     axios.post('http://localhost:4000/onepost', { id: postId }).then((res) => {
@@ -63,37 +54,58 @@ const OnePost = ({ match }) => {
       </PostInfo>
       <Post_Content>
         {onePost.length === 0 ? '' : <View editorHTML={onePost.content} />}
-        {/* <View editorHTML={oneContent} /> */}
       </Post_Content>
       <But_Container>
-        <But_Suggestion_Up
-          onClick={() => {
-            axios
-              .put('http://localhost:4000/suggestionsup', {
-                id: onePost.id,
-                suggestions: onePost.suggestions
-              })
-              .then((res) => {
-                setOnePost(res.data);
-              });
-          }}
-        >
-          <i className="fas fa-thumbs-up" /> : {onePost.suggestions}
-        </But_Suggestion_Up>
-        <But_Suggestion_Down
-          onClick={() => {
-            axios
-              .put('http://localhost:4000/suggestionsdown', {
-                id: onePost.id,
-                suggestions: onePost.suggestions
-              })
-              .then((res) => {
-                setOnePost(res.data);
-              });
-          }}
-        >
-          <i className="fas fa-thumbs-down" />
-        </But_Suggestion_Down>
+        {!isButUpChecked ? (
+          <But_Suggestion_Up
+            onClick={() => {
+              axios
+                .put('http://localhost:4000/suggestionsup', {
+                  id: onePost.id,
+                  suggestions: onePost.suggestions
+                })
+                .then((res) => {
+                  setOnePost(res.data);
+                  setIsButUpChecked(true);
+                });
+            }}
+          >
+            <i className="fas fa-thumbs-up" /> : {onePost.suggestions}
+          </But_Suggestion_Up>
+        ) : (
+          <But_Suggestion_Up
+            onClick={() => {
+              alert('추천 버튼은 연속해서 누를 수 없습니다');
+            }}
+          >
+            <i className="fas fa-thumbs-up" /> : {onePost.suggestions}
+          </But_Suggestion_Up>
+        )}
+        {!isButDownChecked ? (
+          <But_Suggestion_Down
+            onClick={() => {
+              axios
+                .put('http://localhost:4000/suggestionsdown', {
+                  id: onePost.id,
+                  suggestions: onePost.suggestions
+                })
+                .then((res) => {
+                  setOnePost(res.data);
+                  setIsButDownChecked(true);
+                });
+            }}
+          >
+            <i className="fas fa-thumbs-down" />
+          </But_Suggestion_Down>
+        ) : (
+          <But_Suggestion_Down
+            onClick={() => {
+              alert('비추천 버튼은 연속해서 누를 수 없습니다');
+            }}
+          >
+            <i className="fas fa-thumbs-down" />
+          </But_Suggestion_Down>
+        )}
       </But_Container>
       <Comment postId={postId} />
       {/* 여기 게시글의 댓글정보 */}
