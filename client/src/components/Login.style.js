@@ -122,7 +122,6 @@ export const Pw_Input = styled.input.attrs({ type: 'password' })`
   width: 368px;
   height: 2.2em;
   outline: none;
-  padding: 0px 25px 0px 0px;
   border: solid 1px #dadada;
   cursor: pointer;
 
@@ -131,16 +130,15 @@ export const Pw_Input = styled.input.attrs({ type: 'password' })`
     border: hidden;
   }
 `;
-export const CloseBtn = styled.span`
+export const CloseBtn = styled.a`
   border-radius: 50px;
   border: none;
   font-size: 28px;
-  margin: 5px 20px -8px 370px;
   cursor: pointer;
   color: #ffad4f;
 
   &:hover {
-    box-shadow: gray 2px 2px 2px;
+    text-shadow: gray 2px 2px 2px;
   }
 `;
 export const LoginModalView = styled.div.attrs((props) => ({

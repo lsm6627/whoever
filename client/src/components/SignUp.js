@@ -10,22 +10,21 @@ import {
   SignUpModalView,
   CloseBtn,
   SignUpContentContainer,
+  SignUp_Title_Container,
   TitleDiv,
   Idtext,
   Id_Input,
-  Id_Validation_Check,
+  Validation_Check,
+  Validation_Check_Green,
   Pwtext,
   Pw_Input,
-  PwValidLenMatch,
   PwConfirmtext,
   Pw_ReInput,
-  PwNotMatch,
   JoinBtn
 } from './SignUp.style';
 
 const SignUp = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [loginLen, setLoginLen] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
   const {
@@ -33,8 +32,19 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
     watch
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+  } = useForm({ mode: 'onChange' });
+
+  const onSubmit = (data) => {
+    axios
+      .post(`http://localhost:4000/signup`, {
+        userId: data.userId,
+        password: data.password
+      })
+      .then((res) => {
+        setIsOpen();
+      })
+      .catch((err) => alert('중복된 ID 입니다.'));
+  };
 
   useEffect(() => {
     setIsVerified(watch('verifyPassword') === watch('password'));
@@ -53,12 +63,14 @@ const SignUp = () => {
       {isOpen === true ? (
         <SignUpModalBackdrop onClick={openModalHandler}>
           <SignUpModalView onClick={(e) => e.stopPropagation()}>
-            <CloseBtn
-              className="fas fa-times-circle"
-              onClick={openModalHandler}
-            ></CloseBtn>
             <SignUpContentContainer onSubmit={handleSubmit(onSubmit)}>
-              <TitleDiv>WHOEVER Sign Up</TitleDiv>
+              <SignUp_Title_Container>
+                <TitleDiv>WHOEVER Sign Up</TitleDiv>
+                <CloseBtn
+                  className="fas fa-times-circle"
+                  onClick={openModalHandler}
+                ></CloseBtn>
+              </SignUp_Title_Container>
               <Idtext>Whoever ID</Idtext>
               <Id_Input
                 name="userId"
@@ -70,6 +82,15 @@ const SignUp = () => {
                   required: true
                 })}
               />
+              {errors.userId ? (
+                <Validation_Check>
+                  아이디는 소문자, 숫자 4~20 글자여야 합니다.
+                </Validation_Check>
+              ) : (
+                <Validation_Check_Green>
+                  사용가능한 아이디 입니다.
+                </Validation_Check_Green>
+              )}
               <Pwtext>Password</Pwtext>
               <Pw_Input
                 name="password"
@@ -88,6 +109,15 @@ const SignUp = () => {
                   e.target.setCustomValidity('');
                 }}
               />
+              {errors.password ? (
+                <Validation_Check>
+                  비밀번호는 8글자 이상, 영문, 숫자 조합이어야 합니다.
+                </Validation_Check>
+              ) : (
+                <Validation_Check_Green>
+                  사용가능한 비밀번호 입니다.
+                </Validation_Check_Green>
+              )}
               <PwConfirmtext>Password Confirm</PwConfirmtext>
               <Pw_ReInput
                 name="verifyPassword"
@@ -100,20 +130,15 @@ const SignUp = () => {
                   e.target.setCustomValidity('');
                 }}
               />
-              {errors.userId && errors.userId.type === 'required' && (
-                <Id_Validation_Check>
-                  아이디는 소문자, 숫자 4~20 글자여야 합니다.
-                </Id_Validation_Check>
+              {!isVerified ? (
+                <Validation_Check>
+                  비밀번호가 일치하지 않습니다.
+                </Validation_Check>
+              ) : (
+                <Validation_Check_Green>
+                  비밀번호가 일치합니다.
+                </Validation_Check_Green>
               )}
-              {errors.password && errors.password.type === 'required' && (
-                <PwValidLenMatch>
-                  비밀번호는 8글자 이상, 영문, 숫자 조합이어야 합니다.
-                </PwValidLenMatch>
-              )}
-              {errors.verifyPassword &&
-                errors.verifyPassword.type === 'required' && (
-                  <PwNotMatch>비밀번호가 일치하지 않습니다.</PwNotMatch>
-                )}
               <JoinBtn>Sign Up</JoinBtn>
             </SignUpContentContainer>
           </SignUpModalView>
