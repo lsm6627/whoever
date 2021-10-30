@@ -54,7 +54,7 @@ app.use('/', express.static('uploads'));
 // comments 요청
 app.post('/getcomments', controllers.getComments.post);
 app.put('/changecomment', controllers.changecomment.update);
-app.delete('/deletecomment', controllers.deletecomment.delete);
+app.post('/deletecomment', controllers.deletecomment.post);
 app.post('/uploadcomment', controllers.uploadcomment.post);
 
 app.listen(PORT, () => console.log(`this server listening on ${PORT}`));
