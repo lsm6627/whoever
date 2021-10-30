@@ -50,12 +50,12 @@ const Searchpost = ({ match }) => {
             setPosts(res.data.result);
             setAllPostCount(res.data.allPostCount);
           });
-      }, [currentPage]);
+      });
     
   
   return (
     <SearchPostContainer>
-     <PostTitle categoryTitle={getCategoryTitle(categoryId)} />
+     <PostTitle categoryId={categoryId} categoryTitle={getCategoryTitle(categoryId)} />
       
       <ListmenuBox>
         <ListTitle>제목</ListTitle>

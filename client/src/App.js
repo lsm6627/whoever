@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
@@ -8,7 +8,8 @@ import NewPost from './pages/newPost';
 import OnePost from './pages/onePost';
 import PostList from './pages/postList';
 import Mypost from './pages/mypost';
-import Searchpost from './pages/searchPost'
+import Searchpost from './pages/searchPost';
+import SearchMypost from './pages/searchMyPost';
 import Footer from './components/Footer';
 import { initialState } from './static/dummyData';
 
@@ -17,6 +18,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState(initialState.posts);
   const [categories, setCategories] = useState(initialState.categories);
+
   const issueTokens = (token) => {
     axios
       .get('http://localhost:4000/tokenRequest', {
@@ -55,17 +57,22 @@ function App() {
             path="/postList=:no"
             render={(match) => <PostList match={match.match} />}
           />
-          <Route
-            path="/newPost/postList=:no"
-            render={(match) => (
-              <NewPost
-                posts={posts}
-                setPosts={setPosts}
-                match={match.match}
-                userInfo={userInfo}
-              />
-            )}
-          />
+          {isLogin ? (
+            <Route
+              path="/newPost/postList=:no"
+              render={(match) => (
+                <NewPost
+                  posts={posts}
+                  setPosts={setPosts}
+                  match={match.match}
+                  userInfo={userInfo}
+                />
+              )}
+            />
+          ) : (
+            <Redirect to={'/'} />
+          )}
+
           <Route
             path="/onePost=:no"
             render={(match) => (
@@ -77,14 +84,23 @@ function App() {
               />
             )}
           />
+          {isLogin ? (
+            <Route
+              path="/mypost"
+              render={(match) => <Mypost userInfo={userInfo} />}
+            />
+          ) : (
+            <Redirect to={'/'} />
+          )}
+
           <Route
-            path="/mypost"
-            render={(match) => <Mypost match={match.match} userInfo={userInfo}/>}
-          />
-          {/* //mypost=:no */}
-           <Route
             path="/searchpost=:no"
             render={(match) => <Searchpost posts={posts} match={match.match} />}
+          />
+        
+          <Route
+            path="/searchmypost=:no"
+            render={(match) => <SearchMypost userInfo={userInfo} posts={posts} match={match.match} />}
           />
         </Switch>
         <Footer />
@@ -92,5 +108,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;

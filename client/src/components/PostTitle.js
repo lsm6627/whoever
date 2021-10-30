@@ -9,7 +9,7 @@ import {
   SearchIcon
 } from './PostTitle.style';
 
-const PostTitle = ({ categoryId, categoryTitle, categoryLength, setPosts}) => {
+const PostTitle = ({ userId, categoryId, categoryTitle, categoryLength, setPosts}) => {
   const history = useHistory();
   const [keyword, setKeyword] = useState('');
 
@@ -19,12 +19,18 @@ const PostTitle = ({ categoryId, categoryTitle, categoryLength, setPosts}) => {
       <PTitle>{categoryTitle} 게시판</PTitle>
       <SearchBox>
         <SearchText type="text" value={keyword} onChange={(e) => {setKeyword(e.target.value)}}/>
-        <SearchIcon
+        {userId ? <SearchIcon
           className="fas fa-search"
           onClick={() => {
-            history.push(`/searchpost=${categoryId}?keyword=${keyword}`);
+            history.push(`/searchmypost=${userId}?keyword=${keyword}`);
           }}
         />
+        : <SearchIcon
+        className="fas fa-search"
+        onClick={() => {
+          history.push(`/searchpost=${categoryId}?keyword=${keyword}`);
+        }}
+      />}
       </SearchBox>
     </PostTitleBox>
   );
