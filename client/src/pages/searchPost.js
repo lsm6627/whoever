@@ -18,7 +18,6 @@ import {
 } from './searchPost.style';
 
 const Searchpost = ({ match }) => {
-//   const categoryPost = posts.filter((post) => post.userId === 1).reverse();
   const location = useLocation();
   const queryData = QueryString.parse(location.search, {
     ignoreQueryPrefix: true
@@ -51,12 +50,12 @@ const Searchpost = ({ match }) => {
             setPosts(res.data.result);
             setAllPostCount(res.data.allPostCount);
           });
-      }, [currentPage]);
+      });
     
   
   return (
     <SearchPostContainer>
-     <PostTitle categoryTitle={getCategoryTitle(categoryId)} />
+     <PostTitle categoryId={categoryId} categoryTitle={getCategoryTitle(categoryId)} />
       
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
