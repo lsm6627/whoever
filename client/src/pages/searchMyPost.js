@@ -36,28 +36,26 @@ const SearchMypost = ({ match, userInfo }) => {
     if (no === 2) return '술';
     if (no === 3) return '맛집';
     if (no === 4) return '낚시';
-    if (no === 5) return '노래';
+    if (no === 5) return '노래';
     if (no === 6) return '코딩';
   };
 
+  useEffect(() => {
+    axios
+      .post(`http://localhost:4000/searchmypost?page=${currentPage}`, {
+        keyword: keyword,
+        userId: userInfo.id
+      })
+      .then((res) => {
+        setPosts(res.data.result);
+        setAllPostCount(res.data.allPostCount);
+      });
+  });
 
-    useEffect(() => {
-        axios
-          .post(`http://localhost:4000/searchmypost?page=${currentPage}`, {
-            keyword: keyword,  
-            userId: userInfo.id
-          })
-          .then((res) => {
-            setPosts(res.data.result);
-            setAllPostCount(res.data.allPostCount);
-          });
-      } );
-    
-  
   return (
     <SearchPostContainer>
-     <PostTitle userId ={userId} categoryTitle="검색된"/>
-      
+      <PostTitle userId={userId} categoryTitle="검색된" />
+
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
         <ListCreatedAt>작성시간</ListCreatedAt>

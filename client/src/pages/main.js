@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { initialState } from '../static/dummyData';
 import axios from 'axios';
 import PostList from './postList';
 import {
@@ -14,8 +13,7 @@ import {
   Stylelink
 } from '../pages/main.style';
 
-const Main = () => {
-  const [categories, setCategories] = useState([]);
+const Main = ({ categories, setCategories }) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     axios
@@ -31,8 +29,6 @@ const Main = () => {
         <Listdiv key={category.id}>
           <BoardtitleBox>
             <Stylelink to={`/postList=${category.id}`}>
-              {/* 서버쪽으로 categoryId를보내주고, 
-               서버에서는 받은 categoryId에 연관된 post를 가져온다? */}
               <BoardTitle>{category.content}</BoardTitle>
             </Stylelink>
           </BoardtitleBox>

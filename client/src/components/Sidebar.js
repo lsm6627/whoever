@@ -18,19 +18,16 @@ import {
   Stylelink,
   BoardTitle
 } from './Sidebar.style';
-// import Login from './Login';
 
 const Sidebar = ({
   isLogin,
   sidebarOpen,
   sideBarOpenHandler,
-  categories,
   userInfo,
-  loginBtnHandler,
   openModalHandler,
-  logoutHandler
+  logoutHandler,
+  categories
 }) => {
- 
   return (
     <SidebarContainer>
       {sidebarOpen ? (
@@ -51,7 +48,6 @@ const Sidebar = ({
                 ) : (
                   <div style={{ display: 'none' }} />
                 )}
-                {/* 당신... 작성한 글 페이지 만들어야돼.. */}
                 {isLogin ? (
                   <Logout
                     className="fas fa-sign-out-alt"
@@ -63,14 +59,9 @@ const Sidebar = ({
                   </Logout>
                 ) : (
                   <LogIn className="fas fa-sign-in-alt">
-                    <LogoutText
-                      onClick={openModalHandler}
-                    >
-                      로그인
-                    </LogoutText>
+                    <LogoutText onClick={openModalHandler}>로그인</LogoutText>
                   </LogIn>
                 )}
-                {/* 여기 로그인 로그아웃 버튼으로 연결하기 */}
               </UserInfoDownBtnContainer>
             </UserProfileContainer>
 
