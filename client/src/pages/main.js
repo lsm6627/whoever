@@ -1,27 +1,57 @@
-import React from 'react'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import {
+  Listdiv,
+  Maindiv,
+  BoardtitleBox,
+  BoardContentBox,
+  BoardTitle,
+  ListBox,
+  Listtitle,
+  CreatedDate,
+  Stylelink
+} from '../pages/main.style';
 
+const Main = ({ categories, setCategories }) => {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/main`, { withCredentials: true })
+      .then((res) => {
+        setCategories(res.data.categoryList);
+        setPosts(res.data.result);
+      });
+  }, []);
+  return (
+    <Maindiv>
+      {categories.map((category) => (
+        <Listdiv key={category.id}>
+          <BoardtitleBox>
+            <Stylelink to={`/postList=${category.id}`}>
+              <BoardTitle>{category.content}</BoardTitle>
+            </Stylelink>
+          </BoardtitleBox>
 
-
-
-const main = () => {
-
-
-    return (
-        <div>Main</div>
-    )
-}
-
-
+          <BoardContentBox>
+            {posts
+              .filter((el) => el.categoryId === category.id)
+              .slice(-10)
+              .reverse() // 여행인 게시물 10개씩, 최신순
+              .map((el) => (
+                <ListBox key={el.id}>
+                  <Stylelink to={`/onePost=${el.id}`}>
+                    <Listtitle>{el.title}</Listtitle>
+                  </Stylelink>
+                  <CreatedDate>
+                    {new Date(el.createdAt).toLocaleDateString('ko-kr')}
+                  </CreatedDate>
+                </ListBox>
+              ))}
+          </BoardContentBox>
+        </Listdiv>
+      ))}
+    </Maindiv>
+  );
+};
 
 export default Main;
-
-// 초기에 보이는 페이지로 한다. //
-// componants 를 띄우는 용도로 한다. 
-
-
-// MainList.js를 나오게 박아버린다. //
-
-// map으로 나눈다!
-
-
-
