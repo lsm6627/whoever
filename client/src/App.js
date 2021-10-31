@@ -19,7 +19,7 @@ function App() {
 
   const issueTokens = (token) => {
     axios
-      .get('http://localhost:4000/tokenRequest', {
+      .get(`${process.env.REACT_APP_API_URL}/tokenRequest`, {
         headers: { authorization: `Bearer ${token}` },
         withCredentials: true
       })

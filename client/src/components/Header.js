@@ -58,7 +58,7 @@ const Header = ({
     // axios로 사용 요청을 보낼때  db에 있는 정보에 맞춰서 버튼 실행하는 이벤트 핸들러
     axios
       .post(
-        'http://localhost:4000/login',
+        `${process.env.REACT_APP_API_URL}/login`,
         { userId: userId, password: password },
         { withCredentials: true }
       )
@@ -73,7 +73,7 @@ const Header = ({
 
   const logoutHandler = () => {
     axios
-      .get('http://localhost:4000/logout', {
+      .get(`${process.env.REACT_APP_API_URL}/logout`, {
         withCredentials: true
       })
       .then((res) => {

@@ -10,23 +10,13 @@ import {
   ListDataSugg
 } from './Lists.style';
 import { Stylelink } from '../pages/main.style';
-import OnePost from '../pages/onePost';
 
 const Lists = ({ post }) => {
   return (
     <Listdiv>
       <ListTitleContainer>
         <Stylelink to={`/onePost=${post.id}`}>
-          <Title
-          // onClick={() => {
-          //   history.push({
-          //     pathname: `/onePost/${post.id}`,
-          //     state: { post: post, categorTitle: categorTitle }
-          //   });
-          // }}
-          >
-            {post.title}
-          </Title>
+          <Title>{post.title}</Title>
         </Stylelink>
       </ListTitleContainer>
       <ListCreatedAtContainer>

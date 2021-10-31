@@ -18,9 +18,6 @@ module.exports = {
   sendAccessToken: (res, accessToken) => {
     res.json({ data: accessToken, message: 'ok' });
   },
-  // resendAccessToken: (res, accessToken, data) => {
-  //   res.json({ data: { accessToken, userInfo: data }, message: 'ok' });
-  // },
   isAuthorized: (req) => {
     const authorization = req.headers['authorization'];
     if (!authorization) {
@@ -30,7 +27,6 @@ module.exports = {
     try {
       return verify(token, process.env.ACCESS_SECRET);
     } catch (err) {
-      // return null if invalid token
       return null;
     }
   },
@@ -38,7 +34,6 @@ module.exports = {
     try {
       return verify(refreshToken, process.env.REFRESH_SECRET);
     } catch (err) {
-      // return null if refresh token is not valid
       return null;
     }
   }

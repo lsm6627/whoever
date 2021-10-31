@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import Lists from '../components/Lists';
 import PostTitle from '../components/PostTitle';
 import Pagination from '../components/Pagination';
-import { Stylelink } from '../pages/main.style';
 import {
   SearchPostContainer,
   ListmenuBox,
@@ -39,24 +38,25 @@ const Searchpost = ({ match }) => {
     if (no === 6) return '코딩';
   };
 
-
-    useEffect(() => {
-        axios
-          .post(`http://localhost:4000/searchpage?page=${currentPage}`, {
-            keyword: keyword,  
-            categoryId: categoryId
-          })
-          .then((res) => {
-            setPosts(res.data.result);
-            setAllPostCount(res.data.allPostCount);
-          });
+  useEffect(() => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/searchpage?page=${currentPage}`, {
+        keyword: keyword,
+        categoryId: categoryId
+      })
+      .then((res) => {
+        setPosts(res.data.result);
+        setAllPostCount(res.data.allPostCount);
       });
-    
-  
+  });
+
   return (
     <SearchPostContainer>
-     <PostTitle categoryId={categoryId} categoryTitle={getCategoryTitle(categoryId)} />
-      
+      <PostTitle
+        categoryId={categoryId}
+        categoryTitle={getCategoryTitle(categoryId)}
+      />
+
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
         <ListCreatedAt>작성시간</ListCreatedAt>

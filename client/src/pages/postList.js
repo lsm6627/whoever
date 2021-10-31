@@ -25,7 +25,7 @@ const PostList = ({ match }) => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:4000/listpage?page=${currentPage}`, {
+      .post(`${process.env.REACT_APP_API_URL}/listpage?page=${currentPage}`, {
         categoryId: categoryId
       })
       .then((res) => {
@@ -33,7 +33,7 @@ const PostList = ({ match }) => {
         setAllPostCount(res.data.allPostCount);
       });
   }, [currentPage]);
-  
+
   const categoryLength = allPostCount;
 
   const getCategoryTitle = (no) => {
@@ -47,7 +47,10 @@ const PostList = ({ match }) => {
   return (
     <Maindiv>
       <PostTitle
-        categoryId={categoryId} categoryTitle={getCategoryTitle(categoryId)} setPosts={setPosts}/>
+        categoryId={categoryId}
+        categoryTitle={getCategoryTitle(categoryId)}
+        setPosts={setPosts}
+      />
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
         <ListCreatedAt>작성시간</ListCreatedAt>

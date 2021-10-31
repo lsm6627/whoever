@@ -46,7 +46,7 @@ const Comment = ({ postId }) => {
 
   const uploadCommentHandler = () => {
     axios
-      .post('http://localhost:4000/uploadcomment', {
+      .post(`${process.env.REACT_APP_API_URL}/uploadcomment`, {
         id: postId,
         content: contentCm,
         password: commentPw
@@ -65,7 +65,7 @@ const Comment = ({ postId }) => {
 
   const deleteCommentHandler = (commentId) => {
     axios
-      .post('http://localhost:4000/deletecomment', {
+      .post(`${process.env.REACT_APP_API_URL}/deletecomment`, {
         commentId: commentId,
         commentPassword: commentsPasswordInputValue
       })
@@ -80,7 +80,7 @@ const Comment = ({ postId }) => {
 
   useEffect(() => {
     axios
-      .post('http://localhost:4000/getcomments', { id: postId })
+      .post(`${process.env.REACT_APP_API_URL}/getcomments`, { id: postId })
       .then((res) => {
         setComments(res.data.data);
       });

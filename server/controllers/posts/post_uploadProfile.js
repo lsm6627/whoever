@@ -1,5 +1,3 @@
-const { posts } = require('../../models');
-
 module.exports = {
   post: async (req, res) => {
     const util = {
@@ -19,7 +17,6 @@ module.exports = {
         };
       }
     };
-    console.log('uploadProfile;;;;;;;', req.file);
     const image = req.file.path;
     if (image === undefined) {
       return res.status(400).send(util.fail(400, '이미지가 없습니다'));

@@ -1,5 +1,4 @@
 import Prism from 'prismjs';
-// 여기 css를 수정?
 import 'prismjs/themes/prism.css';
 
 import '@toast-ui/editor/dist/toastui-editor.css';

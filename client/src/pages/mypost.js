@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import Lists from '../components/Lists';
 import PostTitle from '../components/PostTitle';
 import Pagination from '../components/Pagination';
-import { Stylelink } from '../pages/main.style';
 import {
   MypageContainer,
   ListmenuBox,
@@ -15,24 +14,16 @@ import {
   PagenumBox
 } from './mypost.style';
 
-const Mypost = ({ match, userInfo }) => {
+const Mypost = ({ userInfo }) => {
   const [posts, setPosts] = useState([]);
   const [allPostCount, setAllPostCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   const categoryLength = allPostCount;
-  const getCategoryTitle = (no) => {
-    if (no === 1) return '여행';
-    if (no === 2) return '술';
-    if (no === 3) return '맛집';
-    if (no === 4) return '낚시';
-    if (no === 5) return '노래';
-    if (no === 6) return '코딩';
-  };
 
   useEffect(() => {
     axios
-      .post(`http://localhost:4000/myposts?page=${currentPage}`, {
+      .post(`${process.env.REACT_APP_API_URL}/myposts?page=${currentPage}`, {
         id: userInfo.id
       })
       .then((res) => {

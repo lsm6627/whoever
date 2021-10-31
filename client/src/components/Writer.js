@@ -1,11 +1,8 @@
-import { useRef, useState, useEffect } from 'react';
-
 import Prism from 'prismjs';
-// 여기 css를 수정?
 import 'prismjs/themes/prism.css';
 
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { Editor, Viewer } from '@toast-ui/react-editor';
+import { Editor } from '@toast-ui/react-editor';
 
 import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
@@ -19,7 +16,7 @@ const Writer = ({ editorRef }) => {
   const uploadImage = async (blob) => {
     const formData = new FormData();
     formData.append('image', blob);
-    const url = await axios.post('http://localhost:4000/profile', {
+    const url = await axios.post(`${process.env.REACT_APP_API_URL}/profile`, {
       image: formData
     });
     return url;
