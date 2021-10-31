@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}_${file.originalname}`);
   }
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage, limits: { fileSize: 1024 * 1024 } });
 
 const app = express();
 const PORT = 4000;
@@ -45,7 +45,7 @@ app.post('/onepost', controllers.getOnePost.post);
 app.post('/searchpage', controllers.postSearchPosts.post);
 app.post('/searchmypost', controllers.postSearchMyPosts.post);
 app.put('/changepost', controllers.changepost.update);
-app.post('/deletepost', controllers.deletepost.post);
+app.delete('/deletepost', controllers.deletepost.delete);
 app.post('/uploadpost', controllers.uploadpost.post);
 app.put('/suggestionsup', controllers.suggestionUp.update);
 app.put('/suggestionsdown', controllers.suggestionDown.update);

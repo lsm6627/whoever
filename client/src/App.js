@@ -63,16 +63,6 @@ function App() {
               <PostList match={match.match} isLogin={isLogin} />
             )}
           />
-          {isLogin ? (
-            <Route
-              path="/newPost/postList=:no"
-              render={(match) => (
-                <NewPost match={match.match} userInfo={userInfo} />
-              )}
-            />
-          ) : (
-            <Redirect to={'/'} />
-          )}
 
           <Route
             path="/onePost=:no"
@@ -100,6 +90,16 @@ function App() {
               <SearchMypost userInfo={userInfo} match={match.match} />
             )}
           />
+          {isLogin ? (
+            <Route
+              path="/newPost/postList=:no"
+              render={(match) => (
+                <NewPost match={match.match} userInfo={userInfo} />
+              )}
+            />
+          ) : (
+            <Redirect to={'/'} />
+          )}
         </Switch>
         <Footer />
       </div>

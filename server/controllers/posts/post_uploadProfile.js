@@ -19,9 +19,7 @@ module.exports = {
         };
       }
     };
-    console.log('uploadProfile;;;;;;;', req.file);
     const image = `http://localhost:4000/${req.file.filename}`;
-    console.log('req.file.filename;;;;', image);
     if (image === undefined) {
       return res.status(400).send(util.fail(400, '이미지가 없습니다'));
     }
