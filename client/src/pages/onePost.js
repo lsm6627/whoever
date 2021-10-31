@@ -36,16 +36,19 @@ const OnePost = ({ match, userInfo }) => {
   }, []);
 
   const deletePostHandler = () => {
-    axios.post(`${process.env.REACT_APP_API_URL}/deletepost`, {
-      userId: userInfo.id,
-      postCreatedById: onePost.userId
-    });
     if (userInfo.id === onePost.userId) {
-      alert('게시물이 삭제 되었습니다.');
-      history.goBack();
-      return;
+      axios
+        .delete(`${process.env.REACT_APP_API_URL}/deletepost`, {
+          data: { id: postId }
+        })
+        .then((res) => {
+          alert('게시물이 삭제 되었습니다.');
+          history.goBack();
+          return;
+        });
+    } else {
+      alert('작성자만 글을 삭제 할 수 있습니다');
     }
-    alert('작성자만 글을 삭제 할 수 있습니다');
   };
 
   const getCategoryTitle = (no) => {
@@ -66,7 +69,13 @@ const OnePost = ({ match, userInfo }) => {
       </PostTitleBox>
       <OnePostTitleContainer>
         <Title_Post>{onePost.title}</Title_Post>
-        <DeletePostButton onClick={deletePostHandler}>글삭제</DeletePostButton>
+        {userInfo.id === onePost.userId ? (
+          <DeletePostButton onClick={deletePostHandler}>
+            글삭제
+          </DeletePostButton>
+        ) : (
+          ''
+        )}
       </OnePostTitleContainer>
       <PostInfo>
         <CreatedAt_Post>
