@@ -9,6 +9,7 @@ import OnePost from './pages/onePost';
 import PostList from './pages/postList';
 import Mypost from './pages/mypost';
 import Searchpost from './pages/searchPost';
+import SearchMypost from './pages/searchMyPost';
 import Footer from './components/Footer';
 import { initialState } from './static/dummyData';
 
@@ -98,11 +99,21 @@ function App() {
             path="/searchpost=:no"
             render={(match) => <Searchpost posts={posts} match={match.match} />}
           />
+
+          <Route
+            path="/searchmypost=:no"
+            render={(match) => (
+              <SearchMypost
+                userInfo={userInfo}
+                posts={posts}
+                match={match.match}
+              />
+            )}
+          />
         </Switch>
         <Footer />
       </div>
     </BrowserRouter>
   );
 }
-
 export default App;

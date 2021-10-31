@@ -32,9 +32,9 @@ module.exports = {
         .count({
           where: { userId: req.body.id }
         })
-        .catch((err) => res.status(400).json(err));
+        .catch((err) => res.json(err));
 
-      if (result.length === 0) {
+      if (!result) {
         return res.status(404).json('작성한 글이 없습니다');
       }
       res.status(200).json({ result, allPostCount });

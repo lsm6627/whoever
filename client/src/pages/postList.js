@@ -47,10 +47,9 @@ const PostList = ({ match, isLogin }) => {
   return (
     <Maindiv>
       <PostTitle
-        categoryTitle={getCategoryTitle(categoryId)}
         categoryId={categoryId}
+        categoryTitle={getCategoryTitle(categoryId)}
         setPosts={setPosts}
-        // categoryLength={categoryLength}
       />
       <ListmenuBox>
         <ListTitle>제목</ListTitle>
