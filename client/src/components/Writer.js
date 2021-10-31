@@ -18,12 +18,18 @@ import axios from 'axios';
 const Writer = ({ editorRef }) => {
   const uploadImage = async (blob) => {
     const formData = new FormData();
+    const config = {
+      header: { 'content-type': 'multipart/form-data' }
+    };
     formData.append('image', blob);
-    console.log(formData);
-    const url = await axios.post('http://localhost:4000/profile', {
-      image: formData
-    });
-    return url;
+    let url = await axios.post(
+      'http://localhost:4000/profile',
+      formData,
+      config
+    );
+    if (url) {
+      return url;
+    }
   };
   return (
     <Editor
@@ -31,10 +37,11 @@ const Writer = ({ editorRef }) => {
       plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
       height="500px"
       hooks={{
-        addImageBlobHook: (blob, callback) => {
-          const img_url = uploadImage(blob);
-          console.log(img_url);
-          callback(img_url, 'alt_text');
+        addImageBlobHook: async (blob, callback) => {
+          let img_url = await uploadImage(blob);
+          if (img_url) {
+            callback(img_url.data.data, `${img_url.data.data}`.split('_')[1]);
+          }
         }
       }}
       ref={editorRef}

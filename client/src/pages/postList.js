@@ -68,7 +68,11 @@ const PostList = ({ match, isLogin }) => {
       </ListdivBox>
       <WritiBox>
         <Stylelink to={`/newPost/postList=${categoryId}`}>
-          <WritiBtn disabled={disabled}>글쓰기</WritiBtn>
+          {isLogin ? (
+            <WritiBtn disabled={false}>글쓰기</WritiBtn>
+          ) : (
+            <WritiBtn disabled={true}>글쓰기</WritiBtn>
+          )}
         </Stylelink>
       </WritiBox>
       <PagenumBox>
