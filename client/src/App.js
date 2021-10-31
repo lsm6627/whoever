@@ -11,13 +11,11 @@ import Mypost from './pages/mypost';
 import Searchpost from './pages/searchPost';
 import SearchMypost from './pages/searchMyPost';
 import Footer from './components/Footer';
-import { initialState } from './static/dummyData';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState({});
-  const [posts, setPosts] = useState(initialState.posts);
-  const [categories, setCategories] = useState(initialState.categories);
+  const [categories, setCategories] = useState([]);
 
   const issueTokens = (token) => {
     axios
@@ -48,11 +46,17 @@ function App() {
           setIsLogin={setIsLogin}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
-          categories={categories}
           loginHandler={loginHandler}
+          categories={categories}
         />
         <Switch>
-          <Route exact path="/" render={() => <Main />} />
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Main categories={categories} setCategories={setCategories} />
+            )}
+          />
           <Route
             path="/postList=:no"
             render={(match) => <PostList match={match.match} />}
@@ -61,12 +65,7 @@ function App() {
             <Route
               path="/newPost/postList=:no"
               render={(match) => (
-                <NewPost
-                  posts={posts}
-                  setPosts={setPosts}
-                  match={match.match}
-                  userInfo={userInfo}
-                />
+                <NewPost match={match.match} userInfo={userInfo} />
               )}
             />
           ) : (
@@ -76,12 +75,7 @@ function App() {
           <Route
             path="/onePost=:no"
             render={(match) => (
-              <OnePost
-                posts={posts}
-                setPosts={setPosts}
-                match={match.match}
-                userInfo={userInfo}
-              />
+              <OnePost match={match.match} userInfo={userInfo} />
             )}
           />
           {isLogin ? (
@@ -95,12 +89,14 @@ function App() {
 
           <Route
             path="/searchpost=:no"
-            render={(match) => <Searchpost posts={posts} match={match.match} />}
+            render={(match) => <Searchpost match={match.match} />}
           />
-        
+
           <Route
             path="/searchmypost=:no"
-            render={(match) => <SearchMypost userInfo={userInfo} posts={posts} match={match.match} />}
+            render={(match) => (
+              <SearchMypost userInfo={userInfo} match={match.match} />
+            )}
           />
         </Switch>
         <Footer />
