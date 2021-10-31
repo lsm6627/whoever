@@ -2,6 +2,10 @@ const { posts } = require('../../models');
 
 module.exports = {
   update: async (req, res) => {
+    // const post = await posts
+    //   .findOne({
+    //     where: { id: req.body.id }
+    //   })
     if (req.body.id === undefined || req.body.suggestions === undefined)
       return res.status(404).json('없는 요청입니다');
     const suggestions = await posts
@@ -14,5 +18,6 @@ module.exports = {
     const post = await posts.findOne({ where: { id: req.body.id } });
     if (!post) return res.status(404);
     res.status(200).json(post);
+    // .update({ suggestions: suggestions + 1 })
   }
 };

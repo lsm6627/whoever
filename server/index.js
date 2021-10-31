@@ -13,10 +13,10 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}_${file.originalname}`);
   }
 });
-const upload = multer({ storage: storage, limits: { fileSize: 1024 * 1024 } });
+const upload = multer({ storage: storage });
 
 const app = express();
-const PORT = 4000;
+const PORT = 80;
 
 app.use(
   cors({
