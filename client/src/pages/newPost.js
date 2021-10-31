@@ -47,21 +47,6 @@ const NewPost = ({ match, posts, setPosts, userInfo }) => {
         history.push(`/postList=${categoryId}`);
       })
       .catch((err) => console.log(err));
-
-    // const addPost = {
-    //   id: posts.length + 1,
-    //   userId: 1,
-    //   img: '',
-    //   categoryId: categoryId,
-    //   title: title,
-    //   content: gethtml,
-    //   views: 1,
-    //   suggestions: 3,
-    //   createdAt: '2021-10-12T16:17:27.000Z',
-    //   updatedAt: '2021-10-12T16:17:27.000Z'
-    // };
-    // setPosts([...posts, addPost]);
-    // history.push(`/postList=${categoryId}`);
   };
 
   return (

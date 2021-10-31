@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
@@ -54,19 +54,26 @@ function App() {
           <Route exact path="/" render={() => <Main />} />
           <Route
             path="/postList=:no"
-            render={(match) => <PostList match={match.match} />}
-          />
-          <Route
-            path="/newPost/postList=:no"
             render={(match) => (
-              <NewPost
-                posts={posts}
-                setPosts={setPosts}
-                match={match.match}
-                userInfo={userInfo}
-              />
+              <PostList match={match.match} isLogin={isLogin} />
             )}
           />
+          {isLogin ? (
+            <Route
+              path="/newPost/postList=:no"
+              render={(match) => (
+                <NewPost
+                  posts={posts}
+                  setPosts={setPosts}
+                  match={match.match}
+                  userInfo={userInfo}
+                />
+              )}
+            />
+          ) : (
+            <Redirect to={'/'} />
+          )}
+
           <Route
             path="/onePost=:no"
             render={(match) => (
@@ -84,7 +91,7 @@ function App() {
               render={(match) => <Mypost userInfo={userInfo} />}
             />
           ) : (
-            ''
+            <Redirect to={'/'} />
           )}
 
           <Route

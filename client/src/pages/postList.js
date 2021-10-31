@@ -16,7 +16,7 @@ import {
   WritiBox,
   WritiBtn
 } from '../pages/postList.style';
-const PostList = ({ match }) => {
+const PostList = ({ match, isLogin }) => {
   const categoryId = Number(match.params.no);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -69,7 +69,7 @@ const PostList = ({ match }) => {
       </ListdivBox>
       <WritiBox>
         <Stylelink to={`/newPost/postList=${categoryId}`}>
-          <WritiBtn>글쓰기</WritiBtn>
+          <WritiBtn disabled={disabled}>글쓰기</WritiBtn>
         </Stylelink>
       </WritiBox>
       <PagenumBox>

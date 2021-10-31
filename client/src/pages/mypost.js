@@ -31,7 +31,7 @@ const Mypost = ({ userInfo }) => {
         setPosts(res.data.result);
         setAllPostCount(res.data.allPostCount);
       })
-      .catch((error) => console.log(error.response.data));
+      .catch((error) => alert(error.response.data));
   }, [currentPage]);
 
   return (

@@ -19,6 +19,7 @@ const Writer = ({ editorRef }) => {
   const uploadImage = async (blob) => {
     const formData = new FormData();
     formData.append('image', blob);
+    console.log(formData);
     const url = await axios.post('http://localhost:4000/profile', {
       image: formData
     });
