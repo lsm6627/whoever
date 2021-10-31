@@ -1,5 +1,3 @@
-const { posts } = require('../../models');
-
 module.exports = {
   post: async (req, res) => {
     const util = {
@@ -19,7 +17,7 @@ module.exports = {
         };
       }
     };
-    const image = `http://localhost:4000/${req.file.filename}`;
+    const image = `${process.env.REACT_APP_API_URL}/${req.file.path}`;
     if (image === undefined) {
       return res.status(400).send(util.fail(400, '이미지가 없습니다'));
     }

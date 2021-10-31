@@ -25,7 +25,7 @@ const PostList = ({ match, isLogin }) => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:4000/listpage?page=${currentPage}`, {
+      .post(`${process.env.REACT_APP_API_URL}/listpage?page=${currentPage}`, {
         categoryId: categoryId
       })
       .then((res) => {

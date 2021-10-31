@@ -21,9 +21,6 @@ module.exports = {
       })
       .catch((err) => res.json(err));
     if (!result) return res.status(404).json('없는 요청입니다');
-    res
-      // .update({ views: views + 1 })
-      .status(200)
-      .json(result);
+    res.status(200).json(result);
   }
 };

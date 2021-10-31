@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import Lists from '../components/Lists';
 import PostTitle from '../components/PostTitle';
 import Pagination from '../components/Pagination';
-import { Stylelink } from '../pages/main.style';
 import {
   SearchPostContainer,
   ListmenuBox,
@@ -41,19 +40,7 @@ const Searchpost = ({ match }) => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:4000/searchpage?page=${currentPage}`, {
-        keyword: keyword,
-        categoryId: categoryId
-      })
-      .then((res) => {
-        setPosts(res.data.result);
-        setAllPostCount(res.data.allPostCount);
-      });
-  }, [currentPage]);
-
-  useEffect(() => {
-    axios
-      .post(`http://localhost:4000/searchpage?page=${currentPage}`, {
+      .post(`${process.env.REACT_APP_API_URL}/searchpage?page=${currentPage}`, {
         keyword: keyword,
         categoryId: categoryId
       })

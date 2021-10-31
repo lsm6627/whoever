@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   PostTitleBox,
@@ -9,13 +8,7 @@ import {
   SearchIcon
 } from './PostTitle.style';
 
-const PostTitle = ({
-  userId,
-  categoryId,
-  categoryTitle,
-  categoryLength,
-  setPosts
-}) => {
+const PostTitle = ({ userId, categoryId, categoryTitle }) => {
   const history = useHistory();
   const [keyword, setKeyword] = useState('');
 

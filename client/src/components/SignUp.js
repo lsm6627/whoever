@@ -36,7 +36,7 @@ const SignUp = () => {
 
   const onSubmit = (data) => {
     axios
-      .post(`http://localhost:4000/signup`, {
+      .post(`${process.env.REACT_APP_API_URL}/signup`, {
         userId: data.userId,
         password: data.password
       })

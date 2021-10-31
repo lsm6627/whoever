@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import PostList from './postList';
 import {
   Listdiv,
   Maindiv,
@@ -17,7 +16,7 @@ const Main = ({ categories, setCategories }) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     axios
-      .get('http://localhost:4000/main', { withCredentials: true })
+      .get(`${process.env.REACT_APP_API_URL}/main`, { withCredentials: true })
       .then((res) => {
         setCategories(res.data.categoryList);
         setPosts(res.data.result);
@@ -37,7 +36,7 @@ const Main = ({ categories, setCategories }) => {
             {posts
               .filter((el) => el.categoryId === category.id)
               .slice(-10)
-              .reverse() //여행인 게시물 10개씩, 최신순
+              .reverse() // 여행인 게시물 10개씩, 최신순
               .map((el) => (
                 <ListBox key={el.id}>
                   <Stylelink to={`/onePost=${el.id}`}>

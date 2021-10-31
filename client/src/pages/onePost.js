@@ -28,9 +28,11 @@ const OnePost = ({ match, userInfo }) => {
   const [isButDownChecked, setIsButDownChecked] = useState(false);
 
   useEffect(() => {
-    axios.post('http://localhost:4000/onepost', { id: postId }).then((res) => {
-      setOnePost(res.data);
-    });
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/onepost`, { id: postId })
+      .then((res) => {
+        setOnePost(res.data);
+      });
   }, []);
 
   const deletePostHandler = () => {
@@ -89,7 +91,7 @@ const OnePost = ({ match, userInfo }) => {
           <But_Suggestion_Up
             onClick={() => {
               axios
-                .put('http://localhost:4000/suggestionsup', {
+                .put(`${process.env.REACT_APP_API_URL}/suggestionsup`, {
                   id: onePost.id,
                   suggestions: onePost.suggestions
                 })
@@ -114,7 +116,7 @@ const OnePost = ({ match, userInfo }) => {
           <But_Suggestion_Down
             onClick={() => {
               axios
-                .put('http://localhost:4000/suggestionsdown', {
+                .put(`${process.env.REACT_APP_API_URL}/suggestionsdown`, {
                   id: onePost.id,
                   suggestions: onePost.suggestions
                 })
@@ -137,7 +139,6 @@ const OnePost = ({ match, userInfo }) => {
         )}
       </But_Container>
       <Comment postId={postId} />
-      {/* 여기 게시글의 댓글정보 */}
       {/* TODO: 글 목록이 게시글 안에서도 보이면 다른 게시물로 옮겨 다니기 편하겠다! */}
     </Maindiv>
   );
